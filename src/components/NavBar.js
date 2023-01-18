@@ -12,8 +12,8 @@ const NavBar = () => {
         <Box component="nav" sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
-                    <img src={require('../img/logo192.png')} alt="Logo" className="classes.logo" height={30} width={30} />
-                    <Typography variant="h6" component="p" sx={{ flexGrow: 1, }}>WorkGLOBE</Typography>
+                    <img src={require('../img/logo192.png')} alt="Logo" height={30} width={30} />
+                    <Typography variant="h6" component="p" sx={{ flexGrow: 1, ml: 2}}>WorkGLOBE</Typography>
                     <IconButton
                         size="large"
                         aria-label="home"

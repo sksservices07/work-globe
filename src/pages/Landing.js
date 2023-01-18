@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Button } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 import * as React from 'react'
 
@@ -12,23 +13,25 @@ const backgroundStyles = css`
     height: 100vh;
     display: flex;
     align-items: center;
+    text-align: left;
     padding: 0 300px;
     justify-content: flex-start;
 `;
 
 const textStylesH1 = css`
-    color: black;
+    color: white;
     font-size: 3rem;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     text-shadow: 1px 1px black;
+    width: 350px;
 `;
 
 const textStylesP = css`
-    color: black;
-    font-size: 1rem;
+    color: white;
     font-family: 'Roboto', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
+    font-size: 25px;
     text-shadow: 1px 1px black;
 `;
 
@@ -43,6 +46,7 @@ const buttonStyles = css`
 
 const buttonContainerStyles = css`
     display: block;
+    margin-bottom: 100px;
 `;
 
 
@@ -54,8 +58,24 @@ function Landing() {
                 <div css={buttonContainerStyles}>
                     <h1 css={textStylesH1}>ONE BILLION PEOPLE USE ONLINE JOB PORTALS</h1>
                     <p css={textStylesP}>Stay protected by the power of smart contract embeddedin the realm of Blockchain</p>
-                    <Button css={buttonStyles} variant="contained" color="primary">I AM A FREELANCER</Button>
-                    <Button css={buttonStyles} variant="contained" color="primary">HIRE A FREELANCER</Button>
+                    <Link to="/freelancer">
+                        <Button
+                            css={buttonStyles}
+                            variant="contained"
+                            color="primary"
+                        >
+                            I AM A FREELANCER
+                        </Button>
+                    </Link>
+                    <Link to="/employer">
+                        <Button
+                            css={buttonStyles}
+                            variant="contained"
+                            color="primary"
+                        >
+                            HIRE A FREELANCER
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </>

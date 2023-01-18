@@ -13,7 +13,7 @@ const NavBar = () => {
             <AppBar position="static">
                 <Toolbar>
                     <img src={require('../img/logo192.png')} alt="Logo" height={30} width={30} />
-                    <Typography variant="h6" component="p" sx={{ flexGrow: 1, ml: 2}}>WorkGLOBE</Typography>
+                    <Typography variant="h6" component="p" sx={{ flexGrow: 1, textAlign: 'left', ml: 2 }}>WorkGLOBE</Typography>
                     <IconButton
                         size="large"
                         aria-label="home"

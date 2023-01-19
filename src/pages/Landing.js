@@ -2,8 +2,23 @@
 import { css } from '@emotion/react'
 import { Button } from '@mui/material'
 import { Link } from 'react-router-dom'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+
+import NavBar from '../components/NavBar'
 
 import * as React from 'react'
+
+const theme = createTheme({
+    components: {
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: 'white',
+                }
+            }
+        }
+    }
+});
 
 const backgroundStyles = css`
     background-color: #f5f5f5;
@@ -42,6 +57,13 @@ const buttonStyles = css`
     border-radius: 25px;
     width: 200px;
     height: 50px;
+    background-color: white;
+    color: black;
+    transition: transform 0.2s ease-in-out;
+    &:hover {
+        transform: scale(1.05);
+        background-color: aliceblue;
+    }
 `;
 
 const buttonContainerStyles = css`
@@ -53,7 +75,8 @@ const buttonContainerStyles = css`
 function Landing() {
 
     return (
-        <>
+        <ThemeProvider theme={theme}>
+            <NavBar />
             <div css={backgroundStyles}>
                 <div css={buttonContainerStyles}>
                     <h1 css={textStylesH1}>ONE BILLION PEOPLE USE ONLINE JOB PORTALS</h1>
@@ -78,7 +101,7 @@ function Landing() {
                     </Link>
                 </div>
             </div>
-        </>
+        </ThemeProvider>
     )
 }
 

@@ -16,6 +16,7 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     backgroundColor: '#474747',
+                    // boxShadow: '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)',
                 }
             }
         }
@@ -25,11 +26,16 @@ const theme = createTheme({
 const NavBar = () => {
     return (
         <ThemeProvider theme={theme}>
-            <Box component="nav" sx={{ flexGrow: 1 }}>
-                <AppBar position="static">
+            <Box component="nav" sx={{
+                flexGrow: 1,
+                // boxShadow: '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)',
+            }}>
+                <AppBar position="static" >
                     <Toolbar>
                         <img src={require('../img/logo192.png')} alt="Logo" height={30} width={30} />
-                        <Typography variant="h6" component="p" sx={{ flexGrow: 1, textAlign: 'left', ml: 2 }}>WorkGLOBE</Typography>
+                        <Typography variant="h6" component="p" sx={{ flexGrow: 1, textAlign: 'left', ml: 2 }}>
+                            WorkGLOBE
+                        </Typography>
                         <IconButton
                             size="large"
                             aria-label="home"

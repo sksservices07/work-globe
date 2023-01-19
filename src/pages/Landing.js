@@ -81,7 +81,7 @@ function Landing() {
                 <div css={buttonContainerStyles}>
                     <h1 css={textStylesH1}>ONE BILLION PEOPLE USE ONLINE JOB PORTALS</h1>
                     <p css={textStylesP}>Stay protected by the power of smart contract embeddedin the realm of Blockchain</p>
-                    <Link to="/freelancer">
+                    <Link to="/employer">
                         <Button
                             css={buttonStyles}
                             variant="contained"
@@ -90,7 +90,7 @@ function Landing() {
                             I AM A FREELANCER
                         </Button>
                     </Link>
-                    <Link to="/employer">
+                    <Link to="/freelancer">
                         <Button
                             css={buttonStyles}
                             variant="contained"

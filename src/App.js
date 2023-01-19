@@ -6,18 +6,18 @@ import { Routes, Route, } from 'react-router-dom';
 import Employer from './pages/Employer';
 import Freelancer from './pages/Freelancer';
 import Landing from './pages/Landing';
-import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
       <Routes>
         <Route exact path="/" element={<Landing />} />
         <Route exact path="/freelancer" element={<Freelancer />} />
         <Route exact path="/employer" element={<Employer />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

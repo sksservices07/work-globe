@@ -6,19 +6,12 @@ import { useNavigate } from "react-router-dom";
 
 import JobPostModal from "../components/PostJobModal";
 
-// "
-// text-align: left;
-// align-items: flex-start;
-// display: flex;
-// "
-
 const Freelancer = () => {
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = React.useState(false);
   const handleModalOpen = () => setModalOpen(true);
   const handleModalClose = () => setModalOpen(false);
-  // const [jobposts, setJobposts] = React.useState([{}]);
-  const jobs = [
+  const [jobs, setJobs] = React.useState([
     {
       company: "Netflix",
       role: "Senior Web Developer",
@@ -37,7 +30,17 @@ const Freelancer = () => {
       experience: "2 yrs experience",
       logo: "wipro-logo.png",
     },
-  ];
+  ]);
+  const [input, setInput] = React.useState({
+    company: "Generic",
+    role: "",
+    experience: "",
+    logo: "generic.png",
+  });
+  const onRoleChange = (e) => setInput({ ...input, role: e.target.value });
+  const onExperienceChange = (e) =>
+    setInput({ ...input, experience: e.target.value });
+  const onSubmit = () => setJobs([...jobs, input]);
   return (
     <Box
       sx={{
@@ -60,60 +63,64 @@ const Freelancer = () => {
           m: 2,
         }}
       >
-        {jobs.map((job) => (
-          <ButtonBase
-            onClick={() =>
-              navigate("/jobpost", {
-                state: {
-                  company: job.company,
-                  role: job.role,
-                  experience: job.experience,
-                  logo: job.logo,
-                },
-              })
-            }
-          >
-            <Paper
-              elevation={3}
-              sx={{
-                p: 2,
-                width: "30vw",
-                display: "flex",
-                alignItems: "center",
-              }}
+        {jobs.map((job) =>
+          job.role === "" || job.experience === "" ? (
+            ""
+          ) : (
+            <ButtonBase
+              onClick={() =>
+                navigate("/jobpost", {
+                  state: {
+                    company: job.company,
+                    role: job.role,
+                    experience: job.experience,
+                    logo: job.logo,
+                  },
+                })
+              }
             >
-              <img
-                src={require(`../img/${job.logo}`)}
-                alt={job.logo}
-                height={100}
-                width={100}
-              />
-              <Box
+              <Paper
+                elevation={3}
                 sx={{
+                  p: 2,
+                  width: "30vw",
                   display: "flex",
-                  justifyContent: "center",
                   alignItems: "center",
-                  flexDirection: "column",
                 }}
               >
-                <Typography
-                  variant="h6"
-                  component="p"
-                  sx={{ textAlign: "left", ml: 1, color: "black" }}
+                <img
+                  src={require(`../img/${job.logo}`)}
+                  alt={job.logo}
+                  height={100}
+                  width={100}
+                />
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                  }}
                 >
-                  {job.role}
-                </Typography>
-                <Typography
-                  variant="subtitle2"
-                  component="p"
-                  sx={{ textAlign: "left", ml: 1, color: "black" }}
-                >
-                  {job.experience}
-                </Typography>
-              </Box>
-            </Paper>
-          </ButtonBase>
-        ))}
+                  <Typography
+                    variant="h6"
+                    component="p"
+                    sx={{ textAlign: "left", ml: 1, color: "black" }}
+                  >
+                    {job.role}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    component="p"
+                    sx={{ textAlign: "left", ml: 1, color: "black" }}
+                  >
+                    {job.experience}
+                  </Typography>
+                </Box>
+              </Paper>
+            </ButtonBase>
+          )
+        )}
 
         <Modal
           open={modalOpen}
@@ -121,7 +128,13 @@ const Freelancer = () => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <JobPostModal />
+          <JobPostModal
+            input={input}
+            onRoleChange={onRoleChange}
+            onExperienceChange={onExperienceChange}
+            onSubmit={onSubmit}
+            handleModalClose={handleModalClose}
+          />
         </Modal>
       </Box>
     </Box>

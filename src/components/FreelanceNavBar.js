@@ -29,7 +29,11 @@ const theme = createTheme({
     }
 });
 
-const FreelanceNavBar = () => {
+const FreelanceNavBar = (props) => {
+    // const [modalOpen, setModalOpen] = React.useState(false);
+    // const handleModalOpen = () => setModalOpen(true);
+    // const handleModalClose = () => setModalOpen(false);
+    const { handleModalOpen } = props;
     return (
         <ThemeProvider theme={theme}>
             <Box component="nav" sx={{ flexGrow: 1 }}>
@@ -38,7 +42,7 @@ const FreelanceNavBar = () => {
                         <Typography variant="h5" component="p" sx={{ flexGrow: 1, textAlign: 'left', ml: 2 }}>
                             My Posted Jobs
                         </Typography>
-                        <Button variant="contained">Post Job</Button>
+                        <Button variant="contained" onClick={handleModalOpen}>Post Job</Button>
                     </Toolbar>
                 </AppBar>
             </Box>

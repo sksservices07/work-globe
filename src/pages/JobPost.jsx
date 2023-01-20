@@ -78,7 +78,7 @@ const JobPost = () => {
                 </Grid>
                 <Grid item xs={2} />
               </>
-            ))}
+            ))};
           </Grid>
         </Box>
       </ThemeProvider>

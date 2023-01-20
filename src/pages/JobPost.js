@@ -29,7 +29,7 @@ const JobPost = () => {
         <>
             <JobPostNavBar />
             <ThemeProvider theme={theme}>
-                <Box sx={{ flexGrow: 1 }}>
+                <Box sx={{ flexGrow: 1 , m: 2 }}>
                     <Grid container spacing={2} sx={{}}>
                         <Grid item xs={12}>
                             <Typography variant='h3' component='p' sx={{ mt: 2 }}>

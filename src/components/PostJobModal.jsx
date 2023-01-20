@@ -1,3 +1,5 @@
+import * as React from "react";
+
 import { Box, Typography, Grid, Button, TextField } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
@@ -17,7 +19,14 @@ const theme = createTheme({
   },
 });
 
-const JobPostModal = () => {
+const JobPostModal = (props) => {
+  const {
+    input,
+    onRoleChange,
+    onExperienceChange,
+    onSubmit,
+    handleModalClose,
+  } = props;
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -45,6 +54,10 @@ const JobPostModal = () => {
               id="outlined-basic"
               label="Name of your project"
               variant="outlined"
+              value={input.role}
+              onChange={(e) => {
+                onRoleChange(e);
+              }}
               fullWidth
             />
           </Grid>
@@ -53,6 +66,10 @@ const JobPostModal = () => {
               id="outlined-basic"
               label="Experience"
               variant="outlined"
+              value={input.experience}
+              onChange={(e) => {
+                onExperienceChange(e);
+              }}
               fullWidth
             />
           </Grid>
@@ -74,7 +91,15 @@ const JobPostModal = () => {
           </Grid>
           <Grid item xs={4} />
           <Grid item xs={4}>
-            <Button variant="contained">Post Job</Button>
+            <Button
+              variant="contained"
+              onClick={() => {
+                onSubmit();
+                handleModalClose();
+              }}
+            >
+              Post Job
+            </Button>
           </Grid>
           <Grid item xs={4} />
         </Grid>

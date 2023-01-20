@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Freelancer = () => {
     const navigate = useNavigate();
-    const [jobposts, setJobposts] = React.useState([{}]);
+    // const [jobposts, setJobposts] = React.useState([{}]);
     const jobs = [
         {
             company: "Netflix",

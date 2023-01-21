@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { AppBar, IconButton } from "@mui/material";
 import { Box } from "@mui/material";
@@ -54,7 +54,7 @@ const NavBar = () => {
               <EmailIcon />
             </IconButton>
             <IconButton size="large" aria-label="about" color="inherit">
-              <InfoIcon />
+              <ConnectButton accountStatus="address" chainStatus="icon" />
             </IconButton>
           </Toolbar>
         </AppBar>

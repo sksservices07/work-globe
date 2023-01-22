@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { AppBar, IconButton } from "@mui/material";
@@ -50,9 +51,13 @@ const NavBar = () => {
             <IconButton size="large" aria-label="home" color="inherit">
               <HomeIcon />
             </IconButton>
-            <IconButton size="large" aria-label="contact" color="inherit">
-              <EmailIcon />
-            </IconButton>
+
+            <Link to="/messages">
+              <IconButton size="large" aria-label="contact">
+                <EmailIcon sx={{ color: "white !important" }} />
+              </IconButton>
+            </Link>
+
             <IconButton size="large" aria-label="about" color="inherit">
               <ConnectButton accountStatus="address" chainStatus="icon" />
             </IconButton>

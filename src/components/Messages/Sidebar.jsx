@@ -1,35 +1,13 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 
-import { Tab, Typography, Box, Button, Tabs } from "@mui/material";
+import { Tab, Box, Button, Tabs, TextField } from "@mui/material";
 import MessageIcon from "@mui/icons-material/Message";
 import ContactsIcon from "@mui/icons-material/Contacts";
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
+import TabPanel from "./TabPanel";
+import PromptModal from "./Modal";
 
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`message-tabpanel-${index}`}
-      aria-labelledby={`message-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
+import { useDisclosure } from "../../hooks";
 
 function a11yProps(index) {
   return {
@@ -40,6 +18,18 @@ function a11yProps(index) {
 
 function Sidebar() {
   const [value, setValue] = useState(0);
+  // conversation modal
+  const {
+    open: openConver,
+    onClose: onCloseConver,
+    onOpen: onOpenConver,
+  } = useDisclosure();
+  // contact modal
+  const {
+    open: openContact,
+    onClose: onCloseContact,
+    onOpen: onOpenConContact,
+  } = useDisclosure();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -83,6 +73,7 @@ function Sidebar() {
           color="primary"
           size="large"
           fullWidth
+          onClick={onOpenConver}
         >
           New Conversation
         </Button>
@@ -97,10 +88,45 @@ function Sidebar() {
           color="primary"
           size="large"
           fullWidth
+          onClick={onOpenConContact}
         >
           New Contact
         </Button>
       )}
+
+      {/* Modal for conversation */}
+      <PromptModal
+        title="Create conversation"
+        open={openConver}
+        onClose={onCloseConver}
+      >
+        <Button variant="contained" color="primary">
+          Create
+        </Button>
+      </PromptModal>
+
+      {/* Modal for Contact */}
+      <PromptModal
+        title="Create contact"
+        open={openContact}
+        onClose={onCloseContact}
+      >
+        <form>
+          <TextField
+            id="wallet-address-input"
+            label="Wallet Address"
+            variant="outlined"
+            fullWidth
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{ marginTop: "1rem" }}
+          >
+            Add to contract
+          </Button>
+        </form>
+      </PromptModal>
     </Box>
   );
 }

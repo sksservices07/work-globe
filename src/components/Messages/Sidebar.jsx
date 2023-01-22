@@ -45,8 +45,6 @@ function Sidebar() {
     setValue(newValue);
   };
 
-  console.log(value);
-
   return (
     <Box
       sx={{

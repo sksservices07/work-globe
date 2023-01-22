@@ -24,7 +24,6 @@ import {
 
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
-import { useLocalStorage } from "./hooks";
 import { ContactsProvider } from "./context/ContactsProvider";
 
 const { chains, provider } = configureChains(

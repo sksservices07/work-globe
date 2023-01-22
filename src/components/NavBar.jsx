@@ -8,7 +8,6 @@ import { Toolbar } from "@mui/material";
 import { Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import EmailIcon from "@mui/icons-material/Email";
-import InfoIcon from "@mui/icons-material/Info";
 
 const theme = createTheme({
   components: {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import { Tab, Box, Button, Tabs, TextField } from "@mui/material";
 import MessageIcon from "@mui/icons-material/Message";
@@ -8,6 +8,7 @@ import TabPanel from "./TabPanel";
 import PromptModal from "./Modal";
 
 import { useDisclosure } from "../../hooks";
+import { useContacts } from "../../context/ContactsProvider";
 
 function a11yProps(index) {
   return {
@@ -17,7 +18,13 @@ function a11yProps(index) {
 }
 
 function Sidebar() {
+  const walletAddrRef = useRef();
+  const nameRef = useRef();
+
   const [value, setValue] = useState(0);
+
+  const { createContact } = useContacts()
+
   // conversation modal
   const {
     open: openConver,
@@ -34,6 +41,11 @@ function Sidebar() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const handleCreateContact = () => {
+    console.log(walletAddrRef.current.value, nameRef.current.value);
+    createContact(walletAddrRef.current.value, nameRef.current.value);
+  }
 
   return (
     <Box
@@ -111,21 +123,31 @@ function Sidebar() {
         open={openContact}
         onClose={onCloseContact}
       >
-        <form>
+          <TextField
+            id="wallet-address-input"
+            label="Name"
+            variant="outlined"
+            fullWidth
+            inputRef={nameRef}
+            required
+          />
+
           <TextField
             id="wallet-address-input"
             label="Wallet Address"
             variant="outlined"
             fullWidth
+            inputRef={walletAddrRef}
+            required
           />
           <Button
             variant="contained"
             color="primary"
             sx={{ marginTop: "1rem" }}
+            onClick={handleCreateContact}
           >
             Add to contract
           </Button>
-        </form>
       </PromptModal>
     </Box>
   );

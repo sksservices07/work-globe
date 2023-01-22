@@ -45,6 +45,8 @@ function Sidebar() {
     setValue(newValue);
   };
 
+  console.log(value);
+
   return (
     <Box
       sx={{
@@ -71,19 +73,36 @@ function Sidebar() {
       <TabPanel value={value} index={1}>
         Contacts
       </TabPanel>
-      <Button
-        variant="contained"
-        sx={{
-          position: "absolute",
-          bottom: "0",
-          left: "0",
-        }}
-        color="primary"
-        size="large"
-        fullWidth
-      >
-        New Conversation
-      </Button>
+
+      {value === 0 ? (
+        <Button
+          variant="contained"
+          sx={{
+            position: "absolute",
+            bottom: "0",
+            left: "0",
+          }}
+          color="primary"
+          size="large"
+          fullWidth
+        >
+          New Conversation
+        </Button>
+      ) : (
+        <Button
+          variant="contained"
+          sx={{
+            position: "absolute",
+            bottom: "0",
+            left: "0",
+          }}
+          color="primary"
+          size="large"
+          fullWidth
+        >
+          New Contact
+        </Button>
+      )}
     </Box>
   );
 }

@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Employer from "./pages/Employer";
 import Freelancer from "./pages/Freelancer";
 import Landing from "./pages/Landing";
+import Messages from "./pages/Messages";
 import Footer from "./components/Footer";
 import JobPost from "./pages/JobPost";
 import "@rainbow-me/rainbowkit/styles.css";
@@ -23,6 +24,8 @@ import {
 
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
+import { ContactsProvider } from "./context/ContactsProvider";
+
 const { chains, provider } = configureChains(
   [mainnet, polygon, optimism, arbitrum, polygonMumbai],
   [alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), publicProvider()]
@@ -49,12 +52,15 @@ function App() {
             borderRadius: "medium",
           })}
         >
-          <Routes>
-            <Route exact path="/" element={<Landing />} />
-            <Route exact path="/freelancer" element={<Freelancer />} />
-            <Route exact path="/employer" element={<Employer />} />
-            <Route exact path="/jobpost" element={<JobPost />} />
-          </Routes>
+          <ContactsProvider>
+            <Routes>
+              <Route exact path="/" element={<Landing />} />
+              <Route exact path="/freelancer" element={<Freelancer />} />
+              <Route exact path="/employer" element={<Employer />} />
+              <Route exact path="/jobpost" element={<JobPost />} />
+              <Route exact path="/messages" element={<Messages />} />
+            </Routes>
+          </ContactsProvider>
           <Footer />
         </RainbowKitProvider>
       </WagmiConfig>

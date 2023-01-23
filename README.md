@@ -1,9 +1,12 @@
-# Sample Hardhat Project
+# Work Globe
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+### Environment Variables
+Add `.env` file in the root of the project
+```
+REACT_APP_BACKEND="http://localhost:8000"
+```
 
-Try running some of the following tasks:
-
+### Hardhat
 ```shell
 npx hardhat help
 npx hardhat test

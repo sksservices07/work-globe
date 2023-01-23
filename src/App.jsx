@@ -24,7 +24,6 @@ import {
 
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
-import { ContactsProvider } from "./context/ContactsProvider";
 
 const { chains, provider } = configureChains(
   [mainnet, polygon, optimism, arbitrum, polygonMumbai],
@@ -52,15 +51,13 @@ function App() {
             borderRadius: "medium",
           })}
         >
-          <ContactsProvider>
-            <Routes>
-              <Route exact path="/" element={<Landing />} />
-              <Route exact path="/freelancer" element={<Freelancer />} />
-              <Route exact path="/employer" element={<Employer />} />
-              <Route exact path="/jobpost" element={<JobPost />} />
-              <Route exact path="/messages" element={<Messages />} />
-            </Routes>
-          </ContactsProvider>
+          <Routes>
+            <Route exact path="/" element={<Landing />} />
+            <Route exact path="/freelancer" element={<Freelancer />} />
+            <Route exact path="/employer" element={<Employer />} />
+            <Route exact path="/jobpost" element={<JobPost />} />
+            <Route exact path="/messages" element={<Messages />} />
+          </Routes>
           <Footer />
         </RainbowKitProvider>
       </WagmiConfig>

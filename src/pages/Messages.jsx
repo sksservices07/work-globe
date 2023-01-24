@@ -2,13 +2,15 @@ import * as React from "react";
 
 import { Box, Grid } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { useAccount } from 'wagmi'
 
 import Navbar from "../components/NavBar";
 import Sidebar from "../components/Messages/Sidebar";
 import { ContactsProvider } from "../context/ContactsProvider";
-import { ConversationsProvider } from "../context/ConversationsProvider";
+import { ConversationsProvider, useConversations } from "../context/ConversationsProvider";
 import { SocketProvider } from "../context/SocketProvider";
 import { useLocalStorage } from "../hooks";
+import Dashboard from "../components/Messages/Dashboard";
 
 const theme = createTheme({
   // components: {
@@ -23,19 +25,19 @@ const theme = createTheme({
 });
 
 function Messages() {
-  const [id, setId] = useLocalStorage("id");
+  const { address } = useAccount()
 
   return (
     <>
       <Navbar />
-      {id ? (
-        <SocketProvider id={id}>
+      {address ? (
+        <SocketProvider id={address}>
           <ContactsProvider>
-            <ConversationsProvider id={id}>
+            <ConversationsProvider id={address}>
               <ThemeProvider theme={theme}>
                 <Box sx={{ flexGrow: 1, m: 2 }}>
                   <Grid container spacing={2}>
-                    <Sidebar />
+                    <Dashboard />
                   </Grid>
                 </Box>
               </ThemeProvider>

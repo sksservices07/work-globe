@@ -1,14 +1,30 @@
 import React, { useState, useRef } from "react";
 
-import { Tab, Box, Button, Tabs, TextField } from "@mui/material";
+import {
+  Tab,
+  Box,
+  Button,
+  Tabs,
+  TextField,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  Radio,
+  RadioGroup,
+  FormControl,
+  FormLabel,
+} from "@mui/material";
 import MessageIcon from "@mui/icons-material/Message";
 import ContactsIcon from "@mui/icons-material/Contacts";
 
 import TabPanel from "./TabPanel";
 import PromptModal from "./Modal";
+import Contacts from "./Contacts";
+import Conversations from "./Conversations";
 
 import { useDisclosure } from "../../hooks";
 import { useContacts } from "../../context/ContactsProvider";
+import { useConversations } from "../../context/ConversationsProvider";
 
 function a11yProps(index) {
   return {
@@ -22,8 +38,11 @@ function Sidebar() {
   const nameRef = useRef();
 
   const [value, setValue] = useState(0);
+  const [conSelect, setConSelect] = useState("");
+  const [selectedContactIds, setSelectedContactIds] = useState([]);
 
-  const { createContact } = useContacts()
+  const { createContact, contacts } = useContacts();
+  const { createConversation } = useConversations();
 
   // conversation modal
   const {
@@ -45,7 +64,26 @@ function Sidebar() {
   const handleCreateContact = () => {
     console.log(walletAddrRef.current.value, nameRef.current.value);
     createContact(walletAddrRef.current.value, nameRef.current.value);
-  }
+  };
+
+  const handleCreateConversation = (e) => {
+    e.preventDefault();
+    console.log(selectedContactIds)
+    createConversation(selectedContactIds);
+    onCloseConver();
+  };
+
+  const handleCheckboxChange = (contactId) => {
+    setSelectedContactIds((prevSelectedContactIds) => {
+      if (prevSelectedContactIds.includes(contactId)) {
+        return prevSelectedContactIds.filter((prevId) => {
+          return contactId !== prevId;
+        });
+      } else {
+        return [...prevSelectedContactIds, contactId];
+      }
+    });
+  };
 
   return (
     <Box
@@ -68,10 +106,10 @@ function Sidebar() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Conversations
+        <Conversations />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Contacts
+        <Contacts />
       </TabPanel>
 
       {value === 0 ? (
@@ -112,9 +150,22 @@ function Sidebar() {
         open={openConver}
         onClose={onCloseConver}
       >
-        <Button variant="contained" color="primary">
-          Create
-        </Button>
+        <form onSubmit={handleCreateConversation}>
+          {contacts.map((contact) => (
+            <div controlId={contact.id} key={contact.id}>
+              <input
+                type="checkbox"
+                value={selectedContactIds.includes(contact.id)}
+                label={contact.name}
+                onChange={() => handleCheckboxChange(contact.id)}
+              />
+              <span>{contact.name}</span>
+            </div>
+          ))}
+          <Button type="submit" variant="contained" color="primary">
+            Create
+          </Button>
+        </form>
       </PromptModal>
 
       {/* Modal for Contact */}
@@ -123,31 +174,31 @@ function Sidebar() {
         open={openContact}
         onClose={onCloseContact}
       >
-          <TextField
-            id="wallet-address-input"
-            label="Name"
-            variant="outlined"
-            fullWidth
-            inputRef={nameRef}
-            required
-          />
+        <TextField
+          id="wallet-address-input"
+          label="Name"
+          variant="outlined"
+          fullWidth
+          inputRef={nameRef}
+          required
+        />
 
-          <TextField
-            id="wallet-address-input"
-            label="Wallet Address"
-            variant="outlined"
-            fullWidth
-            inputRef={walletAddrRef}
-            required
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ marginTop: "1rem" }}
-            onClick={handleCreateContact}
-          >
-            Add to contract
-          </Button>
+        <TextField
+          id="wallet-address-input"
+          label="Wallet Address"
+          variant="outlined"
+          fullWidth
+          inputRef={walletAddrRef}
+          required
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ marginTop: "1rem" }}
+          onClick={handleCreateContact}
+        >
+          Add to contract
+        </Button>
       </PromptModal>
     </Box>
   );

@@ -44,13 +44,15 @@ const JobPostModal = (props) => {
       Job.abi,
       signer
     );
-    const tx = await contract.addJob(); 
+    const tx = await contract.addJob(formInput.companyName,formInput.position,formInput.projDescription,formInput.experience,formInput.location,formInput.salary); 
   } 
   
   const [formInput, updateFormInput] = useState({
-    projectName: "",
+    companyName:"",
+    position: "",
     experience: "",
     projDescription: "",
+    location:"",
     salary: "",
   });
   return (
@@ -75,16 +77,15 @@ const JobPostModal = (props) => {
               Tell Us About The Project
             </Typography>
           </Grid>
-
           <Grid item xs={12}>
             <TextField
               id="outlined-basic"
-              label="Name of your project"
+              label="Name of your company"
               variant="outlined"
               onChange={(val) =>
                 updateFormInput((formInput) => ({
                   ...formInput,
-                  projectName: val,
+                  companyName: val,
                 }))
               }
               fullWidth
@@ -93,12 +94,12 @@ const JobPostModal = (props) => {
           <Grid item xs={12}>
             <TextField
               id="outlined-basic"
-              label="Experience"
+              label="Name of the Position"
               variant="outlined"
               onChange={(val) =>
                 updateFormInput((formInput) => ({
                   ...formInput,
-                  experience: val,
+                  position: val,
                 }))
               }
               fullWidth
@@ -120,6 +121,35 @@ const JobPostModal = (props) => {
               }
             />
           </Grid>
+          <Grid item xs={12}>
+            <TextField
+              id="outlined-basic"
+              label="Experience (in years)"
+              variant="outlined"
+              onChange={(val) =>
+                updateFormInput((formInput) => ({
+                  ...formInput,
+                  experience: val,
+                }))
+              }
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              id="outlined-basic"
+              label="Location (City)"
+              variant="outlined"
+              onChange={(val) =>
+                updateFormInput((formInput) => ({
+                  ...formInput,
+                  location: val,
+                }))
+              }
+              fullWidth
+            />
+          </Grid>
+
           <Grid item xs={12}>
             <TextField
               id="outlined-basic"

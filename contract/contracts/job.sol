@@ -16,9 +16,9 @@ contract JobContract is Initializable, Ownable, OwnableUpgradeable {
         string companyName;
         string position;
         string description;
-        string employmentType;
+        uint256 experience;
         string location;
-        string companyWebsiteUrl;
+        string salary;
         address employer;
     }
 
@@ -35,9 +35,9 @@ contract JobContract is Initializable, Ownable, OwnableUpgradeable {
         string memory _companyName,
         string memory _position,
         string memory _description,
-        string memory employmentType,
+        uint256  experience,
         string memory _location,
-        string memory _companyWebsiteUrl
+        string memory salary
     ) public payable {
         require(msg.value == 5 * 10**15);
         Job memory job = Job({
@@ -45,9 +45,9 @@ contract JobContract is Initializable, Ownable, OwnableUpgradeable {
             companyName: _companyName,
             position: _position,
             description: _description,
-            employmentType: employmentType,
+            experience: experience,
             location: _location,
-            companyWebsiteUrl: _companyWebsiteUrl,
+            salary: salary,
             employer: msg.sender
         });
         jobs.push(job);

@@ -10,32 +10,33 @@ import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
 import '@openzeppelin/contracts/utils/Counters.sol';
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract JobContract is Initializable, Ownable, OwnableUpgradeable {
+contract Job is Initializable, OwnableUpgradeable {
     struct Job {
         uint256 jobId;
         string companyName;
         string position;
         string description;
-        uint256 experience;
+        string experience;
         string location;
         string salary;
         address employer;
     }
 
-    uint256 public JOB_ID = 0;
+    uint256 public JOB_ID;
     Job[] public jobs;
     mapping(address => address[]) public applicants;
 
     // add job
 
     function initialize() public initializer {
+        JOB_ID = 0;
     __Ownable_init();
   }
     function addJob(
         string memory _companyName,
         string memory _position,
         string memory _description,
-        uint256  experience,
+        string memory  experience,
         string memory _location,
         string memory salary
     ) public payable {

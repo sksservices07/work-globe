@@ -2,11 +2,11 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { getConfigByChain } from "../config";
-import Job from "../artifacts/contracts/Gateway.sol/Gateway.json"
+import Job from "../artifacts/contracts/Job.sol/Job.json";
 import { useAccount, useNetwork } from "wagmi";
-
 import { Box, Typography, Grid, Button, TextField } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import toast, { Toaster } from "react-hot-toast";
 
 const theme = createTheme({
   components: {
@@ -30,33 +30,55 @@ const JobPostModal = (props) => {
     input,
     onRoleChange,
     onExperienceChange,
-    
+
     handleModalClose,
   } = props;
 
-  const  jobPost = async()=>{
+  const jobPost = async () => {
+    
     await window.ethereum.send("eth_requestAccounts"); // opens up metamask extension and connects Web2 to Web3
     const provider = new ethers.providers.Web3Provider(window.ethereum); //create provider
     const signer = provider.getSigner();
     const network = await provider.getNetwork();
+    console.log("hi");
+    console.log(getConfigByChain(chain?.id)[0].contractProxyAddress);
     const contract = new ethers.Contract(
       getConfigByChain(chain?.id)[0].contractProxyAddress,
       Job.abi,
       signer
     );
-    const tx = await contract.addJob(formInput.companyName,formInput.position,formInput.projDescription,formInput.experience,formInput.location,formInput.salary); 
-  } 
-  
+    const tx = await contract.addJob(
+      formInput.companyName,
+      formInput.position,
+      formInput.projDescription,
+      formInput.experience,
+      formInput.location,
+      formInput.salary
+    );
+    toast.success("Creating block... Please Wait", { icon: "👏" });
+    const receipt = await provider
+      .waitForTransaction(tx.hash, 1, 150000)
+      .then(() => {
+        if (tx === true) {
+          toast.success("Job Successfully Made Live !!!");
+        } else {
+          toast.error("Job post unsuccessful");
+        }
+      });
+  };
+
   const [formInput, updateFormInput] = useState({
-    companyName:"",
+    companyName: "",
     position: "",
     experience: "",
     projDescription: "",
-    location:"",
+    location: "",
     salary: "",
   });
+
   return (
     <ThemeProvider theme={theme}>
+      <Toaster position="top-center" reverseOrder="false" />
       <Box
         sx={{
           position: "absolute",
@@ -170,7 +192,6 @@ const JobPostModal = (props) => {
               variant="contained"
               onClick={() => {
                 jobPost();
-                handleModalClose();
               }}
             >
               Post Job

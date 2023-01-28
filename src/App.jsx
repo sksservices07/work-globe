@@ -42,6 +42,7 @@ function App() {
     <div className="App">
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider
+          coolMode
           chains={chains}
           theme={darkTheme({
             accentColor: "#04807b",

@@ -2,9 +2,15 @@
 
 pragma solidity ^0.8.11;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
+import '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol';
+import '@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol';
+import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
+import '@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol';
+import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
+import '@openzeppelin/contracts/utils/Counters.sol';
+import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract JobContract is Ownable {
+contract JobContract is Initializable, Ownable, OwnableUpgradeable {
     struct Job {
         uint256 jobId;
         string companyName;
@@ -21,6 +27,10 @@ contract JobContract is Ownable {
     mapping(address => address[]) public applicants;
 
     // add job
+
+    function initialize() public initializer {
+    __Ownable_init();
+  }
     function addJob(
         string memory _companyName,
         string memory _position,

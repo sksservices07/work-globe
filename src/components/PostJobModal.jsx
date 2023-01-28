@@ -1,4 +1,9 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
+import { ethers } from "ethers";
+import { getConfigByChain } from "../config";
+import Job from "../artifacts/contracts/Gateway.sol/Gateway.json"
+import { useAccount, useNetwork } from "wagmi";
 
 import { Box, Typography, Grid, Button, TextField } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -20,13 +25,34 @@ const theme = createTheme({
 });
 
 const JobPostModal = (props) => {
+  const { chain } = useNetwork();
   const {
     input,
     onRoleChange,
     onExperienceChange,
-    onSubmit,
+    
     handleModalClose,
   } = props;
+
+  const  jobPost = async()=>{
+    await window.ethereum.send("eth_requestAccounts"); // opens up metamask extension and connects Web2 to Web3
+    const provider = new ethers.providers.Web3Provider(window.ethereum); //create provider
+    const signer = provider.getSigner();
+    const network = await provider.getNetwork();
+    const contract = new ethers.Contract(
+      getConfigByChain(chain?.id)[0].contractProxyAddress,
+      Job.abi,
+      signer
+    );
+    const tx = await contract.addJob(); 
+  } 
+  
+  const [formInput, updateFormInput] = useState({
+    projectName: "",
+    experience: "",
+    projDescription: "",
+    salary: "",
+  });
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -49,15 +75,18 @@ const JobPostModal = (props) => {
               Tell Us About The Project
             </Typography>
           </Grid>
+
           <Grid item xs={12}>
             <TextField
               id="outlined-basic"
               label="Name of your project"
               variant="outlined"
-              value={input.role}
-              onChange={(e) => {
-                onRoleChange(e);
-              }}
+              onChange={(val) =>
+                updateFormInput((formInput) => ({
+                  ...formInput,
+                  projectName: val,
+                }))
+              }
               fullWidth
             />
           </Grid>
@@ -66,10 +95,12 @@ const JobPostModal = (props) => {
               id="outlined-basic"
               label="Experience"
               variant="outlined"
-              value={input.experience}
-              onChange={(e) => {
-                onExperienceChange(e);
-              }}
+              onChange={(val) =>
+                updateFormInput((formInput) => ({
+                  ...formInput,
+                  experience: val,
+                }))
+              }
               fullWidth
             />
           </Grid>
@@ -78,7 +109,15 @@ const JobPostModal = (props) => {
               id="outlined-basic"
               label="Project Description"
               variant="outlined"
+              multiline
+              maxRows={Infinity}
               fullWidth
+              onChange={(val) =>
+                updateFormInput((formInput) => ({
+                  ...formInput,
+                  projDescription: val,
+                }))
+              }
             />
           </Grid>
           <Grid item xs={12}>
@@ -87,6 +126,12 @@ const JobPostModal = (props) => {
               label="Salary"
               variant="outlined"
               fullWidth
+              onChange={(val) =>
+                updateFormInput((formInput) => ({
+                  ...formInput,
+                  salary: val,
+                }))
+              }
             />
           </Grid>
           <Grid item xs={4} />
@@ -94,7 +139,7 @@ const JobPostModal = (props) => {
             <Button
               variant="contained"
               onClick={() => {
-                onSubmit();
+                jobPost();
                 handleModalClose();
               }}
             >

@@ -2,43 +2,43 @@
 
 pragma solidity ^0.8.11;
 
-import '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
-import '@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
-import '@openzeppelin/contracts/utils/Counters.sol';
-import "@openzeppelin/contracts/utils/Strings.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol";
 
-contract Job is Initializable, OwnableUpgradeable {
+import "./candidate.sol";
+
+contract JobContract is Initializable, ContextUpgradeable, OwnableUpgradeable {
     struct Job {
         uint256 jobId;
         string companyName;
         string position;
         string description;
-        string experience;
+        string employmentType;
         string location;
-        string salary;
+        string companyWebsiteUrl;
         address employer;
     }
 
-    uint256 public JOB_ID;
+    uint256 public JOB_ID = 0;
     Job[] public jobs;
-    mapping(address => address[]) public applicants;
+    mapping(address => address[]) public candidates;
+
+    CandidateContract public candidateContract;
+
+    constructor(address _candidateContractAddress) initializer {
+        candidateContract = CandidateContract(_candidateContractAddress);
+        __Ownable_init();
+    }
 
     // add job
-
-    function initialize() public initializer {
-        JOB_ID = 0;
-    __Ownable_init();
-  }
     function addJob(
         string memory _companyName,
         string memory _position,
         string memory _description,
-        string memory  experience,
+        string memory employmentType,
         string memory _location,
-        string memory salary
+        string memory _companyWebsiteUrl
     ) public payable {
         require(msg.value == 5 * 10**15);
         Job memory job = Job({
@@ -46,9 +46,9 @@ contract Job is Initializable, OwnableUpgradeable {
             companyName: _companyName,
             position: _position,
             description: _description,
-            experience: experience,
+            employmentType: employmentType,
             location: _location,
-            salary: salary,
+            companyWebsiteUrl: _companyWebsiteUrl,
             employer: msg.sender
         });
         jobs.push(job);
@@ -76,11 +76,20 @@ contract Job is Initializable, OwnableUpgradeable {
 
     // candidate will apply for job
     function applyForJob(uint256 _jobid) public {
-        applicants[jobs[_jobid].employer].push(msg.sender);
+        candidateContract.getCandidateByAddress(_msgSender());
+        candidates[jobs[_jobid].employer].push(msg.sender);
     }
 
     // returns total number of jobs
     function totalJobs() public view returns (uint256) {
         return jobs.length;
+    }
+
+    function getAppliedCandidatesByJobId(uint256 _jobid)
+        public
+        view
+        returns (address[] memory)
+    {
+        return candidates[jobs[_jobid].employer];
     }
 }

@@ -1,4 +1,16 @@
 import { useState, useCallback } from "react";
+import {
+  Box,
+  Button,
+  TextareaAutosize,
+  List,
+  ListItemButton,
+  ListItem,
+  ListItemText
+} from "@mui/material";
+import MessageIcon from "@mui/icons-material/Message";
+import ContactsIcon from "@mui/icons-material/Contacts";
+
 import { useConversations } from "../../context/ConversationsProvider";
 
 const OpenConversation = () => {
@@ -21,52 +33,69 @@ const OpenConversation = () => {
   };
 
   return (
-    <div className="d-flex flex-column flex-grow-1">
-      <div className="flex-grow-1 overflow-auto">
-        <div className="d-flex flex-column align-items-start justify-content-end px-3">
-          {selectedConversation.messages.map((message, index) => (
-            <div
+    <Box
+      sx={{
+        width: "60%",
+        height: "83vh",
+        borderRight: 1,
+        borderColor: "divider",
+      }}
+      position="relative"
+    >
+      <List sx={{
+        overflowY: "scroll",
+        height: "80%",
+      }}>
+        {selectedConversation.messages.map((message, index) => (
+          <>
+            <ListItem
+              disablePadding
               ref={
                 selectedConversation.messages.length - 1 === index
                   ? setRef
                   : null
               }
               key={index}
-              className={`my-1 d-flex flex-column ${
-                message.fromMe
-                  ? "align-self-end align-items-end"
-                  : "align-items-start"
-              }`}
             >
-              <div
-                className={`rounded px-2 py-1 ${
-                  message.fromMe ? "bg-primary text-white" : "border"
-                }`}
-              >
-                {message.text}
-              </div>
-              <div
-                className={`text-muted small ${
-                  message.fromMe ? "text-right" : ""
-                }`}
-              >
-                {message.fromMe ? "You" : message.senderName}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+              <ListItemButton component="span">
+                <ListItemText primary={message.text} />
+                <div
+                  className={`text-muted small ${
+                    message.fromMe ? "text-right" : ""
+                  }`}
+                >
+                  {message.fromMe ? "You" : message.senderName}
+                </div>
+              </ListItemButton>
+            </ListItem>
+          </>
+        ))}
+      </List>
+
       <form onSubmit={handleSubmit}>
-        <textarea
-          as="textarea"
-          required
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          style={{ height: "75px", resize: "none" }}
-        />
-        <button type="submit">Send</button>
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: "0",
+            left: "0",
+            width: "100%",
+            display: "grid",
+            gridTemplateColumns: "2fr 1fr",
+          }}
+        >
+          <TextareaAutosize
+            required
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            style={{ height: "50px", fontSize: "1rem", resize: "none" }}
+          />
+
+          <Button variant="contained" type="submit">
+            Send
+          </Button>
+        </Box>
       </form>
-    </div>
+    </Box>
   );
 };
 

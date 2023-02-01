@@ -2,7 +2,8 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { getConfigByChain } from "../config";
-import Job from "../artifacts/contracts/job.sol/Job.json"
+// import Job from "../artifacts/contracts/job.sol/Job.json"
+import Job from "../artifacts/contracts/job.sol/JobContract.json"
 import { useAccount, useNetwork } from "wagmi";
 import { Box, Typography, Grid, Button, TextField } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";

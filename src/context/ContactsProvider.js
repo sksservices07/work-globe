@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext, createContext } from "react";
 // import { useLocalStorage } from "../hooks";
 import Gun from "gun";
 import { useAccount } from 'wagmi'
+import { API } from "../backend";
 
 export const ContactsContext = createContext();
 
@@ -9,7 +10,7 @@ export const useContacts = () => useContext(ContactsContext);
 
 // Port 5050 is the port of the gun server we previously created
 const gun = Gun({
-  peers: ["http://localhost:5050/gun"],
+  peers: [`${API}/gun`],
 });
 
 export const ContactsProvider = ({ children }) => {

@@ -20,6 +20,7 @@
     "react-scripts": "5.0.1",
     "socket.io-client": "^4.2.0",
     "wagmi": "^0.10.12",
+    "gun": "^0.2020.1239",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -89,7 +89,7 @@ function Register() {
           <Grid item xs={12}>
             <TextField
               id="outlined-basic"
-              label="I am an Employer/a Freelancer"
+              label="I am an Employer/I am a Freelancer"
               variant="outlined"
               onChange={(e) =>
                 updateFormInput((formInput) => ({

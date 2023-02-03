@@ -21,7 +21,9 @@
     "socket.io-client": "^4.2.0",
     "wagmi": "^0.10.12",
     "gun": "^0.2020.1239",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "minimist": "^1.2.5",
+    "web3.storage": "^3.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

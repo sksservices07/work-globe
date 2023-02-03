@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 import { getConfigByChain } from "../config";
 import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
 import { useAccount, useNetwork } from "wagmi";
-
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Typography,
@@ -37,9 +37,11 @@ function Employer() {
   const [jobs, setJobs] = React.useState([]);
   const { chain } = useNetwork();
   const { address } = useAccount();
+  const navigate = useNavigate();
   useEffect(() => {
     getAllPostedJobs();
   }, [chain, address]);
+
   const getAllPostedJobs = async () => {
     await window.ethereum.send("eth_requestAccounts"); // opens up metamask extension and connects Web2 to Web3
     const provider = new ethers.providers.Web3Provider(window.ethereum); //create provider
@@ -53,6 +55,7 @@ function Employer() {
     console.log("tx", tx);
     setJobs(tx);
   };
+
   return (
     <>
       <EmployerNavBar />
@@ -146,8 +149,20 @@ function Employer() {
                         alignItems: "center",
                       }}
                     >
-                      <Button variant="contained" sx={{ width: "80%", p: 2 }}>
-                        Select
+                      <Button
+                        variant="contained"
+                        sx={{ width: "80%", p: 2 }}
+                        onClick={() =>
+                          navigate("/application", {
+                            state: {
+                              jobId: job.jobId,
+                              companyName: job.companyName,
+                              position: job.position,
+                            },
+                          })
+                        }
+                      >
+                        Apply Now
                       </Button>
                     </Grid>
                     <Grid item xs={1} />

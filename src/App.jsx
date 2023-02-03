@@ -8,6 +8,8 @@ import Messages from "./pages/Messages";
 import Footer from "./components/Footer";
 import JobPost from "./pages/JobPost";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile";
+import Application from "./pages/Application";
 import "@rainbow-me/rainbowkit/styles.css";
 import {
   getDefaultWallets,
@@ -60,6 +62,8 @@ function App() {
             <Route exact path="/jobpost" element={<JobPost />} />
             <Route exact path="/messages" element={<Messages />} />
             <Route exact path="/register" element={<Register />} />
+            <Route exact path="/profile" element={<Profile />} />
+            <Route exact path="/application" element={<Application />} />
           </Routes>
           <Footer />
         </RainbowKitProvider>

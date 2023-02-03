@@ -22,6 +22,7 @@ contract JobContract is Initializable, ContextUpgradeable, OwnableUpgradeable {
         string experience;
         string location;
         string salary;
+        uint256 applicationCount;
         address employer;
     }
 
@@ -31,6 +32,17 @@ contract JobContract is Initializable, ContextUpgradeable, OwnableUpgradeable {
         string typeOfAccount;
         string myAddress;
         address user;
+    }
+
+    struct Candidate {
+        uint256 registrationID;
+        uint256 jobId;
+        string name;
+        string experience;
+        string location;
+        string cv;
+        address candidateAddress;
+        string status;
     }
 
     uint256 public JOB_ID;
@@ -43,6 +55,9 @@ contract JobContract is Initializable, ContextUpgradeable, OwnableUpgradeable {
     Counters.Counter public _registrationID;
     Register[] private register;
     mapping(address => Register) public registerProfile;
+    Candidate[] private candidate;
+    mapping(uint256 => mapping(uint256 => Candidate)) public totalCandidates;
+    mapping(uint256 => Job) public jobData;
 
     function initialize(
         address _candidateContractAddress
@@ -50,22 +65,62 @@ contract JobContract is Initializable, ContextUpgradeable, OwnableUpgradeable {
         candidateContract = CandidateContract(_candidateContractAddress);
             __Ownable_init();
             JOB_ID = 1;
-            
     }
+
     function checkRegistration() public view returns (bool){
       if(registerProfile[msg.sender].registrationID == 0){
           return false;
       }else{
           return true;
       }
-  }
+    }
     
     function registerProfiles(string memory _name, string memory _typeOfAccount, string memory _myAddress) external {
       require(!checkRegistration(),"You are already registered.");
       _registrationID.increment();
-      Register memory data = Register(_registrationID.current(),_name,_typeOfAccount,_myAddress,msg.sender);
+      Register memory data = Register(
+        _registrationID.current(),
+        _name,_typeOfAccount,_myAddress,msg.sender);
       registerProfile[msg.sender] = data;
       register.push(data);
+    }
+
+  function applyForJob(uint256 jobId, string memory _name, string memory _experience, string memory _location, string memory _cv) external {
+      
+      Candidate memory data = Candidate(
+        registerProfile[msg.sender].registrationID,
+        jobData[jobId].jobId,
+        _name,
+        _experience,
+        _location,
+        _cv,
+        msg.sender,
+        "applied");
+      totalCandidates[registerProfile[msg.sender].registrationID][jobData[jobId].jobId] = data;
+      candidate.push(data);
+      jobData[jobId].applicationCount ++;
+  }
+
+  function getMyCandidates(uint256 _jobId) external view returns(Candidate[] memory){
+    require(jobData[_jobId].employer == msg.sender,"Access Denied !!");
+    uint256 totalAppCount = jobData[_jobId].applicationCount;
+        uint256 currentIndex = 0;
+        uint256 totCandidates = candidate.length;
+
+        Candidate[] memory items = new Candidate[](totalAppCount);
+        for (uint256 i = 0; i < totCandidates; i++) {
+        if (candidate[i].jobId == _jobId && keccak256(abi.encodePacked(candidate[i].status)) == keccak256(abi.encodePacked("applied"))) {
+                Candidate storage currentItem = candidate[i];
+                items[currentIndex] = currentItem;
+                currentIndex += 1;
+            }
+        }
+        return items;
+  }
+
+  function selectCandidate(uint256 _jobId, uint256 _registrationId) external {
+    require(jobData[_jobId].employer == msg.sender,"Access Denied !!");
+    totalCandidates[_registrationId][_jobId].status = "selected";
   }
 
   function getMyProfile()  external view returns (Register memory){
@@ -93,9 +148,11 @@ contract JobContract is Initializable, ContextUpgradeable, OwnableUpgradeable {
             experience: _experience,
             location: _location,
             salary: _salary,
+            applicationCount: 0,
             employer: _msgSender()
         });
         jobs.push(job);
+        jobData[JOB_ID] = job;
         JOB_ID++;
     }
 
@@ -140,19 +197,19 @@ contract JobContract is Initializable, ContextUpgradeable, OwnableUpgradeable {
     }
 
     // candidate will apply for job
-    function applyForJob(uint256 _jobid) public {
-        candidateContract.getCandidateByAddress(_msgSender()); // will automatically throw error if candidate with _msgSender doesn't exists
+    // function applyForJob(uint256 _jobid) public {
+    //     candidateContract.getCandidateByAddress(_msgSender()); // will automatically throw error if candidate with _msgSender doesn't exists
 
-        address[] memory appliedCandidates = candidates[jobs[_jobid].employer];
-        for (uint256 i = 0; i < appliedCandidates.length; i++) {
-            require(
-                appliedCandidates[i] != _msgSender(),
-                "You have already registered for this job using this address."
-            );
-        }
+    //     address[] memory appliedCandidates = candidates[jobs[_jobid].employer];
+    //     for (uint256 i = 0; i < appliedCandidates.length; i++) {
+    //         require(
+    //             appliedCandidates[i] != _msgSender(),
+    //             "You have already registered for this job using this address."
+    //         );
+    //     }
 
-        candidates[jobs[_jobid].employer].push(_msgSender());
-    }
+    //     candidates[jobs[_jobid].employer].push(_msgSender());
+    // }
 
     // returns total number of jobs
     function totalJobs() public view returns (uint256) {

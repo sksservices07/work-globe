@@ -1,12 +1,17 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { getConfigByChain } from "../config";
 import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
 import { useAccount, useNetwork } from "wagmi";
-import { Box, Typography, Grid, Button, TextField } from "@mui/material";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { Box, Typography, Grid, Button, TextField } from "@mui/material";
+import { useLocation } from "react-router-dom";
+import { ButtonBase, Paper } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+import EmployerNavBar from "../components/EmployerNavBar";
 
 const theme = createTheme({
   components: {
@@ -24,88 +29,91 @@ const theme = createTheme({
   },
 });
 
-const JobPostModal = (props) => {
+const projectId = "2DkWK5numOIP1H7GyUZ3aEPhLXK";
+const projectSecret = "9c669d03ed7813aae7dc0a32c5cfd386";
+const projectIdAndSecret = `${projectId}:${projectSecret}`;
+//const client = ipfsHttpClient("https://nftmarketcover.infura-ipfs.io:5001/api/v0")
+const client = ipfsHttpClient({
+  host: "ipfs.infura.io",
+  port: 5001,
+  protocol: "https",
+  headers: {
+    authorization: `Basic ${Buffer.from(projectIdAndSecret).toString(
+      "base64"
+    )}`,
+  },
+});
+
+function Application(props) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [cv, setCv] = React.useState();
   const { chain } = useNetwork();
-  const {
-    input,
-    onRoleChange,
-    onExperienceChange,
-
-    handleModalClose,
-  } = props;
-
   const [formInput, updateFormInput] = useState({
-    companyName: "",
-    position: "",
+    name: "",
     experience: "",
-    projDescription: "",
     location: "",
-    salary: "",
   });
+  const { address } = useAccount();
 
-  const jobPost = async () => {
+  async function onChange(e) {
+    const file = e.target.files[0];
+    console.log("file", client);
+
+    try {
+      const added = await client.add(file, {
+        progress: (prog) => console.log(`received: ${prog}`),
+      });
+      console.log("added is:", client);
+      const url = `https://nftmarketcover.infura-ipfs.io/ipfs/${added.path}`;
+      console.log(`File uploaded is: ${url}`);
+      setCv(url);
+    } catch (e) {
+      console.log(`Error is: ${e}`);
+    }
+  }
+
+  async function applyNow(){
     await window.ethereum.send("eth_requestAccounts"); // opens up metamask extension and connects Web2 to Web3
     const provider = new ethers.providers.Web3Provider(window.ethereum); //create provider
     const signer = provider.getSigner();
     const network = await provider.getNetwork();
-    console.log("hi");
-    console.log(getConfigByChain(chain?.id)[0].contractProxyAddress);
     const contract = new ethers.Contract(
       getConfigByChain(chain?.id)[0].contractProxyAddress,
       Job.abi,
       signer
     );
-    console.log("formInput", formInput);
-    
-    const tx = await contract.addJob(
-      formInput.companyName,
-      formInput.position,
-      formInput.projDescription,
-      formInput.experience,
-      formInput.location,
-      formInput.salary
-    );
+    const tx = await contract.applyForJob(location.state.jobId,formInput.name,
+      formInput.experience,formInput.location, cv);
     toast.success("Creating block... Please Wait", { icon: "👏" });
     const receipt = await provider
       .waitForTransaction(tx.hash, 1, 150000)
       .then(() => {
-        toast.success("Job post unsuccessful");
-        
+        toast.success("Application Done !!");
       });
-  };
+  }
 
+  
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Toaster position="top-center" reverseOrder="false" />
-      <Box
-        sx={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: 400,
-          bgcolor: "background.paper",
-          border: "2px solid #000",
-          borderRadius: 3,
-          boxShadow: 24,
-          p: 4,
-        }}
-      >
+      <ThemeProvider theme={theme}>
         <Grid container spacing={3} justify="center">
           <Grid item xs={12}>
             <Typography variant="h6" component="h2">
-              Tell Us About The Project
+              Apply for Position at {location.state.companyName} for &nbsp;
+              {location.state.position}
             </Typography>
           </Grid>
           <Grid item xs={12}>
             <TextField
               id="outlined-basic"
-              label="Name of your company"
+              label="Your Name"
               variant="outlined"
               onChange={(e) =>
                 updateFormInput((formInput) => ({
                   ...formInput,
-                  companyName: e.target.value,
+                  name: e.target.value,
                 }))
               }
               fullWidth
@@ -114,37 +122,7 @@ const JobPostModal = (props) => {
           <Grid item xs={12}>
             <TextField
               id="outlined-basic"
-              label="Name of the Position"
-              variant="outlined"
-              onChange={(e) =>
-                updateFormInput((formInput) => ({
-                  ...formInput,
-                  position: e.target.value,
-                }))
-              }
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="outlined-basic"
-              label="Project Description"
-              variant="outlined"
-              multiline
-              maxRows={Infinity}
-              fullWidth
-              onChange={(e) =>
-                updateFormInput((formInput) => ({
-                  ...formInput,
-                  projDescription: e.target.value,
-                }))
-              }
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="outlined-basic"
-              label="Experience (in years)"
+              label="Your Experience"
               variant="outlined"
               onChange={(e) =>
                 updateFormInput((formInput) => ({
@@ -155,10 +133,11 @@ const JobPostModal = (props) => {
               fullWidth
             />
           </Grid>
+
           <Grid item xs={12}>
             <TextField
               id="outlined-basic"
-              label="Location (City)"
+              label="City"
               variant="outlined"
               onChange={(e) =>
                 updateFormInput((formInput) => ({
@@ -171,35 +150,22 @@ const JobPostModal = (props) => {
           </Grid>
 
           <Grid item xs={12}>
-            <TextField
-              id="outlined-basic"
-              label="Salary"
-              variant="outlined"
-              fullWidth
-              onChange={(e) =>
-                updateFormInput((formInput) => ({
-                  ...formInput,
-                  salary: e.target.value,
-                }))
-              }
+            <input
+              type="file"
+              name="Asset"
+              onChange={onChange}
             />
           </Grid>
+
           <Grid item xs={4} />
           <Grid item xs={4}>
-            <Button
-              variant="contained"
-              onClick={() => {
-                jobPost();
-              }}
-            >
-              Post Job
-            </Button>
+            <Button variant="contained" onClick={()=>applyNow()}>Apply</Button>
           </Grid>
           <Grid item xs={4} />
         </Grid>
-      </Box>
-    </ThemeProvider>
+      </ThemeProvider>
+    </>
   );
-};
+}
 
-export default JobPostModal;
+export default Application;

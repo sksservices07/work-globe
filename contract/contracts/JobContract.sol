@@ -40,9 +40,9 @@ contract JobContract is Initializable, ContextUpgradeable, OwnableUpgradeable {
     
 
     CandidateContract public candidateContract;
-Counters.Counter public _registrationID;
-Register[] private register;
-mapping(address => Register) public registerProfile;
+    Counters.Counter public _registrationID;
+    Register[] private register;
+    mapping(address => Register) public registerProfile;
 
     function initialize(
         address _candidateContractAddress

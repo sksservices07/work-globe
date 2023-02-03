@@ -5,50 +5,94 @@ pragma solidity ^0.8.11;
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol";
+import '@openzeppelin/contracts/utils/Counters.sol';
 
-import "./candidate.sol";
+
+import "./CandidateContract.sol";
 
 contract JobContract is Initializable, ContextUpgradeable, OwnableUpgradeable {
+    
+    using Counters for Counters.Counter;
+
     struct Job {
         uint256 jobId; // job index starts from 0
         string companyName;
         string position;
         string description;
-        string employmentType;
+        string experience;
         string location;
-        string companyWebsiteUrl;
+        string salary;
         address employer;
     }
 
-    uint256 public JOB_ID = 0;
+    struct Register {
+        uint256 registrationID;
+        string name;
+        string typeOfAccount;
+        string myAddress;
+        address user;
+    }
+
+    uint256 public JOB_ID;
     Job[] private jobs;
+    
     mapping(address => address[]) public candidates;
+    
 
     CandidateContract public candidateContract;
+Counters.Counter public _registrationID;
+Register[] private register;
+mapping(address => Register) public registerProfile;
 
-    constructor(address _candidateContractAddress) initializer {
+    function initialize(
+        address _candidateContractAddress
+        ) public initializer {
         candidateContract = CandidateContract(_candidateContractAddress);
-        __Ownable_init();
+            __Ownable_init();
+            JOB_ID = 1;
+            
     }
+    function checkRegistration() public view returns (bool){
+      if(registerProfile[msg.sender].registrationID == 0){
+          return false;
+      }else{
+          return true;
+      }
+  }
+    
+    function registerProfiles(string memory _name, string memory _typeOfAccount, string memory _myAddress) external {
+      require(!checkRegistration(),"You are already registered.");
+      _registrationID.increment();
+      Register memory data = Register(_registrationID.current(),_name,_typeOfAccount,_myAddress,msg.sender);
+      registerProfile[msg.sender] = data;
+      register.push(data);
+  }
+
+  function getMyProfile()  external view returns (Register memory){
+    return registerProfile[msg.sender];
+  }
+
+  function getAllProfile() external view returns (Register[] memory){
+    return register;
+  }
 
     // add job
     function addJob(
         string memory _companyName,
         string memory _position,
         string memory _description,
-        string memory _employmentType,
+        string memory _experience,
         string memory _location,
-        string memory _companyWebsiteUrl
-    ) public payable {
-        require(msg.value == 5 * 10**15);
+        string memory _salary
+    ) public {
         Job memory job = Job({
             jobId: JOB_ID,
             companyName: _companyName,
             position: _position,
             description: _description,
-            employmentType: _employmentType,
+            experience: _experience,
             location: _location,
-            companyWebsiteUrl: _companyWebsiteUrl,
+            salary: _salary,
             employer: _msgSender()
         });
         jobs.push(job);
@@ -63,7 +107,20 @@ contract JobContract is Initializable, ContextUpgradeable, OwnableUpgradeable {
     function getJobById(uint256 _jobid) public view returns (Job memory) {
         return jobs[_jobid];
     }
+    function getMyPostedJobs() public view returns(Job[] memory){
+        uint256 totalJobCount = JOB_ID - 1;
+        uint256 currentIndex = 0;
 
+        Job[] memory items = new Job[](totalJobCount);
+        for (uint256 i = 0; i < totalJobCount; i++) {
+        if (jobs[i].employer == msg.sender) {
+                Job storage currentItem = jobs[i];
+                items[currentIndex] = currentItem;
+                currentIndex += 1;
+            }
+        }
+        return items;
+    }
     // delete Job
     // this is highly gas consuming task
     function deleteJob(uint256 _jobId) public {

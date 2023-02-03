@@ -3,7 +3,11 @@ import { css } from "@emotion/react";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-
+import { useEffect, useState } from "react";
+import { ethers } from "ethers";
+import { getConfigByChain } from "../config";
+import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
+import { useAccount, useNetwork } from "wagmi";
 import NavBar from "../components/NavBar";
 
 import * as React from "react";
@@ -72,6 +76,25 @@ const buttonContainerStyles = css`
 `;
 
 function Landing() {
+  const { chain } = useNetwork();
+  const { address } = useAccount();
+  const [isRegistered, setIsRegistered] = useState(false);
+  useEffect(() => {
+    checkRegistration();
+  }, [chain, address]);
+
+  const checkRegistration = async () => {
+    await window.ethereum.send("eth_requestAccounts"); // opens up metamask extension and connects Web2 to Web3
+    const provider = new ethers.providers.Web3Provider(window.ethereum); //create provider
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(
+      getConfigByChain(chain?.id)[0].contractProxyAddress,
+      Job.abi,
+      signer
+    );
+    const tx = await contract.checkRegistration();
+    setIsRegistered(tx);
+  };
   return (
     <ThemeProvider theme={theme}>
       <NavBar />
@@ -82,16 +105,26 @@ function Landing() {
             Stay protected by the power of smart contract embeddedin the realm
             of Blockchain
           </p>
-          <Link to="/employer">
-            <Button css={buttonStyles} variant="contained" color="primary">
-              I AM A FREELANCER
-            </Button>
-          </Link>
-          <Link to="/freelancer">
-            <Button css={buttonStyles} variant="contained" color="primary">
-              HIRE A FREELANCER
-            </Button>
-          </Link>
+          {isRegistered ? (
+            <>
+              <Link to="/employer">
+                <Button css={buttonStyles} variant="contained" color="primary">
+                  I AM A FREELANCER
+                </Button>
+              </Link>
+              <Link to="/freelancer">
+                <Button css={buttonStyles} variant="contained" color="primary">
+                  HIRE A FREELANCER
+                </Button>
+              </Link>
+            </>
+          ) : (
+            <Link to="/register">
+              <Button css={buttonStyles} variant="contained" color="primary">
+                Register Yourself
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </ThemeProvider>

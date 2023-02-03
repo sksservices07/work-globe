@@ -1,9 +1,9 @@
 const { ethers, upgrades } = require("hardhat")
 
 async function main() {
-    const job = await ethers.getContractFactory("Job")
+    const job = await ethers.getContractFactory("JobContract")
     //let proxy = await upgrades.upgradeProxy("0x70ee51D75c28DE0bB0fc1D10760BB297a79Ed867", job); //alfajores
-    let proxy = await upgrades.upgradeProxy("0x4Ead137B310526e6d87a7d5d45eE1De317b68114", job); //mumbai
+    let proxy = await upgrades.upgradeProxy("0xD70b02bC77cd872049c0F988Fe9b7900A1eDF229", job); //mumbai
     console.log("Job Contract has been successfully upgraded...")
 }
 

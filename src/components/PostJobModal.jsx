@@ -2,8 +2,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { getConfigByChain } from "../config";
-// import Job from "../artifacts/contracts/job.sol/Job.json"
-import Job from "../artifacts/contracts/job.sol/JobContract.json"
+import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
 import { useAccount, useNetwork } from "wagmi";
 import { Box, Typography, Grid, Button, TextField } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -35,8 +34,16 @@ const JobPostModal = (props) => {
     handleModalClose,
   } = props;
 
+  const [formInput, updateFormInput] = useState({
+    companyName: "",
+    position: "",
+    experience: "",
+    projDescription: "",
+    location: "",
+    salary: "",
+  });
+
   const jobPost = async () => {
-    
     await window.ethereum.send("eth_requestAccounts"); // opens up metamask extension and connects Web2 to Web3
     const provider = new ethers.providers.Web3Provider(window.ethereum); //create provider
     const signer = provider.getSigner();
@@ -48,6 +55,8 @@ const JobPostModal = (props) => {
       Job.abi,
       signer
     );
+    console.log("formInput", formInput);
+    debugger
     const tx = await contract.addJob(
       formInput.companyName,
       formInput.position,
@@ -67,15 +76,6 @@ const JobPostModal = (props) => {
         }
       });
   };
-
-  const [formInput, updateFormInput] = useState({
-    companyName: "",
-    position: "",
-    experience: "",
-    projDescription: "",
-    location: "",
-    salary: "",
-  });
 
   return (
     <ThemeProvider theme={theme}>
@@ -105,10 +105,10 @@ const JobPostModal = (props) => {
               id="outlined-basic"
               label="Name of your company"
               variant="outlined"
-              onChange={(val) =>
+              onChange={(e) =>
                 updateFormInput((formInput) => ({
                   ...formInput,
-                  companyName: val,
+                  companyName: e.target.value,
                 }))
               }
               fullWidth
@@ -119,10 +119,10 @@ const JobPostModal = (props) => {
               id="outlined-basic"
               label="Name of the Position"
               variant="outlined"
-              onChange={(val) =>
+              onChange={(e) =>
                 updateFormInput((formInput) => ({
                   ...formInput,
-                  position: val,
+                  position: e.target.value,
                 }))
               }
               fullWidth
@@ -136,10 +136,10 @@ const JobPostModal = (props) => {
               multiline
               maxRows={Infinity}
               fullWidth
-              onChange={(val) =>
+              onChange={(e) =>
                 updateFormInput((formInput) => ({
                   ...formInput,
-                  projDescription: val,
+                  projDescription: e.target.value,
                 }))
               }
             />
@@ -149,10 +149,10 @@ const JobPostModal = (props) => {
               id="outlined-basic"
               label="Experience (in years)"
               variant="outlined"
-              onChange={(val) =>
+              onChange={(e) =>
                 updateFormInput((formInput) => ({
                   ...formInput,
-                  experience: val,
+                  experience: e.target.value,
                 }))
               }
               fullWidth
@@ -163,10 +163,10 @@ const JobPostModal = (props) => {
               id="outlined-basic"
               label="Location (City)"
               variant="outlined"
-              onChange={(val) =>
+              onChange={(e) =>
                 updateFormInput((formInput) => ({
                   ...formInput,
-                  location: val,
+                  location: e.target.value,
                 }))
               }
               fullWidth
@@ -179,10 +179,10 @@ const JobPostModal = (props) => {
               label="Salary"
               variant="outlined"
               fullWidth
-              onChange={(val) =>
+              onChange={(e) =>
                 updateFormInput((formInput) => ({
                   ...formInput,
-                  salary: val,
+                  salary: e.target.value,
                 }))
               }
             />

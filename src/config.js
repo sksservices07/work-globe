@@ -14,7 +14,7 @@ export const networkConfig = {
     ],
     "80001": [
         {
-            contractProxyAddress: "0x4Ead137B310526e6d87a7d5d45eE1De317b68114", //proxy deployment
+            contractProxyAddress: "0xD70b02bC77cd872049c0F988Fe9b7900A1eDF229", //proxy deployment
             networkName: "Mumbai Testnet"
         },
     ],

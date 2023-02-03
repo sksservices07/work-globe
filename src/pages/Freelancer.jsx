@@ -1,36 +1,25 @@
 import * as React from "react";
+import { useEffect, useState } from "react";
 import FreelanceNavBar from "../components/FreelanceNavBar";
-
+import { ethers } from "ethers";
+import { getConfigByChain } from "../config";
+import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
+import { useAccount, useNetwork } from "wagmi";
 import { Box, Paper, Typography, ButtonBase, Modal } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
 import JobPostModal from "../components/PostJobModal";
 
 const Freelancer = () => {
   const navigate = useNavigate();
+  const { chain } = useNetwork();
+  const { address } = useAccount();
   const [modalOpen, setModalOpen] = React.useState(false);
   const handleModalOpen = () => setModalOpen(true);
   const handleModalClose = () => setModalOpen(false);
-  const [jobs, setJobs] = React.useState([
-    {
-      company: "Netflix",
-      role: "Senior Web Developer",
-      experience: "3 yrs experience",
-      logo: "netflix-512.png",
-    },
-    {
-      company: "Tata",
-      role: "Senior Software Engineer",
-      experience: "5 yrs experience",
-      logo: "tata-logo-blue.png",
-    },
-    {
-      company: "Wipro",
-      role: "Senior Software Engineer",
-      experience: "2 yrs experience",
-      logo: "wipro-logo.png",
-    },
-  ]);
+  useEffect(() => {
+    goGetMyPostedJobs();
+  }, [chain, address]);
+  const [jobs, setJobs] = React.useState([]);
   const [input, setInput] = React.useState({
     company: "Generic",
     role: "",
@@ -41,6 +30,21 @@ const Freelancer = () => {
   const onExperienceChange = (e) =>
     setInput({ ...input, experience: e.target.value });
   const onSubmit = () => setJobs([...jobs, input]);
+
+  const goGetMyPostedJobs = async () => {
+    await window.ethereum.send("eth_requestAccounts"); // opens up metamask extension and connects Web2 to Web3
+    const provider = new ethers.providers.Web3Provider(window.ethereum); //create provider
+    const signer = provider.getSigner();
+    const network = await provider.getNetwork();
+    const contract = new ethers.Contract(
+      getConfigByChain(chain?.id)[0].contractProxyAddress,
+      Job.abi,
+      signer
+    );
+    const tx = await contract.getMyPostedJobs();
+    console.log("tx", tx);
+    setJobs(tx);
+  };
   return (
     <Box
       sx={{
@@ -63,63 +67,80 @@ const Freelancer = () => {
           m: 2,
         }}
       >
-        {jobs.map((job) =>
-          job.role === "" || job.experience === "" ? (
-            ""
-          ) : (
-            <ButtonBase
-              onClick={() =>
-                navigate("/jobpost", {
-                  state: {
-                    company: job.company,
-                    role: job.role,
-                    experience: job.experience,
-                    logo: job.logo,
-                  },
-                })
-              }
-            >
-              <Paper
-                elevation={3}
-                sx={{
-                  p: 2,
-                  width: "30vw",
-                  display: "flex",
-                  alignItems: "center",
-                }}
+        {jobs.map(
+          (job) =>
+            job.companyName != "" && (
+              <ButtonBase
+                onClick={() =>
+                  navigate("/jobpost", {
+                    state: {
+                      companyName: job.companyName,
+                      position: job.position,
+                      description: job.description,
+                      experience: job.experience,
+                      location: job.location,
+                      salary: job.salary,
+                      employer: job.employer,
+                    },
+                  })
+                }
               >
-                <img
-                  src={require(`../img/${job.logo}`)}
-                  alt={job.logo}
-                  height={100}
-                  width={100}
-                />
-                <Box
+                <Paper
+                  elevation={3}
                   sx={{
+                    p: 2,
+                    width: "30vw",
                     display: "flex",
-                    justifyContent: "center",
                     alignItems: "center",
-                    flexDirection: "column",
                   }}
                 >
-                  <Typography
-                    variant="h6"
-                    component="p"
-                    sx={{ textAlign: "left", ml: 1, color: "black" }}
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column",
+                    }}
                   >
-                    {job.role}
-                  </Typography>
-                  <Typography
-                    variant="subtitle2"
-                    component="p"
-                    sx={{ textAlign: "left", ml: 1, color: "black" }}
-                  >
-                    {job.experience}
-                  </Typography>
-                </Box>
-              </Paper>
-            </ButtonBase>
-          )
+                    <Typography
+                      variant="h6"
+                      component="p"
+                      sx={{ textAlign: "left", ml: 1, color: "black" }}
+                    >
+                      {job.companyName}
+                    </Typography>
+                    <Typography
+                      variant="subtitle2"
+                      component="p"
+                      sx={{ textAlign: "left", ml: 1, color: "black" }}
+                    >
+                      {job.position}
+                    </Typography>
+                    <Typography
+                      variant="subtitle2"
+                      component="p"
+                      sx={{ textAlign: "left", ml: 1, color: "black" }}
+                    >
+                      Experience: {job.experience} years
+                    </Typography>
+                    <Typography
+                      variant="subtitle2"
+                      component="p"
+                      sx={{ textAlign: "left", ml: 1, color: "black" }}
+                    >
+                      City: {job.location}
+                    </Typography>
+                    <Typography
+                      variant="subtitle2"
+                      component="p"
+                      sx={{ textAlign: "left", ml: 1, color: "black" }}
+                    >
+                      Salary (per annum): {job.salary} (in USD)
+                    </Typography>
+                  </Box>
+                </Paper>
+              </ButtonBase>
+            )
         )}
 
         <Modal

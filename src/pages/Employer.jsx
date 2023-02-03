@@ -1,4 +1,9 @@
 import * as React from "react";
+import { useEffect, useState } from "react";
+import { ethers } from "ethers";
+import { getConfigByChain } from "../config";
+import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
+import { useAccount, useNetwork } from "wagmi";
 
 import {
   Box,
@@ -29,96 +34,127 @@ const theme = createTheme({
 });
 
 function Employer() {
-  const jobs = [
-    {
-      company: "Netflix",
-      role: "Senior Web Developer",
-      experience: "3 yrs experience",
-      logo: "netflix-512.png",
-    },
-    {
-      company: "Tata",
-      role: "Senior Software Engineer",
-      experience: "5 yrs experience",
-      logo: "tata-logo-blue.png",
-    },
-    {
-      company: "Wipro",
-      role: "Senior Software Engineer",
-      experience: "2 yrs experience",
-      logo: "wipro-logo.png",
-    },
-  ];
+  const [jobs, setJobs] = React.useState([]);
+  const { chain } = useNetwork();
+  const { address } = useAccount();
+  useEffect(() => {
+    getAllPostedJobs();
+  }, [chain, address]);
+  const getAllPostedJobs = async () => {
+    await window.ethereum.send("eth_requestAccounts"); // opens up metamask extension and connects Web2 to Web3
+    const provider = new ethers.providers.Web3Provider(window.ethereum); //create provider
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(
+      getConfigByChain(chain?.id)[0].contractProxyAddress,
+      Job.abi,
+      signer
+    );
+    const tx = await contract.allJobs();
+    console.log("tx", tx);
+    setJobs(tx);
+  };
   return (
     <>
       <EmployerNavBar />
       <ThemeProvider theme={theme}>
         <Box sx={{ flexGrow: 1, m: 2 }}>
           <Grid container spacing={2}>
-            {jobs.map((job) => (
-              <>
-                <Grid item xs={1} />
-                <Grid item xs={7}>
-                  <ButtonBase>
-                    <Paper
-                      elevation={3}
-                      sx={{
-                        p: 2,
-                        width: "40vw",
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <img
+            {jobs.map(
+              (job) =>
+                job.companyName != "" && (
+                  <>
+                    <Grid item xs={1} />
+                    <Grid item xs={7}>
+                      <ButtonBase>
+                        <Paper
+                          elevation={3}
+                          sx={{
+                            p: 2,
+                            width: "40vw",
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          {/* <img
                         src={require(`../img/${job.logo}`)}
                         alt={job.logo}
                         height={100}
                         width={100}
-                      />
-                      <Box
-                        sx={{
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          m: 2,
-                        }}
-                      >
-                        <Typography
-                          variant="h6"
-                          component="p"
-                          sx={{ color: "black" }}
-                        >
-                          {job.role}
-                        </Typography>
-                        <Typography
-                          variant="subtitle2"
-                          component="p"
-                          sx={{ color: "black" }}
-                        >
-                          {job.experience}
-                        </Typography>
-                      </Box>
-                    </Paper>
-                  </ButtonBase>
-                </Grid>
-                <Grid
-                  item
-                  xs={3}
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Button variant="contained" sx={{ width: "80%", p: 2 }}>
-                    Select
-                  </Button>
-                </Grid>
-                <Grid item xs={1} />
-              </>
-            ))};
+                      /> */}
+                          <Box
+                            sx={{
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              m: 2,
+                            }}
+                          >
+                            <Typography
+                              variant="h6"
+                              component="p"
+                              sx={{ color: "black" }}
+                            >
+                              {job.companyName}
+                            </Typography>
+                            <Typography
+                              variant="subtitle2"
+                              component="p"
+                              sx={{ color: "black" }}
+                            >
+                              {job.position}
+                            </Typography>
+                            <Typography
+                              variant="subtitle2"
+                              component="p"
+                              sx={{ textAlign: "left", ml: 1, color: "black" }}
+                            >
+                              {job.description}
+                            </Typography>
+                            <Typography
+                              variant="subtitle2"
+                              component="p"
+                              sx={{ textAlign: "left", ml: 1, color: "black" }}
+                            >
+                              Required: {job.experience} years experience
+                            </Typography>
+                            <Typography
+                              variant="subtitle2"
+                              component="p"
+                              sx={{ textAlign: "left", ml: 1, color: "black" }}
+                            >
+                              City:{job.location}
+                            </Typography>
+                            <Typography
+                              variant="subtitle2"
+                              component="p"
+                              sx={{ textAlign: "left", ml: 1, color: "black" }}
+                            >
+                              {job.salary} USD/Annum
+                            </Typography>
+                          </Box>
+                        </Paper>
+                      </ButtonBase>
+                    </Grid>
+                    <Grid
+                      item
+                      xs={3}
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Button variant="contained" sx={{ width: "80%", p: 2 }}>
+                        Select
+                      </Button>
+                    </Grid>
+                    <Grid item xs={1} />
+                  </>
+                )
+            )}
+            ;
           </Grid>
         </Box>
       </ThemeProvider>

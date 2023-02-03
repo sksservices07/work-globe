@@ -39,11 +39,28 @@ const JobPost = () => {
                   component="span"
                   sx={{ textDecoration: "underline black solid 5px" }}
                 >
-                  {location.state.role}, {location.state.experience}
+                  {location.state.companyName} for {location.state.position}
+                </Typography>
+              </Typography>
+              <Typography variant="h6" component="p" sx={{ mt: 2 }}>
+                Location:
+                <Typography
+                  variant="h6"
+                  component="span"
+                  sx={{ textDecoration: "underline black solid 5px" }}
+                >
+                  {location.state.location}
+                </Typography> &nbsp;&nbsp;
+                Salary(per annum):
+                <Typography
+                  variant="h6"
+                  component="span"
+                  sx={{ textDecoration: "underline black solid 5px" }}
+                >
+                  {location.state.salary} (in USD)
                 </Typography>
               </Typography>
             </Grid>
-
             <Grid item xs={2} />
             <Grid item xs={5}>
               <Typography
@@ -60,7 +77,6 @@ const JobPost = () => {
             </Grid>
             <Grid item xs={3} />
             <Grid item xs={2} />
-
             {applicants.map((applicant, index) => (
               <>
                 <Grid item xs={2} />
@@ -78,7 +94,8 @@ const JobPost = () => {
                 </Grid>
                 <Grid item xs={2} />
               </>
-            ))};
+            ))}
+            ;
           </Grid>
         </Box>
       </ThemeProvider>

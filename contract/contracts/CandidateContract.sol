@@ -31,11 +31,13 @@ contract CandidateContract is Initializable, ContextUpgradeable {
         Links links;
     }
 
-    uint256 public CANDIDATE_ID = 0;
+    uint256 public CANDIDATE_ID;
     Candidate[] private candidates;
     mapping(address => uint256) public addressToId; // id starts from 1
 
-    constructor() initializer {}
+     function initialize() public initializer {
+        CANDIDATE_ID = 0;
+     }
 
     // registers a candidate
     // requires _msgSender() not to be previously registered

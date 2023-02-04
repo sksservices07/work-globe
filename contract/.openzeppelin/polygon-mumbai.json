@@ -74,6 +74,26 @@
       "address": "0xD70b02bC77cd872049c0F988Fe9b7900A1eDF229",
       "txHash": "0xbc6dcb01fac74cf03c79b51f1e828e9f10516a7bf8e82e95e8303afee7a6194b",
       "kind": "transparent"
+    },
+    {
+      "address": "0x9BB6cc654fF7574CB0bb93Ef3b0971c35d57a6f7",
+      "txHash": "0x4de1d355e8d648df683def79dc2300d412971b674db47e9d53e6e3b56a9d31b5",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x6384f84Eb613157dd8BaCC96B8DaC76D0888C09a",
+      "txHash": "0x70911207e23e3bf38442f060cb4a3562f6c30672cd6b4e193199b5a69239de0f",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x26ed46da922f40A6ac6f7f54603E9D8fF5FeD8c4",
+      "txHash": "0xe0fd38eb6e6fd4f2c760be71adb158700955a8dcae16d9eb6c1b35025deb17da",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x179823c5C74463DfffB28B42b400cd1cA6466DAd",
+      "txHash": "0x797acf5f22b6c8704bd7197386964688454c155de1dd9eece07f58dedef58824",
+      "kind": "transparent"
     }
   ],
   "impls": {
@@ -1243,6 +1263,1120 @@
             "numberOfBytes": "256"
           },
           "t_struct(Register)965_storage": {
+            "label": "struct JobContract.Register",
+            "members": [
+              {
+                "label": "registrationID",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "name",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "typeOfAccount",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "myAddress",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "user",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "4"
+              }
+            ],
+            "numberOfBytes": "160"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "554c27abcd0a5c0457e6586397f89b4ac71df5fb81b6c0cdc3dd8a8b529aa501": {
+      "address": "0xD558acB0f8372Eaae6397589E26A8C8eE0b68851",
+      "txHash": "0xbc1baacc30a49ae8202b3bed0053a4557c5a5e0ab9f08ab873234c03704d7587",
+      "layout": {
+        "solcVersion": "0.8.11",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "JOB_ID",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_uint256",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:48"
+          },
+          {
+            "label": "jobs",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_array(t_struct(Job)956_storage)dyn_storage",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:49"
+          },
+          {
+            "label": "candidates",
+            "offset": 0,
+            "slot": "103",
+            "type": "t_mapping(t_address,t_array(t_address)dyn_storage)",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:51"
+          },
+          {
+            "label": "candidateContract",
+            "offset": 0,
+            "slot": "104",
+            "type": "t_contract(CandidateContract)920",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:54"
+          },
+          {
+            "label": "_registrationID",
+            "offset": 0,
+            "slot": "105",
+            "type": "t_struct(Counter)632_storage",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:55"
+          },
+          {
+            "label": "register",
+            "offset": 0,
+            "slot": "106",
+            "type": "t_array(t_struct(Register)967_storage)dyn_storage",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:56"
+          },
+          {
+            "label": "registerProfile",
+            "offset": 0,
+            "slot": "107",
+            "type": "t_mapping(t_address,t_struct(Register)967_storage)",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:57"
+          },
+          {
+            "label": "candidate",
+            "offset": 0,
+            "slot": "108",
+            "type": "t_array(t_struct(Candidate)984_storage)dyn_storage",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:58"
+          },
+          {
+            "label": "totalCandidates",
+            "offset": 0,
+            "slot": "109",
+            "type": "t_mapping(t_uint256,t_mapping(t_uint256,t_struct(Candidate)984_storage))",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:59"
+          },
+          {
+            "label": "jobData",
+            "offset": 0,
+            "slot": "110",
+            "type": "t_mapping(t_uint256,t_struct(Job)956_storage)",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:60"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(Candidate)984_storage)dyn_storage": {
+            "label": "struct JobContract.Candidate[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(Job)956_storage)dyn_storage": {
+            "label": "struct JobContract.Job[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(Register)967_storage)dyn_storage": {
+            "label": "struct JobContract.Register[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(CandidateContract)920": {
+            "label": "contract CandidateContract",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_array(t_address)dyn_storage)": {
+            "label": "mapping(address => address[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_struct(Register)967_storage)": {
+            "label": "mapping(address => struct JobContract.Register)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_mapping(t_uint256,t_struct(Candidate)984_storage))": {
+            "label": "mapping(uint256 => mapping(uint256 => struct JobContract.Candidate))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Candidate)984_storage)": {
+            "label": "mapping(uint256 => struct JobContract.Candidate)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Job)956_storage)": {
+            "label": "mapping(uint256 => struct JobContract.Job)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Candidate)984_storage": {
+            "label": "struct JobContract.Candidate",
+            "members": [
+              {
+                "label": "registrationID",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "jobId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "name",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "experience",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "location",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "cv",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "candidateAddress",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "6"
+              },
+              {
+                "label": "status",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "7"
+              }
+            ],
+            "numberOfBytes": "256"
+          },
+          "t_struct(Counter)632_storage": {
+            "label": "struct Counters.Counter",
+            "members": [
+              {
+                "label": "_value",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_struct(Job)956_storage": {
+            "label": "struct JobContract.Job",
+            "members": [
+              {
+                "label": "jobId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "companyName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "position",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "description",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "experience",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "location",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "salary",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "6"
+              },
+              {
+                "label": "applicationCount",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "7"
+              },
+              {
+                "label": "employer",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "8"
+              }
+            ],
+            "numberOfBytes": "288"
+          },
+          "t_struct(Register)967_storage": {
+            "label": "struct JobContract.Register",
+            "members": [
+              {
+                "label": "registrationID",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "name",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "typeOfAccount",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "myAddress",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "user",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "4"
+              }
+            ],
+            "numberOfBytes": "160"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "902870ab3eb97dd38f20527c67112bf167393028ed64ed0302923ac75045fb29": {
+      "address": "0x2eEC17CA2892eB7759d3432B93e10fd93aF6FE0a",
+      "txHash": "0x07383c4d55672e468e32e7ed0793a541c84218f2ff2341cbba2a27ae0c969b4b",
+      "layout": {
+        "solcVersion": "0.8.11",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "JOB_ID",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_uint256",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:49"
+          },
+          {
+            "label": "jobs",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_array(t_struct(Job)956_storage)dyn_storage",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:50"
+          },
+          {
+            "label": "candidates",
+            "offset": 0,
+            "slot": "103",
+            "type": "t_mapping(t_address,t_array(t_address)dyn_storage)",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:52"
+          },
+          {
+            "label": "candidateContract",
+            "offset": 0,
+            "slot": "104",
+            "type": "t_contract(CandidateContract)920",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:55"
+          },
+          {
+            "label": "_registrationID",
+            "offset": 0,
+            "slot": "105",
+            "type": "t_struct(Counter)632_storage",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:56"
+          },
+          {
+            "label": "_candJobID",
+            "offset": 0,
+            "slot": "106",
+            "type": "t_struct(Counter)632_storage",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:57"
+          },
+          {
+            "label": "register",
+            "offset": 0,
+            "slot": "107",
+            "type": "t_array(t_struct(Register)967_storage)dyn_storage",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:58"
+          },
+          {
+            "label": "registerProfile",
+            "offset": 0,
+            "slot": "108",
+            "type": "t_mapping(t_address,t_struct(Register)967_storage)",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:59"
+          },
+          {
+            "label": "candidate",
+            "offset": 0,
+            "slot": "109",
+            "type": "t_array(t_struct(Candidate)986_storage)dyn_storage",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:60"
+          },
+          {
+            "label": "totalCandidates",
+            "offset": 0,
+            "slot": "110",
+            "type": "t_mapping(t_uint256,t_mapping(t_uint256,t_struct(Candidate)986_storage))",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:61"
+          },
+          {
+            "label": "jobData",
+            "offset": 0,
+            "slot": "111",
+            "type": "t_mapping(t_uint256,t_struct(Job)956_storage)",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:62"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(Candidate)986_storage)dyn_storage": {
+            "label": "struct JobContract.Candidate[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(Job)956_storage)dyn_storage": {
+            "label": "struct JobContract.Job[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(Register)967_storage)dyn_storage": {
+            "label": "struct JobContract.Register[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(CandidateContract)920": {
+            "label": "contract CandidateContract",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_array(t_address)dyn_storage)": {
+            "label": "mapping(address => address[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_struct(Register)967_storage)": {
+            "label": "mapping(address => struct JobContract.Register)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_mapping(t_uint256,t_struct(Candidate)986_storage))": {
+            "label": "mapping(uint256 => mapping(uint256 => struct JobContract.Candidate))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Candidate)986_storage)": {
+            "label": "mapping(uint256 => struct JobContract.Candidate)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Job)956_storage)": {
+            "label": "mapping(uint256 => struct JobContract.Job)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Candidate)986_storage": {
+            "label": "struct JobContract.Candidate",
+            "members": [
+              {
+                "label": "candJobID",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "registrationID",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "jobId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "name",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "experience",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "location",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "cv",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "6"
+              },
+              {
+                "label": "candidateAddress",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "7"
+              },
+              {
+                "label": "status",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "8"
+              }
+            ],
+            "numberOfBytes": "288"
+          },
+          "t_struct(Counter)632_storage": {
+            "label": "struct Counters.Counter",
+            "members": [
+              {
+                "label": "_value",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_struct(Job)956_storage": {
+            "label": "struct JobContract.Job",
+            "members": [
+              {
+                "label": "jobId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "companyName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "position",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "description",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "experience",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "location",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "salary",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "6"
+              },
+              {
+                "label": "applicationCount",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "7"
+              },
+              {
+                "label": "employer",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "8"
+              }
+            ],
+            "numberOfBytes": "288"
+          },
+          "t_struct(Register)967_storage": {
+            "label": "struct JobContract.Register",
+            "members": [
+              {
+                "label": "registrationID",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "name",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "typeOfAccount",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "myAddress",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "user",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "4"
+              }
+            ],
+            "numberOfBytes": "160"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "4a55b10864248d4ed6372d9b3bf889a91b1cbf6d92a1a051780c1cc98cd1e550": {
+      "address": "0xF09f5824c693804Be9573f5f75f7d3f0F97e1437",
+      "txHash": "0x289b88a6d7531697d302f68d03b31fcc7158753b95ad196683766345ea37d460",
+      "layout": {
+        "solcVersion": "0.8.11",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "JOB_ID",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_uint256",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:49"
+          },
+          {
+            "label": "jobs",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_array(t_struct(Job)956_storage)dyn_storage",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:50"
+          },
+          {
+            "label": "candidates",
+            "offset": 0,
+            "slot": "103",
+            "type": "t_mapping(t_address,t_array(t_address)dyn_storage)",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:52"
+          },
+          {
+            "label": "candidateContract",
+            "offset": 0,
+            "slot": "104",
+            "type": "t_contract(CandidateContract)920",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:55"
+          },
+          {
+            "label": "_registrationID",
+            "offset": 0,
+            "slot": "105",
+            "type": "t_struct(Counter)632_storage",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:56"
+          },
+          {
+            "label": "_candJobID",
+            "offset": 0,
+            "slot": "106",
+            "type": "t_struct(Counter)632_storage",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:57"
+          },
+          {
+            "label": "register",
+            "offset": 0,
+            "slot": "107",
+            "type": "t_array(t_struct(Register)967_storage)dyn_storage",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:58"
+          },
+          {
+            "label": "registerProfile",
+            "offset": 0,
+            "slot": "108",
+            "type": "t_mapping(t_address,t_struct(Register)967_storage)",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:59"
+          },
+          {
+            "label": "candidate",
+            "offset": 0,
+            "slot": "109",
+            "type": "t_array(t_struct(Candidate)986_storage)dyn_storage",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:60"
+          },
+          {
+            "label": "totalCandidates",
+            "offset": 0,
+            "slot": "110",
+            "type": "t_mapping(t_uint256,t_mapping(t_uint256,t_struct(Candidate)986_storage))",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:61"
+          },
+          {
+            "label": "jobData",
+            "offset": 0,
+            "slot": "111",
+            "type": "t_mapping(t_uint256,t_struct(Job)956_storage)",
+            "contract": "JobContract",
+            "src": "contracts/JobContract.sol:62"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(Candidate)986_storage)dyn_storage": {
+            "label": "struct JobContract.Candidate[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(Job)956_storage)dyn_storage": {
+            "label": "struct JobContract.Job[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(Register)967_storage)dyn_storage": {
+            "label": "struct JobContract.Register[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(CandidateContract)920": {
+            "label": "contract CandidateContract",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_array(t_address)dyn_storage)": {
+            "label": "mapping(address => address[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_struct(Register)967_storage)": {
+            "label": "mapping(address => struct JobContract.Register)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_mapping(t_uint256,t_struct(Candidate)986_storage))": {
+            "label": "mapping(uint256 => mapping(uint256 => struct JobContract.Candidate))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Candidate)986_storage)": {
+            "label": "mapping(uint256 => struct JobContract.Candidate)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Job)956_storage)": {
+            "label": "mapping(uint256 => struct JobContract.Job)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Candidate)986_storage": {
+            "label": "struct JobContract.Candidate",
+            "members": [
+              {
+                "label": "registrationID",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "jobId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "name",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "experience",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "location",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "cv",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "candidateAddress",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "6"
+              },
+              {
+                "label": "status",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "7"
+              },
+              {
+                "label": "candJobID",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "8"
+              }
+            ],
+            "numberOfBytes": "288"
+          },
+          "t_struct(Counter)632_storage": {
+            "label": "struct Counters.Counter",
+            "members": [
+              {
+                "label": "_value",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_struct(Job)956_storage": {
+            "label": "struct JobContract.Job",
+            "members": [
+              {
+                "label": "jobId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "companyName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "position",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "description",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "experience",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "location",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "salary",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "6"
+              },
+              {
+                "label": "applicationCount",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "7"
+              },
+              {
+                "label": "employer",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "8"
+              }
+            ],
+            "numberOfBytes": "288"
+          },
+          "t_struct(Register)967_storage": {
             "label": "struct JobContract.Register",
             "members": [
               {

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
+import { Buffer } from "buffer";
 import { getConfigByChain } from "../config";
 import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
 import { useAccount, useNetwork } from "wagmi";
@@ -10,6 +11,7 @@ import { Box, Typography, Grid, Button, TextField } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { ButtonBase, Paper } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { create as ipfsHttpClient } from "ipfs-http-client";
 
 import EmployerNavBar from "../components/EmployerNavBar";
 
@@ -38,9 +40,9 @@ const client = ipfsHttpClient({
   port: 5001,
   protocol: "https",
   headers: {
-    authorization: `Basic ${Buffer.from(projectIdAndSecret).toString(
-      "base64"
-    )}`,
+    authorization: `Basic ${
+      (Buffer.from(projectIdAndSecret).toString, "base64")
+    }`,
   },
 });
 
@@ -72,8 +74,9 @@ function Application(props) {
       console.log(`Error is: ${e}`);
     }
   }
+  
 
-  async function applyNow(){
+  async function applyNow() {
     await window.ethereum.send("eth_requestAccounts"); // opens up metamask extension and connects Web2 to Web3
     const provider = new ethers.providers.Web3Provider(window.ethereum); //create provider
     const signer = provider.getSigner();
@@ -83,8 +86,15 @@ function Application(props) {
       Job.abi,
       signer
     );
-    const tx = await contract.applyForJob(location.state.jobId,formInput.name,
-      formInput.experience,formInput.location, cv);
+    console.log(location.state.jobId);
+    debugger
+    const tx = await contract.applyForJob(
+      location.state.jobId,
+      formInput.name,
+      formInput.experience,
+      formInput.location,
+      cv
+    );
     toast.success("Creating block... Please Wait", { icon: "👏" });
     const receipt = await provider
       .waitForTransaction(tx.hash, 1, 150000)
@@ -93,7 +103,6 @@ function Application(props) {
       });
   }
 
-  
   return (
     <>
       <Toaster position="top-center" reverseOrder="false" />
@@ -150,16 +159,14 @@ function Application(props) {
           </Grid>
 
           <Grid item xs={12}>
-            <input
-              type="file"
-              name="Asset"
-              onChange={onChange}
-            />
+            <input type="file" name="Asset" onChange={onChange} />
           </Grid>
 
           <Grid item xs={4} />
           <Grid item xs={4}>
-            <Button variant="contained" onClick={()=>applyNow()}>Apply</Button>
+            <Button variant="contained" onClick={() => applyNow()}>
+              Apply
+            </Button>
           </Grid>
           <Grid item xs={4} />
         </Grid>

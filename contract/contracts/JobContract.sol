@@ -35,6 +35,7 @@ contract JobContract is Initializable, ContextUpgradeable, OwnableUpgradeable {
     }
 
     struct Candidate {
+        uint256 candJobID;
         uint256 registrationID;
         uint256 jobId;
         string name;
@@ -53,6 +54,7 @@ contract JobContract is Initializable, ContextUpgradeable, OwnableUpgradeable {
 
     CandidateContract public candidateContract;
     Counters.Counter public _registrationID;
+     Counters.Counter public _candJobID;
     Register[] private register;
     mapping(address => Register) public registerProfile;
     Candidate[] private candidate;
@@ -88,6 +90,7 @@ contract JobContract is Initializable, ContextUpgradeable, OwnableUpgradeable {
   function applyForJob(uint256 jobId, string memory _name, string memory _experience, string memory _location, string memory _cv) external {
       
       Candidate memory data = Candidate(
+        _candJobID.current(),
         registerProfile[msg.sender].registrationID,
         jobData[jobId].jobId,
         _name,
@@ -99,13 +102,14 @@ contract JobContract is Initializable, ContextUpgradeable, OwnableUpgradeable {
       totalCandidates[registerProfile[msg.sender].registrationID][jobData[jobId].jobId] = data;
       candidate.push(data);
       jobData[jobId].applicationCount ++;
+      _candJobID.increment();
   }
 
   function getMyCandidates(uint256 _jobId) external view returns(Candidate[] memory){
     require(jobData[_jobId].employer == msg.sender,"Access Denied !!");
     uint256 totalAppCount = jobData[_jobId].applicationCount;
         uint256 currentIndex = 0;
-        uint256 totCandidates = candidate.length;
+        uint256 totCandidates = _candJobID.current();
 
         Candidate[] memory items = new Candidate[](totalAppCount);
         for (uint256 i = 0; i < totCandidates; i++) {

@@ -56,7 +56,7 @@ const JobPostModal = (props) => {
       signer
     );
     console.log("formInput", formInput);
-    
+
     const tx = await contract.addJob(
       formInput.companyName,
       formInput.position,
@@ -69,8 +69,7 @@ const JobPostModal = (props) => {
     const receipt = await provider
       .waitForTransaction(tx.hash, 1, 150000)
       .then(() => {
-        toast.success("Job post unsuccessful");
-        
+        toast.success("Job post Sucessful !!");
       });
   };
 

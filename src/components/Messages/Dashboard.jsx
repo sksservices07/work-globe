@@ -11,7 +11,7 @@ const Dashboard = () => {
   return (
     <>
       <Sidebar />
-      {selectedConversation && <OpenConversation />}
+      {selectedConversation && <OpenConversation key={selectedConversation} />}
     </>
   );
 };

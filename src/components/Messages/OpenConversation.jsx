@@ -1,4 +1,5 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { useAccount } from "wagmi";
 import {
   Box,
   Button,
@@ -6,21 +7,26 @@ import {
   List,
   ListItemButton,
   ListItem,
-  ListItemText
+  ListItemText,
 } from "@mui/material";
 import MessageIcon from "@mui/icons-material/Message";
 import ContactsIcon from "@mui/icons-material/Contacts";
 
 import { useConversations } from "../../context/ConversationsProvider";
+import { useGunMessages } from "../../hooks";
 
 const OpenConversation = () => {
   const [text, setText] = useState("");
+  const { address } = useAccount();
   const setRef = useCallback((node) => {
     if (node) {
       node.scrollIntoView({ smooth: true });
     }
   }, []);
-  const { sendMessage, selectedConversation } = useConversations();
+  const { sendMessage, selectedConversation, currentChatId } =
+    useConversations();
+
+  const { messages } = useGunMessages(currentChatId);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,6 +38,8 @@ const OpenConversation = () => {
     setText("");
   };
 
+  console.log("messages ", messages);
+
   return (
     <Box
       sx={{
@@ -42,11 +50,29 @@ const OpenConversation = () => {
       }}
       position="relative"
     >
-      <List sx={{
-        overflowY: "scroll",
-        height: "80%",
-      }}>
-        {selectedConversation.messages.map((message, index) => (
+      <List
+        sx={{
+          overflowY: "scroll",
+          height: "80%",
+        }}
+      >
+        {messages.map((message, idx) => (
+          <>
+            <ListItem disablePadding key={idx}>
+              <ListItemButton component="span">
+                <ListItemText primary={message.text} />
+                <div
+                  className={`text-muted small ${
+                    message.sender === address ? "text-right" : ""
+                  }`}
+                >
+                  {message.sender === address ? "You" : "Person"}
+                </div>
+              </ListItemButton>
+            </ListItem>
+          </>
+        ))}
+        {/* {selectedConversation.messages.map((message, index) => (
           <>
             <ListItem
               disablePadding
@@ -69,7 +95,7 @@ const OpenConversation = () => {
               </ListItemButton>
             </ListItem>
           </>
-        ))}
+        ))} */}
       </List>
 
       <form onSubmit={handleSubmit}>

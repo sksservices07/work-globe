@@ -6,6 +6,7 @@ import MessageIcon from "@mui/icons-material/Message";
 import TabPanel from "./TabPanel";
 import PromptModal from "./Modal";
 import Conversations from "./Conversations";
+import Contacts from "./Contacts";
 
 import { useDisclosure } from "../../hooks";
 import { useContacts } from "../../context/ContactsProvider";
@@ -61,7 +62,7 @@ function Sidebar() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <Conversations />
+        <Contacts />
       </TabPanel>
 
       <Button

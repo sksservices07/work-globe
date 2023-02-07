@@ -23,16 +23,16 @@ export const ContactsProvider = ({ children }) => {
   useEffect(() => {
     const app = async () => {
 
-      console.log("address: ", address)
+      // console.log("address: ", address)
       if (!address) return;
 
-      const allFriends = gun.get(address).get("friends")
+      const allFriends = gun.get(address)
       
-      console.log("allFriends", allFriends)
+      // console.log("allFriends", allFriends)
 
       allFriends
       .map().once(function (friend, index) {
-          console.log("friend is :", friend, index);
+          // console.log("friend is :", friend, index);
           
           setContacts((prev) => [
             ...prev,
@@ -50,8 +50,8 @@ export const ContactsProvider = ({ children }) => {
 
     if (!address) return;
 
-    console.log("friend address", id);
-    console.log("friend name", name);
+    // console.log("friend address", id);
+    // console.log("friend name", name);
 
     let newFriend = {
       name: name,
@@ -59,7 +59,7 @@ export const ContactsProvider = ({ children }) => {
     };
 
     // remove newAddrOfFrnd variable and test again
-    gun.get(address).get("friends").set(newFriend);
+    gun.get(address).set(newFriend);
 
     // setContacts((prevContacts) => {
     //   return [...prevContacts, { id, name }];

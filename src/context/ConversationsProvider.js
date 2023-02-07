@@ -5,9 +5,10 @@ import {
   useEffect,
   useCallback,
 } from "react";
-import { useLocalStorage } from "../hooks";
+import { useLocalStorage, useGunRef } from "../hooks";
 import { useContacts } from "./ContactsProvider";
 import { useSocket } from "./SocketProvider";
+import createHash from "../utils/getHash";
 
 export const ConversationsContext = createContext();
 
@@ -16,9 +17,12 @@ export const useConversations = () => useContext(ConversationsContext);
 export const ConversationsProvider = ({ id, children }) => {
   const [conversations, setConversations] = useLocalStorage(
     "conversations",
+    id,
     []
   );
+  const { gunRef } = useGunRef();
   const [selectConversationIndex, setSelectConversationIndex] = useState(0);
+  const [currentChatId, setCurrentChatId] = useState(null);
   const { contacts } = useContacts();
   const socket = useSocket();
 
@@ -57,13 +61,26 @@ export const ConversationsProvider = ({ id, children }) => {
   useEffect(() => {
     if (socket == null) return;
 
-    socket.on("receive-message", addMessageToConversation);
+    // socket.on("receive-message", addMessageToConversation);
 
     return () => socket.off("receive-message");
   }, [socket, addMessageToConversation]);
 
+  const saveMessageToGun = (sender, recipients, text) => {
+    const chatId = createHash(recipients[0], sender);
+    const dbRef = gunRef(`messages/${chatId}`);
+
+    const messageObject = {
+      sender,
+      text,
+    };
+
+    dbRef.set(messageObject);
+  };
+
   const sendMessage = (recipients, text) => {
-    socket.emit("send-message", { recipients, text });
+    // socket.emit("send-message", { recipients, text });
+    saveMessageToGun(id, recipients, text);
     addMessageToConversation({ recipients, text, sender: id });
   };
 
@@ -99,6 +116,8 @@ export const ConversationsProvider = ({ id, children }) => {
     selectConversationIndex: setSelectConversationIndex,
     createConversation,
     sendMessage,
+    currentChatId,
+    selectCurrentChatId: setCurrentChatId,
   };
 
   return (

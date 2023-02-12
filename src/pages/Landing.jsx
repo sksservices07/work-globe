@@ -9,6 +9,7 @@ import { getConfigByChain } from "../config";
 import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
 import { useAccount, useNetwork } from "wagmi";
 import NavBar from "../components/NavBar";
+import { spacing } from '@mui/system';
 
 import * as React from "react";
 
@@ -55,8 +56,8 @@ const textStylesP = css`
 `;
 
 const buttonStyles = css`
-  margin-top: 1rem;
-  margin-right: 1rem;
+  margin-top: 2rem;
+  margin-right: 2rem;
   justify-content: center;
   border-radius: 25px;
   width: 200px;
@@ -71,6 +72,7 @@ const buttonStyles = css`
 `;
 
 const buttonContainerStyles = css`
+margin-left: 2rem;
   display: block;
   margin-bottom: 100px;
 `;
@@ -108,7 +110,7 @@ function Landing() {
           {isRegistered ? (
             <>
               <Link to="/employer">
-                <Button css={buttonStyles} variant="contained" color="primary">
+                <Button css={buttonStyles} variant="contained" color="primary" >
                   I AM A FREELANCER
                 </Button>
               </Link>

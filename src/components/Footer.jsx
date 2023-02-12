@@ -7,6 +7,9 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { styled } from "@mui/material/styles";
+import { spacing } from '@mui/system';
+import { hover } from "@testing-library/user-event/dist/hover";
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#595959",
@@ -15,6 +18,8 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   color: theme.palette.text.secondary,
 }));
+
+
 
 const Footer = () => {
   return (
@@ -28,11 +33,11 @@ const Footer = () => {
             <Typography
               variant="subtitle1"
               component="div"
-              sx={{ textAlign: "left", ml: 1 }}
+              sx={{ textAlign: "left", ml: 1 ,pt:2}}
             >
               Follow us on:
-              <IconButton>
-                <FacebookIcon sx={{ color: "white" }} />
+              <IconButton >
+                <FacebookIcon sx={{ color: "white" } } />
               </IconButton>
               <IconButton>
                 <TwitterIcon sx={{ color: "white" }} />
@@ -136,20 +141,21 @@ const Footer = () => {
               </Typography>
             </Item>
           </Grid>
+          
         </Grid>
         <Typography
           variant="h6"
           component="p"
-          sx={{ color: "white", backgroundColor: "#595959" }}
+          sx={{ color: "white", backgroundColor: "#595959" ,pt:4}}
         >
           Work Globe
         </Typography>
         <Typography
           variant="subtitle1"
           component="p"
-          sx={{ color: "white", backgroundColor: "#595959" }}
+          sx={{ color: "white", backgroundColor: "#595959" ,pt:3}}
         >
-          Copyright ©2022
+          Copyright ©2023
         </Typography>
       </Box>
     </>

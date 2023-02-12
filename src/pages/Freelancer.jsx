@@ -8,6 +8,8 @@ import { useAccount, useNetwork } from "wagmi";
 import { Box, Paper, Typography, ButtonBase, Modal } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import JobPostModal from "../components/PostJobModal";
+import {  IconButton } from "@mui/material";
+import NavBar from "../components/NavBar";
 
 const Freelancer = () => {
   const navigate = useNavigate();
@@ -51,6 +53,8 @@ const Freelancer = () => {
         flexGrow: 1,
       }}
     >
+      
+    <NavBar/>
       <FreelanceNavBar
         modalOpen={modalOpen}
         handleModalOpen={handleModalOpen}

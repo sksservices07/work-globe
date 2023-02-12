@@ -12,8 +12,9 @@ import { useLocation } from "react-router-dom";
 import { ButtonBase, Paper } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { create as ipfsHttpClient } from "ipfs-http-client";
-
+import ApplicationNavbar from "../components/ApplicationNavbar";
 import EmployerNavBar from "../components/EmployerNavBar";
+import NavBar from "../components/NavBar";
 
 const theme = createTheme({
   components: {
@@ -105,16 +106,23 @@ function Application(props) {
 
   return (
     <>
+    
       <Toaster position="top-center" reverseOrder="false" />
       <ThemeProvider theme={theme}>
         <Grid container spacing={3} justify="center">
           <Grid item xs={12}>
-            <Typography variant="h6" component="h2">
+            <NavBar/>
+            {/* <Typography variant="h6" component="h2">
               Apply for Position at {location.state.companyName} for &nbsp;
               {location.state.position}
-            </Typography>
+            </Typography> */}
+
+            {/* need to add the dynamic company name */}
+          <ApplicationNavbar/>
           </Grid>
-          <Grid item xs={12}>
+          
+          <Box width="30%"/>
+          <Grid item xs={4}>
             <TextField
               id="outlined-basic"
               label="Your Name"
@@ -128,7 +136,10 @@ function Application(props) {
               fullWidth
             />
           </Grid>
-          <Grid item xs={12}>
+          
+          <Box width="30%"/>
+          <Box width="30%"/>
+          <Grid item xs={4}>
             <TextField
               id="outlined-basic"
               label="Your Experience"
@@ -142,8 +153,9 @@ function Application(props) {
               fullWidth
             />
           </Grid>
-
-          <Grid item xs={12}>
+          <Box width="30%"/>
+          <Box width="30%"/>
+          <Grid item xs={4}>
             <TextField
               id="outlined-basic"
               label="City"
@@ -157,17 +169,27 @@ function Application(props) {
               fullWidth
             />
           </Grid>
-
+              
+          <Box width="30%"/> 
           <Grid item xs={12}>
             <input type="file" name="Asset" onChange={onChange} />
           </Grid>
-
+              
+          <Box width="30%"/> 
           <Grid item xs={4} />
+          
+          <Box width="30%"/> 
+          <Box width="30%"/> 
           <Grid item xs={4}>
-            <Button variant="contained" onClick={() => applyNow()}>
+            <Button 
+            style={{maxWidth: '200px', maxHeight: '80px', minWidth: '200px', minHeight: '80px'}}
+            variant="contained" onClick={() => applyNow()}>
               Apply
             </Button>
+            
           </Grid>
+          <Box width="30%"/>
+
           <Grid item xs={4} />
         </Grid>
       </ThemeProvider>

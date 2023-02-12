@@ -4,6 +4,8 @@ import { ethers } from "ethers";
 import { getConfigByChain } from "../config";
 import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
 import { useAccount, useNetwork } from "wagmi";
+
+import NavBar from "../components/NavBar";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -58,6 +60,7 @@ function Employer() {
 
   return (
     <>
+    <NavBar/>
       <EmployerNavBar />
       <ThemeProvider theme={theme}>
         <Box sx={{ flexGrow: 1, m: 2 }}>

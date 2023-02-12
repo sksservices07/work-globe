@@ -3,7 +3,7 @@ import * as React from "react";
 import { Box, Grid } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useAccount } from 'wagmi'
-
+import {  IconButton } from "@mui/material";
 import Navbar from "../components/NavBar";
 import Sidebar from "../components/Messages/Sidebar";
 import { ContactsProvider } from "../context/ContactsProvider";

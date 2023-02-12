@@ -2,7 +2,10 @@ import * as React from "react";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { AppBar, Button, Typography, Box, Toolbar } from "@mui/material";
+import {  IconButton } from "@mui/material";
 
+import { useNavigate } from "react-router-dom";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 const theme = createTheme({
   components: {
     MuiAppBar: {
@@ -34,6 +37,8 @@ const FreelanceNavBar = (props) => {
   // const handleModalOpen = () => setModalOpen(true);
   // const handleModalClose = () => setModalOpen(false);
   const { handleModalOpen } = props;
+  
+  const navigate = useNavigate();
   return (
     <ThemeProvider theme={theme}>
       <Box component="nav" sx={{ flexGrow: 1 }}>
@@ -44,6 +49,9 @@ const FreelanceNavBar = (props) => {
               component="p"
               sx={{ flexGrow: 1, textAlign: "left", ml: 2 }}
             >
+               <IconButton onClick={() => navigate(-1)}>
+              <ArrowBackIcon sx={{ color: "white" }} />
+            </IconButton>
               My Posted Jobs
             </Typography>
             <Button variant="contained" onClick={handleModalOpen}>

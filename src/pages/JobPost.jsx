@@ -3,7 +3,7 @@ import * as React from "react";
 import { Box, Button, Paper, Typography, Grid } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useLocation } from "react-router-dom";
-
+import NavBar from "../components/NavBar";
 import JobPostNavBar from "../components/JobPostNavBar";
 
 const theme = createTheme({
@@ -27,6 +27,7 @@ const JobPost = () => {
   const applicants = ["Ram Sharma", "Shyam Sharma", "Karan Sharma"];
   return (
     <>
+    <NavBar/>
       <JobPostNavBar />
       <ThemeProvider theme={theme}>
         <Box sx={{ flexGrow: 1, m: 2 }}>

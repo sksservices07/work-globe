@@ -41,7 +41,21 @@ function Register() {
   });
   const { address } = useAccount();
 
+  const validate = (data) => {
+    if (data?.name && data?.typeOfRegistration && data?.City) {
+      return true;
+    } else {
+      toast.error("There are some incomplete fields in your submission!", {
+        icon: "ℹ️",
+      });
+      return false;
+    }
+  };
+
   const registerProfile = async () => {
+    // validate
+    if (!validate(formInput)) return;
+
     await window.ethereum.send("eth_requestAccounts"); // opens up metamask extension and connects Web2 to Web3
     const provider = new ethers.providers.Web3Provider(window.ethereum); //create provider
     const signer = provider.getSigner();

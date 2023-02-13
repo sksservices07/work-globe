@@ -15,6 +15,7 @@ import { create as ipfsHttpClient } from "ipfs-http-client";
 import ApplicationNavbar from "../components/ApplicationNavbar";
 import EmployerNavBar from "../components/EmployerNavBar";
 import NavBar from "../components/NavBar";
+import RingLoader from "react-spinners/RingLoader";
 
 const theme = createTheme({
   components: {
@@ -41,9 +42,9 @@ const client = ipfsHttpClient({
   port: 5001,
   protocol: "https",
   headers: {
-    authorization: `Basic ${
-      (Buffer.from(projectIdAndSecret).toString, "base64")
-    }`,
+    authorization: `Basic ${Buffer.from(projectIdAndSecret).toString(
+      "base64"
+    )}`,
   },
 });
 
@@ -51,6 +52,7 @@ function Application(props) {
   const location = useLocation();
   const navigate = useNavigate();
   const [cv, setCv] = React.useState();
+  const [isLoading, setIsLoading] = useState(false);
   const { chain } = useNetwork();
   const [formInput, updateFormInput] = useState({
     name: "",
@@ -64,18 +66,20 @@ function Application(props) {
     console.log("file", client);
 
     try {
+      setIsLoading(true);
       const added = await client.add(file, {
         progress: (prog) => console.log(`received: ${prog}`),
       });
       console.log("added is:", client);
       const url = `https://nftmarketcover.infura-ipfs.io/ipfs/${added.path}`;
       console.log(`File uploaded is: ${url}`);
+      setIsLoading(false)
       setCv(url);
+      debugger;
     } catch (e) {
       console.log(`Error is: ${e}`);
     }
   }
-  
 
   async function applyNow() {
     await window.ethereum.send("eth_requestAccounts"); // opens up metamask extension and connects Web2 to Web3
@@ -88,7 +92,7 @@ function Application(props) {
       signer
     );
     console.log(location.state.jobId);
-    debugger
+    debugger;
     const tx = await contract.applyForJob(
       location.state.jobId,
       formInput.name,
@@ -106,22 +110,19 @@ function Application(props) {
 
   return (
     <>
-    
       <Toaster position="top-center" reverseOrder="false" />
       <ThemeProvider theme={theme}>
         <Grid container spacing={3} justify="center">
           <Grid item xs={12}>
-            <NavBar/>
-            {/* <Typography variant="h6" component="h2">
+            <NavBar />
+            <Typography variant="h6" component="h2">
               Apply for Position at {location.state.companyName} for &nbsp;
               {location.state.position}
-            </Typography> */}
-
-            {/* need to add the dynamic company name */}
-          <ApplicationNavbar/>
+            </Typography> 
+            <ApplicationNavbar />
           </Grid>
-          
-          <Box width="30%"/>
+
+          <Box width="30%" />
           <Grid item xs={4}>
             <TextField
               id="outlined-basic"
@@ -136,9 +137,9 @@ function Application(props) {
               fullWidth
             />
           </Grid>
-          
-          <Box width="30%"/>
-          <Box width="30%"/>
+
+          <Box width="30%" />
+          <Box width="30%" />
           <Grid item xs={4}>
             <TextField
               id="outlined-basic"
@@ -153,8 +154,8 @@ function Application(props) {
               fullWidth
             />
           </Grid>
-          <Box width="30%"/>
-          <Box width="30%"/>
+          <Box width="30%" />
+          <Box width="30%" />
           <Grid item xs={4}>
             <TextField
               id="outlined-basic"
@@ -169,26 +170,38 @@ function Application(props) {
               fullWidth
             />
           </Grid>
-              
-          <Box width="30%"/> 
+
+          <Box width="30%" />
           <Grid item xs={12}>
             <input type="file" name="Asset" onChange={onChange} />
           </Grid>
-              
-          <Box width="30%"/> 
+
+          <Box width="30%" />
           <Grid item xs={4} />
-          
-          <Box width="30%"/> 
-          <Box width="30%"/> 
+
+          <Box width="30%" />
+          <Box width="30%" />
           <Grid item xs={4}>
-            <Button 
-            style={{maxWidth: '200px', maxHeight: '80px', minWidth: '200px', minHeight: '80px'}}
-            variant="contained" onClick={() => applyNow()}>
-              Apply
-            </Button>
-            
+            {isLoading == true ? (
+              <>
+                <RingLoader color={"#000000"} size={50} /> uploading...
+              </>
+            ) : (
+              <Button
+                style={{
+                  maxWidth: "200px",
+                  maxHeight: "80px",
+                  minWidth: "200px",
+                  minHeight: "80px",
+                }}
+                variant="contained"
+                onClick={() => applyNow()}
+              >
+                Apply
+              </Button>
+            )}
           </Grid>
-          <Box width="30%"/>
+          <Box width="30%" />
 
           <Grid item xs={4} />
         </Grid>

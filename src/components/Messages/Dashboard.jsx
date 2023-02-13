@@ -6,12 +6,12 @@ import Sidebar from "./Sidebar";
 import {  useConversations } from "../../context/ConversationsProvider";
 
 const Dashboard = () => {
-  const { selectedConversation } = useConversations();
+  const { selectCurrentChatId  } = useConversations();
 
   return (
     <>
       <Sidebar />
-      {selectedConversation && <OpenConversation key={selectedConversation} />}
+      {selectCurrentChatId && <OpenConversation key={selectCurrentChatId} />}
     </>
   );
 };

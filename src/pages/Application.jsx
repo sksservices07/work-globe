@@ -115,10 +115,10 @@ function Application(props) {
         <Grid container spacing={3} justify="center">
           <Grid item xs={12}>
             <NavBar />
-            <Typography variant="h6" component="h2">
+            {/* <Typography variant="h6" component="h2">
               Apply for Position at {location.state.companyName} for &nbsp;
               {location.state.position}
-            </Typography> 
+            </Typography>  */}
             <ApplicationNavbar />
           </Grid>
 

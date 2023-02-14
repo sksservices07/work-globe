@@ -33,6 +33,7 @@ const OpenConversation = () => {
 
     sendMessage(
       selectedConversation.recipients.map((r) => r.id),
+      currentChatId,
       text
     );
     setText("");

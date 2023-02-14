@@ -23,7 +23,7 @@ const useGunMessages = (chatId) => {
     // console.log(dbRef)
     dbRef
       .map()
-      .once(function (gunData, key) {
+      .on(function (gunData, key) {
         // console.log(key, gunData)
         
         const data = {

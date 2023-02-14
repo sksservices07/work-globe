@@ -66,8 +66,7 @@ export const ConversationsProvider = ({ id, children }) => {
     return () => socket.off("receive-message");
   }, [socket, addMessageToConversation]);
 
-  const saveMessageToGun = (sender, recipients, text) => {
-    const chatId = createHash(recipients[0], sender);
+  const saveMessageToGun = (sender, chatId, text) => {
     const dbRef = gunRef(`messages/${chatId}`);
 
     const messageObject = {
@@ -78,9 +77,9 @@ export const ConversationsProvider = ({ id, children }) => {
     dbRef.set(messageObject);
   };
 
-  const sendMessage = (recipients, text) => {
+  const sendMessage = (recipients, chatId,text) => {
     // socket.emit("send-message", { recipients, text });
-    saveMessageToGun(id, recipients, text);
+    saveMessageToGun(id, chatId, text);
     addMessageToConversation({ recipients, text, sender: id });
   };
 

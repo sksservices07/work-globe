@@ -70,7 +70,7 @@ const NavBar = () => {
               component="p"
               sx={{ flexGrow: 1, textAlign: "left", ml: 2 }}
             >
-              WorkGLOBE
+              HuntForLancer
             </Typography>
             <Link to="/">
               <IconButton size="large" aria-label="home" color="inherit">

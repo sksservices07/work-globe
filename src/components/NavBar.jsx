@@ -70,7 +70,7 @@ const NavBar = () => {
               component="p"
               sx={{ flexGrow: 1, textAlign: "left", ml: 2 }}
             >
-              WorkGLOBE
+              HuntForLancer
             </Typography>
             <Link to="/">
               <IconButton size="large" aria-label="home" color="inherit">
@@ -90,7 +90,14 @@ const NavBar = () => {
                 </IconButton>
               </Link>
             )}
-            <IconButton size="large" aria-label="about" color="inherit">
+            <IconButton
+              size="small"
+              aria-label="about"
+              color="inherit"
+              sx={{
+                display: { xs: "none", sm: "none" , md: "block"},
+              }}
+            >
               <ConnectButton accountStatus="address" chainStatus="icon" />
             </IconButton>
           </Toolbar>

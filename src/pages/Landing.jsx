@@ -9,7 +9,7 @@ import { getConfigByChain } from "../config";
 import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
 import { useAccount, useNetwork } from "wagmi";
 import NavBar from "../components/NavBar";
-import { spacing } from '@mui/system';
+import { spacing } from "@mui/system";
 
 import * as React from "react";
 
@@ -25,6 +25,12 @@ const theme = createTheme({
   },
 });
 
+const breakpoints = [576, 768, 992, 1200];
+// const mq = breakpoints.map((bp) => `@media (min-width: ${bp}px)`);
+const mq = breakpoints.map(
+  (bp) => `@media only screen and (max-width: ${bp}px)`
+);
+
 const backgroundStyles = css`
   background-color: #f5f5f5;
   background-image: url(${require("../img/macbook-pro.jpg")});
@@ -36,6 +42,15 @@ const backgroundStyles = css`
   text-align: left;
   padding: 0 300px;
   justify-content: flex-start;
+  ${mq[0]} {
+    padding: 0 !important;
+  }
+  ${mq[1]} {
+    padding: 0 !important;
+  }
+  ${mq[2]} {
+    padding: 0 200px;
+  }
 `;
 
 const textStylesH1 = css`
@@ -45,6 +60,14 @@ const textStylesH1 = css`
   font-weight: 700;
   text-shadow: 1px 1px black;
   width: 350px;
+  ${mq[1]} {
+    font-size: 2rem;
+    width: 100%;
+  }
+  ${mq[2]} {
+    font-size: 2.5rem;
+    width: 100%;
+  }
 `;
 
 const textStylesP = css`
@@ -53,6 +76,9 @@ const textStylesP = css`
   font-weight: 400;
   font-size: 25px;
   text-shadow: 1px 1px black;
+  ${mq[1]} {
+    font-size: 20px;
+  }
 `;
 
 const buttonStyles = css`
@@ -69,10 +95,12 @@ const buttonStyles = css`
     transform: scale(1.05);
     background-color: aliceblue;
   }
+  ${mq[1]} {
+  }
 `;
 
 const buttonContainerStyles = css`
-margin-left: 2rem;
+  margin-left: 2rem;
   display: block;
   margin-bottom: 100px;
 `;
@@ -110,7 +138,7 @@ function Landing() {
           {isRegistered ? (
             <>
               <Link to="/employer">
-                <Button css={buttonStyles} variant="contained" color="primary" >
+                <Button css={buttonStyles} variant="contained" color="primary">
                   I AM A FREELANCER
                 </Button>
               </Link>

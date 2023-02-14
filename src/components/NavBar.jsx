@@ -90,7 +90,14 @@ const NavBar = () => {
                 </IconButton>
               </Link>
             )}
-            <IconButton size="large" aria-label="about" color="inherit">
+            <IconButton
+              size="small"
+              aria-label="about"
+              color="inherit"
+              sx={{
+                display: { xs: "none", sm: "none" , md: "block"},
+              }}
+            >
               <ConnectButton accountStatus="address" chainStatus="icon" />
             </IconButton>
           </Toolbar>

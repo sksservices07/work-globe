@@ -110,7 +110,7 @@ function Profile() {
           <Grid item xs={12}>
             
             <Box component="" sx={{p: 1, border: '1px  solid grey', width: 500,
-        height: 80, ml: 50 ,borderRadius:20,opacity: [0.7, 0.7, 0.7],boxShadow:5  }} >
+        height: 60, ml: 50 ,borderRadius:20,opacity: [0.7, 0.7, 0.7],boxShadow:5  }} >
           <Grid sx={{mr:40}}> 
           <h2> <IconButton >
                 <AccountCircleIcon sx={{ color: "black" } } />
@@ -121,7 +121,7 @@ function Profile() {
           <Box width="30%"/>
           <Grid item xs={12}>
             <Box component="" sx={{p: 1, border: '1px  solid grey' , width: 500,
-        height: 80, ml: 50,borderRadius:20,opacity: [0.7, 0.7, 0.7], boxShadow:5   }} >
+        height: 60, ml: 50,borderRadius:20,opacity: [0.7, 0.7, 0.7], boxShadow:5   }} >
           <Grid sx={{mr:40}}> 
             <h2>
             <IconButton >
@@ -134,7 +134,7 @@ function Profile() {
           <Box width="30%"/>
           <Grid item xs={12}>
           <Box component="" sx={{p: 1, border: '1px  solid grey' , width: 500,
-        height: 80, ml: 50,borderRadius:20,opacity: [0.7, 0.7, 0.7],boxShadow:5 }} >
+        height: 60, ml: 50,borderRadius:20,opacity: [0.7, 0.7, 0.7],boxShadow:5 }} >
           <Grid sx={{mr:43}}> 
             <h2>
             <IconButton >

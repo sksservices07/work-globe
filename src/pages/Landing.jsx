@@ -137,20 +137,29 @@ function Landing() {
           </p>
           {isRegistered ? (
             <>
-              <Link to="/employer">
-                <Button css={buttonStyles} variant="contained" color="primary">
+              <Link to="/employer" style={{ textDecoration: 'none' }} >
+                <Button sx={{borderRadius:5}} color="success" 
+                  disabled={false}
+                  size="large"
+                  variant="outlined">
                   I AM A FREELANCER
                 </Button>
               </Link>
-              <Link to="/freelancer">
-                <Button css={buttonStyles} variant="contained" color="primary">
+              <Link to="/freelancer" style={{ textDecoration: 'none' }}>
+                <Button sx={{borderRadius:5,marginLeft:2}} color="secondary" 
+                  disabled={false}
+                  size="large"
+                  variant="outlined">
                   HIRE A FREELANCER
                 </Button>
               </Link>
             </>
           ) : (
-            <Link to="/register">
-              <Button css={buttonStyles} variant="contained" color="primary">
+            <Link to="/register" style={{ textDecoration: 'none' }}>
+              <Button sx={{borderRadius:5,marginLeft:2}} color="success" 
+                  disabled={false}
+                  size="large"
+                  variant="outlined">
                 Register Yourself
               </Button>
             </Link>

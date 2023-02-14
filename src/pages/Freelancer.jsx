@@ -90,12 +90,13 @@ const Freelancer = () => {
                 }
               >
                 <Paper
-                  elevation={3}
+                  elevation={5}
                   sx={{
                     p: 2,
                     width: "30vw",
                     display: "flex",
                     alignItems: "center",
+                    borderRadius:8
                   }}
                 >
                   <Box
@@ -104,6 +105,7 @@ const Freelancer = () => {
                       justifyContent: "center",
                       alignItems: "center",
                       flexDirection: "column",
+                      
                     }}
                   >
                     <Typography

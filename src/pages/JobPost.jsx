@@ -30,7 +30,7 @@ const JobPost = () => {
     <NavBar/>
       <JobPostNavBar />
       <ThemeProvider theme={theme}>
-        <Box sx={{ flexGrow: 1, m: 2 }}>
+        <Box sx={{ flexGrow: 1, m: 2 }} >
           <Grid container spacing={2} sx={{}}>
             <Grid item xs={12}>
               <Typography variant="h3" component="p" sx={{ mt: 2 }}>
@@ -38,7 +38,7 @@ const JobPost = () => {
                 <Typography
                   variant="h3"
                   component="span"
-                  sx={{ textDecoration: "underline black solid 5px" }}
+                  sx={{ textDecoration: "none" }}
                 >
                   {location.state.companyName} for {location.state.position}
                 </Typography>
@@ -48,7 +48,7 @@ const JobPost = () => {
                 <Typography
                   variant="h6"
                   component="span"
-                  sx={{ textDecoration: "underline black solid 5px" }}
+                  sx={{ textDecoration: "none" }}
                 >
                   {location.state.location}
                 </Typography> &nbsp;&nbsp;
@@ -56,7 +56,7 @@ const JobPost = () => {
                 <Typography
                   variant="h6"
                   component="span"
-                  sx={{ textDecoration: "underline black solid 5px" }}
+                  sx={{ textDecoration: "none" }}
                 >
                   {location.state.salary} (in USD)
                 </Typography>
@@ -70,7 +70,7 @@ const JobPost = () => {
                 sx={{
                   textAlign: "left",
                   mt: 3,
-                  textDecoration: "underline black solid 4px",
+                  textDecoration: "none",
                 }}
               >
                 Applicants
@@ -82,7 +82,8 @@ const JobPost = () => {
               <>
                 <Grid item xs={2} />
                 <Grid item xs={5}>
-                  <Paper elevation={3} sx={{ p: 2, textAlign: "left" }}>
+                  <Paper elevation={3} sx={{ p: 2, textAlign: "left",boxShadow:5,borderRadius:20,opacity: [0.7, 0.7, 0.7], }}
+                  >
                     <Typography variant="h6" component="p">
                       {index + 1}. {applicant} (CV Attached)
                     </Typography>

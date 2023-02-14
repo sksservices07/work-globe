@@ -79,6 +79,7 @@ function Employer() {
                             width: "40vw",
                             display: "flex",
                             alignItems: "center",
+                            borderRadius:8
                           }}
                         >
                           {/* <img

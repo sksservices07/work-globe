@@ -87,17 +87,25 @@ function Register() {
       </Grid> */}
       <Grid >
       <ThemeProvider theme={theme}>
-        <Grid container spacing={3} justify="center">
+        <Grid container spacing={0.5} justify="center">
           <Grid item xs={12}>
             <Typography variant="h4" component="h2">
               
             </Typography>
           </Grid>
-          <Grid item xs={4}/>
-          <Grid item xs={4}>
+          <Grid item xs={4} />
+          <Grid item xs={4} sx={{paddingRight:5}}>
             <TextField
-            
-              sx={{ m: 6 } }
+            sx={{
+              '& label': { paddingLeft: (theme) => theme.spacing(2) },
+              '& input': { paddingLeft: (theme) => theme.spacing(3.5) },
+              '& fieldset': {
+                paddingLeft: (theme) => theme.spacing(2.5),
+                borderRadius: '30px',boxShadow:5,height:60
+              },
+              m:6
+            }}
+              // sx={{ m: 6 } }
               id="outlined-basic"
               label="Name"
               variant="outlined"
@@ -113,9 +121,17 @@ function Register() {
           </Grid>
           <Box width="30%"/>
           <Grid item xs={4}/>
-          <Grid item xs={4}>
+          <Grid item xs={4} sx={{paddingRight:5}}>
             <TextField
-            sx={{ m: 6 }}
+             sx={{
+              '& label': { paddingLeft: (theme) => theme.spacing(2) },
+              '& input': { paddingLeft: (theme) => theme.spacing(3.5) },
+              '& fieldset': {
+                paddingLeft: (theme) => theme.spacing(2.5),
+                borderRadius: '30px',boxShadow:5,height:60
+              },
+              m:6
+            }}
               id="outlined-basic"
               label="I am an Employer/I am a Freelancer"
               variant="outlined"
@@ -130,9 +146,17 @@ function Register() {
           </Grid>
           <Box width="30%"/>
           <Grid item xs={4}/>
-          <Grid item xs={4}>
+          <Grid item xs={4} sx={{paddingRight:5}}>
             <TextField
-            sx={{ m: 6 }}
+            sx={{
+              '& label': { paddingLeft: (theme) => theme.spacing(2) },
+              '& input': { paddingLeft: (theme) => theme.spacing(3.5) },
+              '& fieldset': {
+                paddingLeft: (theme) => theme.spacing(2.5),
+                borderRadius: '30px',boxShadow:5,height:60
+              },
+              m:6
+            }}
               id="outlined-basic"
               label="City"
               variant="outlined"
@@ -147,8 +171,9 @@ function Register() {
           </Grid>
           <Box width="30%"/> 
           <Grid item xs={4} />
-          <Grid item xs={4}>
+          <Grid item xs={4} sx={{paddingBottom:3}}>
             <Button
+            sx={{boxShadow:5}}
             style={{maxWidth: '200px', maxHeight: '80px', minWidth: '200px', minHeight: '80px'}}
               variant="contained"
               onClick={() => {

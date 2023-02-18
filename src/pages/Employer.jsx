@@ -54,8 +54,10 @@ function Employer() {
       signer
     );
     const tx = await contract.allJobs();
-    console.log("tx", tx);
-    setJobs(tx);
+    const opens = tx.filter((job) => {
+      return job.status === "open";
+    }); 
+    setJobs(opens);
   };
 
   return (

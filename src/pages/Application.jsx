@@ -125,6 +125,16 @@ function Application(props) {
           <Box width="30%" />
           <Grid item xs={4}>
             <TextField
+
+
+              sx={{
+                '& label': { paddingLeft: (theme) => theme.spacing(2) },
+                '& input': { paddingLeft: (theme) => theme.spacing(3.5) },
+                '& fieldset': {
+                  paddingLeft: (theme) => theme.spacing(2.5),
+                  borderRadius: '30px',boxShadow:5,height:60
+                },
+              }}
               id="outlined-basic"
               label="Your Name"
               variant="outlined"
@@ -142,6 +152,15 @@ function Application(props) {
           <Box width="30%" />
           <Grid item xs={4}>
             <TextField
+             sx={{
+               '& label': { paddingLeft: (theme) => theme.spacing(2) },
+               '& input': { paddingLeft: (theme) => theme.spacing(3.5) },
+               '& fieldset': {
+                 paddingLeft: (theme) => theme.spacing(2.5),
+                 borderRadius: '30px',boxShadow:5,height:60
+                 
+               },
+             }}
               id="outlined-basic"
               label="Your Experience"
               variant="outlined"
@@ -158,6 +177,14 @@ function Application(props) {
           <Box width="30%" />
           <Grid item xs={4}>
             <TextField
+             sx={{
+               '& label': { paddingLeft: (theme) => theme.spacing(2) },
+               '& input': { paddingLeft: (theme) => theme.spacing(3.5) },
+               '& fieldset': {
+                 paddingLeft: (theme) => theme.spacing(2.5),
+                 borderRadius: '30px',boxShadow:5,height:60
+               },
+             }}
               id="outlined-basic"
               label="City"
               variant="outlined"

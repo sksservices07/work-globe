@@ -28,7 +28,7 @@ const navigate = useNavigate();
                     <IconButton onClick={() => navigate(-1)}>
               <ArrowBackIcon sx={{ color: "white" }} />
             </IconButton>
-                        Browse Job by Category
+                        Go Back
                     </Typography>
                 </Toolbar>
             </AppBar>

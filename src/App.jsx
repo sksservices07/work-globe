@@ -10,6 +10,7 @@ import JobPost from "./pages/JobPost";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Application from "./pages/Application";
+import Lancers from "./pages/Lancers"
 import "@rainbow-me/rainbowkit/styles.css";
 import {
   getDefaultWallets,
@@ -64,6 +65,7 @@ function App() {
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/profile" element={<Profile />} />
             <Route exact path="/application" element={<Application />} />
+            <Route exact path="/lancers" element={<Lancers />} />
           </Routes>
           <Footer />
         </RainbowKitProvider>

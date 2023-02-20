@@ -8,6 +8,7 @@ import { Toolbar } from "@mui/material";
 import { Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import EmailIcon from "@mui/icons-material/Email";
+import LaptopMacIcon from "@mui/icons-material/LaptopMac";
 import ProfileIcon from "@mui/icons-material/AccountCircle";
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
@@ -73,20 +74,46 @@ const NavBar = () => {
               HuntForLancer
             </Typography>
             <Link to="/">
-              <IconButton size="large" aria-label="home" color="inherit">
+              <IconButton
+                size="small"
+                aria-label="home"
+                color="inherit"
+                sx={{ color: "white !important" }}
+              >
                 <HomeIcon sx={{ color: "white !important" }} />
+                Home
               </IconButton>
             </Link>
-
+            <Link to="/lancers">
+              <IconButton
+                size="small"
+                aria-label="contact"
+                sx={{ color: "white !important" }}
+              >
+                <LaptopMacIcon sx={{ color: "white !important" }} />
+                Lancers
+              </IconButton>
+            </Link>
             <Link to="/messages">
-              <IconButton size="large" aria-label="contact">
-                <EmailIcon sx={{ color: "white !important" }} />
+              <IconButton
+                size="small"
+                aria-label="contact"
+                sx={{ color: "white !important" }}
+              >
+                <EmailIcon alt="Message" sx={{ color: "white !important" }} />
+                Message
               </IconButton>
             </Link>
             {isRegistered && (
               <Link to="/profile">
-                <IconButton size="large" aria-label="profile" color="inherit">
+                <IconButton
+                  size="small"
+                  aria-label="profile"
+                  color="inherit"
+                  sx={{ color: "white !important" }}
+                >
                   <ProfileIcon sx={{ color: "white !important" }} />
+                  Profile
                 </IconButton>
               </Link>
             )}
@@ -95,7 +122,7 @@ const NavBar = () => {
               aria-label="about"
               color="inherit"
               sx={{
-                display: { xs: "none", sm: "none" , md: "block"},
+                display: { xs: "none", sm: "none", md: "block" },
               }}
             >
               <ConnectButton accountStatus="address" chainStatus="icon" />

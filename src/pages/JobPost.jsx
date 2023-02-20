@@ -6,11 +6,12 @@ import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
 import { useAccount, useNetwork } from "wagmi";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Box, Button, Paper, Typography, Grid } from "@mui/material";
+import { Box, Button, Paper, Typography, Grid, Modal } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import NavBar from "../components/NavBar";
 import JobPostNavBar from "../components/JobPostNavBar";
 import { color } from "@mui/system";
+import RateMeModal from "../components/RateMeModal";
 
 const theme = createTheme({
   components: {
@@ -31,13 +32,27 @@ const theme = createTheme({
 const JobPost = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const handleModalOpen = () => setModalOpen(true);
+  const handleModalClose = () => setModalOpen(false);
+  const [input, setInput] = React.useState({
+    company: "Generic",
+    role: "",
+    experience: "",
+    logo: "generic.png",
+  });
+  const onRoleChange = (e) => setInput({ ...input, role: e.target.value });
+  const onExperienceChange = (e) =>
+    setInput({ ...input, experience: e.target.value });
+  const onSubmit = (e) => setInput({ ...input, experience: e.target.value });
+
   const [applicants, setApplicants] = useState([]);
   const { chain } = useNetwork();
   useEffect(() => {
     getMyCandidates();
   }, []);
 
-  const selectCandidate = async (registrationNo,candidateAddress) => {
+  const selectCandidate = async (registrationNo, candidateAddress) => {
     await window.ethereum.send("eth_requestAccounts"); // opens up metamask extension and connects Web2 to Web3
     const provider = new ethers.providers.Web3Provider(window.ethereum); //create provider
     const signer = provider.getSigner();
@@ -47,7 +62,7 @@ const JobPost = () => {
       Job.abi,
       signer
     );
-    console.log("jobid:",location.state.jobId)
+    console.log("jobid:", location.state.jobId);
     console.log("regNo:", registrationNo);
     console.log("candidateAddress:", candidateAddress);
     const tx = await contract.selectCandidate(
@@ -72,7 +87,7 @@ const JobPost = () => {
       signer
     );
     const tx = await contract.getMyCandidates(location.state.jobId);
-    console.log('applicants',tx)
+    console.log("applicants", tx);
     setApplicants(tx);
   };
   return (
@@ -163,7 +178,7 @@ const JobPost = () => {
                   </Paper>
                 </Grid>
                 <Grid item xs={3}>
-                  {location.state.status != "closed" && (
+                  {location.state.status != "closed" ? (
                     <>
                       <Button
                         variant="contained"
@@ -194,9 +209,35 @@ const JobPost = () => {
                         Select
                       </Button>
                     </>
+                  ) : (
+                    applicant.candidateAddress === location.state.employee && (
+                      <Button
+                        variant="contained"
+                        sx={{ width: "80%", p: 2 }}
+                        onClick={handleModalOpen}
+                      >
+                        Give Feedback
+                      </Button>
+                    )
                   )}
                 </Grid>
                 <Grid item xs={2} />
+                <Modal
+                  open={modalOpen}
+                  onClose={handleModalClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <RateMeModal
+                    input={input}
+                    name={applicant.name}
+                    address={applicant.candidateAddress}
+                    onRoleChange={onRoleChange}
+                    onExperienceChange={onExperienceChange}
+                    onSubmit={onSubmit}
+                    handleModalClose={handleModalClose}
+                  />
+                </Modal>
               </>
             ))}
             ;

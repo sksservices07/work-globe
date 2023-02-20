@@ -15,7 +15,7 @@ contract FeedbackContract is Initializable, ContextUpgradeable, OwnableUpgradeab
         string comments;
     }
 
-    Feedback[] public feedbackList;
+    Feedback[] private feedbackList;
     uint256 private feedBack_id;
     mapping (uint256 => Feedback) private feedback;
 

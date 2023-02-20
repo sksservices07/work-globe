@@ -1,8 +1,6 @@
 import React, { useState, useRef } from "react";
-
 import { Tab, Box, Button, Tabs, TextField } from "@mui/material";
 import MessageIcon from "@mui/icons-material/Message";
-
 import TabPanel from "./TabPanel";
 import PromptModal from "./Modal";
 import Conversations from "./Conversations";
@@ -19,7 +17,7 @@ function a11yProps(index) {
   };
 }
 
-function Sidebar() {
+function Sidebar({name,address}) {
   const walletAddrRef = useRef();
   const nameRef = useRef();
 
@@ -92,6 +90,7 @@ function Sidebar() {
           variant="outlined"
           fullWidth
           inputRef={nameRef}
+          defaultValue={name}
           required
         />
 
@@ -100,6 +99,7 @@ function Sidebar() {
           label="Wallet Address"
           variant="outlined"
           fullWidth
+          defaultValue={address}
           inputRef={walletAddrRef}
           required
         />

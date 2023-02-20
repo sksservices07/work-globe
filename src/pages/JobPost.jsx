@@ -5,10 +5,9 @@ import { getConfigByChain } from "../config";
 import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
 import { useAccount, useNetwork } from "wagmi";
 import toast, { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Box, Button, Paper, Typography, Grid } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { useLocation } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import JobPostNavBar from "../components/JobPostNavBar";
 import { color } from "@mui/system";
@@ -31,6 +30,7 @@ const theme = createTheme({
 
 const JobPost = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [applicants, setApplicants] = useState([]);
   const { chain } = useNetwork();
   useEffect(() => {
@@ -72,6 +72,7 @@ const JobPost = () => {
       signer
     );
     const tx = await contract.getMyCandidates(location.state.jobId);
+    console.log('applicants',tx)
     setApplicants(tx);
   };
   return (
@@ -80,7 +81,7 @@ const JobPost = () => {
       <NavBar />
       <JobPostNavBar />
       <ThemeProvider theme={theme}>
-        <Box sx={{ flexGrow: 1, m: 2 }} >
+        <Box sx={{ flexGrow: 1, m: 2 }}>
           <Grid container spacing={2} sx={{}}>
             <Grid item xs={12}>
               <Typography variant="h3" component="p" sx={{ mt: 2 }}>
@@ -132,13 +133,19 @@ const JobPost = () => {
               <>
                 <Grid item xs={2} />
                 <Grid item xs={5}>
-                  <Paper elevation={3} sx={{ p: 2, textAlign: "left",boxShadow:5,borderRadius:20,opacity: [0.7, 0.7, 0.7], }}
+                  <Paper
+                    elevation={3}
+                    sx={{
+                      p: 2,
+                      textAlign: "left",
+                      boxShadow: 5,
+                      borderRadius: 20,
+                      opacity: [0.7, 0.7, 0.7],
+                    }}
                   >
                     <Typography variant="h6" component="p">
                       {applicant.candidateAddress ===
-                      location.state.employee && (
-                        <h2>Candidate Selected</h2>
-                      )}
+                        location.state.employee && <h2>Candidate Selected</h2>}
                     </Typography>
                     <Typography>
                       {index + 1}. Name: {applicant.name}
@@ -157,18 +164,36 @@ const JobPost = () => {
                 </Grid>
                 <Grid item xs={3}>
                   {location.state.status != "closed" && (
-                    <Button
-                      variant="contained"
-                      sx={{ width: "80%", p: 2 }}
-                      onClick={() =>
-                        selectCandidate(
-                          applicant.registrationID,
-                          applicant.candidateAddress
-                        )
-                      }
-                    >
-                      Select
-                    </Button>
+                    <>
+                      <Button
+                        variant="contained"
+                        sx={{ width: "80%", p: 2 }}
+                        onClick={() =>
+                          navigate("/messages", {
+                            state: {
+                              applicantName: applicant.name,
+                              applicantAddress: applicant.candidateAddress,
+                            },
+                          })
+                        }
+                      >
+                        Chat
+                      </Button>
+                      <br />
+                      <br />
+                      <Button
+                        variant="contained"
+                        sx={{ width: "80%", p: 2 }}
+                        onClick={() =>
+                          selectCandidate(
+                            applicant.registrationID,
+                            applicant.candidateAddress
+                          )
+                        }
+                      >
+                        Select
+                      </Button>
+                    </>
                   )}
                 </Grid>
                 <Grid item xs={2} />

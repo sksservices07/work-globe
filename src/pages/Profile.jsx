@@ -9,15 +9,15 @@ import { useAccount, useNetwork } from "wagmi";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Box, Typography, Grid, Button, TextField } from "@mui/material";
-import {  IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import NavBar from "../components/NavBar";
 import { ButtonBase, Paper } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import EngineeringIcon from '@mui/icons-material/Engineering';
-import PersonPinCircleIcon from '@mui/icons-material/PersonPinCircle';
-import { spacing } from '@mui/system';
-import { makeStyles } from '@mui/styles';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import EngineeringIcon from "@mui/icons-material/Engineering";
+import PersonPinCircleIcon from "@mui/icons-material/PersonPinCircle";
+import { spacing } from "@mui/system";
+import { makeStyles } from "@mui/styles";
 
 import MyProfileNavbar from "../components/MyProfileNavabar";
 import SelectedJobs from "../components/SelectedJobs";
@@ -37,8 +37,6 @@ const theme = createTheme({
     },
   },
 });
-
-
 
 // const boxStyle = css`
 //   margin-top: 2rem;
@@ -64,18 +62,18 @@ function Profile() {
   const [myRating, setMyRating] = useState();
   const { address } = useAccount();
 
-  useEffect(()=>{
-    getMyRating()
-    getMyProfile()
-  },[address,chain])
+  useEffect(() => {
+    getMyRating();
+    getMyProfile();
+  }, [address, chain]);
 
   const useStyles = makeStyles((theme) => ({
     gridClassName: {
       boxShadow: "5px 10px red",
     },
-   // other classes here
+    // other classes here
   }));
-  
+
   const getMyProfile = async () => {
     await window.ethereum.send("eth_requestAccounts"); // opens up metamask extension and connects Web2 to Web3
     const provider = new ethers.providers.Web3Provider(window.ethereum); //create provider
@@ -86,9 +84,9 @@ function Profile() {
       signer
     );
     const tx = await contract.getMyProfile();
-    console.log("tx",tx)
+    console.log("tx", tx);
     // debugger
-    setMyProfile(tx)
+    setMyProfile(tx);
   };
 
   const getMyRating = async () => {
@@ -97,27 +95,24 @@ function Profile() {
     const signer = provider.getSigner();
     const network = await provider.getNetwork();
     const contract = new ethers.Contract(
-      getConfigByChain(chain?.id)[0].contractProxyAddress,
+      getConfigByChain(chain?.id)[0].feedbackAddress,
       Feedback.abi,
       signer
     );
-    console.log("contract: ", contract, address)
-    const tx = await contract.getUserFeedbacks(address)
+    console.log("contract: ", contract, address);
+    const tx = await contract.getUserFeedbacks(address);
     console.log("coming");
     console.log("feedbacks", tx);
     setMyRating(tx);
   };
 
-
-  
   return (
     <>
-    <NavBar/>
-    <MyProfileNavbar/>
+      <NavBar />
+      <MyProfileNavbar />
       <Toaster position="top-center" reverseOrder="false" />
       <ThemeProvider theme={theme}>
         <Grid container spacing={3} justify="center">
-          
           <Grid item xs={12}>
             {/* <Typography variant="h6" component="h2">
               My Profile
@@ -127,59 +122,107 @@ function Profile() {
           {/* <Grid xs={4}>
             <img src="" alt="" />
           </Grid> */}
-          
+
           <Grid item xs={12}>
-            
-            <Box component="" sx={{p: 1, border: '1px  solid grey', width: 500,
-        height: 60, ml: 50 ,borderRadius:20,opacity: [0.7, 0.7, 0.7],boxShadow:5  }} >
-          <Grid sx={{mr:40}}> 
-          <h2> <IconButton >
-                <AccountCircleIcon sx={{ color: "black" } } />
-              </IconButton> Name: {myProfile.name}</h2>
+            <Box
+              component=""
+              sx={{
+                p: 1,
+                border: "1px  solid grey",
+                width: 500,
+                height: 60,
+                ml: 50,
+                borderRadius: 20,
+                opacity: [0.7, 0.7, 0.7],
+                boxShadow: 5,
+              }}
+            >
+              <Grid sx={{ mr: 40 }}>
+                <h2>
+                  {" "}
+                  <IconButton>
+                    <AccountCircleIcon sx={{ color: "black" }} />
+                  </IconButton>{" "}
+                  Name: {myProfile.name}
+                </h2>
               </Grid>
-          </Box>
+            </Box>
           </Grid>
-          <Box width="30%"/>
+          <Box width="30%" />
           <Grid item xs={12}>
-            <Box component="" sx={{p: 1, border: '1px  solid grey' , width: 500,
-        height: 60, ml: 50,borderRadius:20,opacity: [0.7, 0.7, 0.7], boxShadow:5   }} >
-          <Grid sx={{mr:40}}> 
-            <h2>
-            <IconButton >
-                <EngineeringIcon sx={{ color: "black" } } />
-              </IconButton>
-              I am a: {myProfile.typeOfAccount}</h2>
+            <Box
+              component=""
+              sx={{
+                p: 1,
+                border: "1px  solid grey",
+                width: 500,
+                height: 60,
+                ml: 50,
+                borderRadius: 20,
+                opacity: [0.7, 0.7, 0.7],
+                boxShadow: 5,
+              }}
+            >
+              <Grid sx={{ mr: 40 }}>
+                <h2>
+                  <IconButton>
+                    <EngineeringIcon sx={{ color: "black" }} />
+                  </IconButton>
+                  I am a: {myProfile.typeOfAccount}
+                </h2>
               </Grid>
-              </Box>
+            </Box>
           </Grid>
-          <Box width="30%"/>
+          <Box width="30%" />
           <Grid item xs={12}>
-          <Box component="" sx={{p: 1, border: '1px  solid grey' , width: 500,
-        height: 60, ml: 50,borderRadius:20,opacity: [0.7, 0.7, 0.7],boxShadow:5 }} >
-          <Grid sx={{mr:43}}> 
-            <h2>
-            <IconButton >
-                <PersonPinCircleIcon sx={{ color: "black" } } />
-              </IconButton>
-              City: {myProfile.myAddress}</h2>
-              
+            <Box
+              component=""
+              sx={{
+                p: 1,
+                border: "1px  solid grey",
+                width: 500,
+                height: 60,
+                ml: 50,
+                borderRadius: 20,
+                opacity: [0.7, 0.7, 0.7],
+                boxShadow: 5,
+              }}
+            >
+              <Grid sx={{ mr: 43 }}>
+                <h2>
+                  <IconButton>
+                    <PersonPinCircleIcon sx={{ color: "black" }} />
+                  </IconButton>
+                  City: {myProfile.myAddress}
+                </h2>
               </Grid>
-              </Box>
-              {/* <Grid xs={4}>
+            </Box>
+            {/* <Grid xs={4}>
             <img src="https://img.freepik.com/free-vector/recruit-agent-analyzing-candidates_74855-4565.jpg?t=st=1676035583~exp=1676036183~hmac=7919f760bc6a25ec389a28b4688275d8622f524943830217ebf2c10e9b1aa261" alt="" />
           </Grid> */}
           </Grid>
-          <Box width="30%"/>
+          <Box width="30%" />
           <Grid item xs={12}>
-          <Box component="" sx={{p: 1, border: '1px  solid grey' , width: 500,
-        height: 60, ml: 50,borderRadius:20,opacity: [0.7, 0.7, 0.7],boxShadow:5 }} >
-          <Grid sx={{mr:43}}> 
-            <h2>
-            <IconButton >
-                <PersonPinCircleIcon sx={{ color: "black" } } />
-              </IconButton>
-              Rating: 
-              {/* {jobs.map(
+            <Box
+              component=""
+              sx={{
+                p: 1,
+                border: "1px  solid grey",
+                width: 500,
+                height: 60,
+                ml: 50,
+                borderRadius: 20,
+                opacity: [0.7, 0.7, 0.7],
+                boxShadow: 5,
+              }}
+            >
+              <Grid sx={{ mr: 43 }}>
+                <h2>
+                  <IconButton>
+                    <PersonPinCircleIcon sx={{ color: "black" }} />
+                  </IconButton>
+                  Rating:
+                  {/* {jobs.map(
             (job) =>
               job.status === "closed" &&
               job.employee == address && (
@@ -222,24 +265,20 @@ function Profile() {
                 </TableRow>
               )
           )} */}
-              </h2>
-              
+                </h2>
               </Grid>
-              </Box>
-              {/* <Grid xs={4}>
+            </Box>
+            {/* <Grid xs={4}>
             <img src="https://img.freepik.com/free-vector/recruit-agent-analyzing-candidates_74855-4565.jpg?t=st=1676035583~exp=1676036183~hmac=7919f760bc6a25ec389a28b4688275d8622f524943830217ebf2c10e9b1aa261" alt="" />
           </Grid> */}
           </Grid>
-          <Box width="30%"/>
+          <Box width="30%" />
           <Grid item xs={4} />
-          <Grid item xs={4}>
-            
-          </Grid>
+          <Grid item xs={4}></Grid>
           <Grid item xs={4} />
-          
         </Grid>
       </ThemeProvider>
-      <SelectedJobs/>
+      <SelectedJobs />
     </>
   );
 }

@@ -33,8 +33,14 @@ const theme = createTheme({
 
 const RateMeModal = (props) => {
   const { chain } = useNetwork();
-  const { input, onRoleChange, onExperienceChange, name,address, handleModalClose } =
-    props;
+  const {
+    input,
+    onRoleChange,
+    onExperienceChange,
+    name,
+    address,
+    handleModalClose,
+  } = props;
 
   const [formInput, updateFormInput] = useState({
     comments: "",
@@ -42,10 +48,7 @@ const RateMeModal = (props) => {
   const [value, setValue] = useState(0);
 
   const validate = (data) => {
-    if (
-      data?.comments &&
-      value !=0
-    ) {
+    if (data?.comments && value != 0) {
       return true;
     } else {
       toast.error("There are some incomplete fields in your submission!", {
@@ -54,8 +57,6 @@ const RateMeModal = (props) => {
       return false;
     }
   };
-
-  
 
   const saveFeedback = async () => {
     // validate
@@ -70,7 +71,7 @@ const RateMeModal = (props) => {
       signer
     );
 
-    const tx = await contract.addFeedback(address,value,formInput.comments);
+    const tx = await contract.addFeedback(address, value, formInput.comments);
     toast.success("Saving... Please Wait", { icon: "👏" });
     const receipt = await provider
       .waitForTransaction(tx.hash, 1, 150000)
@@ -117,7 +118,6 @@ const RateMeModal = (props) => {
             </Typography>
             <Rating
               name="Rating"
-              precision={0.5}
               value={value}
               onChange={(event, newValue) => {
                 setValue(newValue);

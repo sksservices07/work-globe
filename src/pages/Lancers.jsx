@@ -141,7 +141,7 @@ function Lancers() {
                         sx={{ width: "80%", p: 2 }}
                         
                       >
-                        Apply Now
+                        Chat Now
                       </Button>
                     </Grid>
                     <Grid item xs={1} />

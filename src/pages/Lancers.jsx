@@ -4,7 +4,6 @@ import { ethers } from "ethers";
 import { getConfigByChain } from "../config";
 import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
 import { useAccount, useNetwork } from "wagmi";
-
 import NavBar from "../components/NavBar";
 import { useNavigate } from "react-router-dom";
 import {
@@ -16,8 +15,8 @@ import {
   Paper,
 } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-
 import EmployerNavBar from "../components/EmployerNavBar";
+import MyRating from "../components/MyRating";
 
 const theme = createTheme({
   components: {
@@ -70,11 +69,17 @@ function Lancers() {
           <Grid container spacing={2}>
             {profiles.map(
               (profile) =>
-                profile.myAddress != "" && (
+                profile.myAddress !== "" && (
                   <>
                     <Grid item xs={1} />
                     <Grid item xs={7}>
-                      <ButtonBase>
+                      <ButtonBase onClick={() =>
+                          navigate("/feedbacks", {
+                            state: {
+                              user: profile.user
+                            },
+                          })
+                        }>
                         <Paper
                           elevation={3}
                           sx={{
@@ -106,6 +111,8 @@ function Lancers() {
                               sx={{ color: "black" }}
                             >
                               Name: {profile.name}
+                              {' '}
+                                <MyRating userAddress={profile.user.toString()} />
                             </Typography>
                             <Typography
                               variant="subtitle2"

@@ -4,7 +4,6 @@ import { ethers } from "ethers";
 import { css } from "@emotion/react";
 import { getConfigByChain } from "../config";
 import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
-import Feedback from "../artifacts/contracts/FeedbackContract.sol/FeedbackContract.json";
 import { useAccount, useNetwork } from "wagmi";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +17,7 @@ import EngineeringIcon from "@mui/icons-material/Engineering";
 import PersonPinCircleIcon from "@mui/icons-material/PersonPinCircle";
 import { spacing } from "@mui/system";
 import { makeStyles } from "@mui/styles";
+import MyRating from "../components/MyRating";
 
 import MyProfileNavbar from "../components/MyProfileNavabar";
 import SelectedJobs from "../components/SelectedJobs";
@@ -59,11 +59,9 @@ function Profile() {
   const [jobs, setJobs] = React.useState([]);
   const { chain } = useNetwork();
   const [myProfile, setMyProfile] = useState([]);
-  const [myRating, setMyRating] = useState();
   const { address } = useAccount();
 
   useEffect(() => {
-    getMyRating();
     getMyProfile();
   }, [address, chain]);
 
@@ -85,25 +83,8 @@ function Profile() {
     );
     const tx = await contract.getMyProfile();
     console.log("tx", tx);
-    // debugger
+    debugger
     setMyProfile(tx);
-  };
-
-  const getMyRating = async () => {
-    await window.ethereum.send("eth_requestAccounts"); // opens up metamask extension and connects Web2 to Web3
-    const provider = new ethers.providers.Web3Provider(window.ethereum); //create provider
-    const signer = provider.getSigner();
-    const network = await provider.getNetwork();
-    const contract = new ethers.Contract(
-      getConfigByChain(chain?.id)[0].feedbackAddress,
-      Feedback.abi,
-      signer
-    );
-    console.log("contract: ", contract, address);
-    const tx = await contract.getUserFeedbacks(address);
-    console.log("coming");
-    console.log("feedbacks", tx);
-    setMyRating(tx);
   };
 
   return (
@@ -217,55 +198,21 @@ function Profile() {
               }}
             >
               <Grid sx={{ mr: 43 }}>
+              <ButtonBase onClick={() =>
+                  navigate("/feedbacks", {
+                    state: {
+                      user: address
+                    },
+                  })
+                }>
                 <h2>
                   <IconButton>
                     <PersonPinCircleIcon sx={{ color: "black" }} />
                   </IconButton>
-                  Rating:
-                  {/* {jobs.map(
-            (job) =>
-              job.status === "closed" &&
-              job.employee == address && (
-                <TableRow
-                  key={job.companyName}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {job.companyName}
-                  </TableCell>
-                  <TableCell align="right">{job.location}</TableCell>
-                  <TableCell align="right">{job.salary}</TableCell>
-                  <TableCell align="right">{job.experience}</TableCell>
-                  <TableCell align="right">
-                    <Button
-                      variant="contained"
-                      sx={{ width: "40%", p: 2 }}
-                      onClick={handleModalOpen}
-                    >
-                      Give Feedback
-                    </Button>
-                  </TableCell>
-                  <Modal
-                    open={modalOpen}
-                    onClose={handleModalClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                  >
-                    <RateMeModal
-                      input={input}
-                      // company or employer????
-                      name={job.companyName}
-                      address={job.employer}
-                      onRoleChange={onRoleChange}
-                      onExperienceChange={onExperienceChange}
-                      onSubmit={onSubmit}
-                      handleModalClose={handleModalClose}
-                    />
-                  </Modal>
-                </TableRow>
-              )
-          )} */}
+                  Rating: 
+                    <MyRating userAddress={(address).toString()} />
                 </h2>
+              </ButtonBase>
               </Grid>
             </Box>
             {/* <Grid xs={4}>

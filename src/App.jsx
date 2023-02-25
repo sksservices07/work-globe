@@ -11,6 +11,8 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Application from "./pages/Application";
 import Lancers from "./pages/Lancers"
+import Feedbacks from "./pages/Feedbacks";
+
 import "@rainbow-me/rainbowkit/styles.css";
 import {
   getDefaultWallets,
@@ -64,6 +66,7 @@ function App() {
             <Route exact path="/messages" element={<Messages />} />
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/profile" element={<Profile />} />
+            <Route exact path="/feedbacks" element={<Feedbacks />} />
             <Route exact path="/application" element={<Application />} />
             <Route exact path="/lancers" element={<Lancers />} />
           </Routes>

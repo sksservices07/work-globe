@@ -64,7 +64,7 @@ const SelectedJobs = () => {
             <TableCell>Job Title</TableCell>
             <TableCell align="right">Location</TableCell>
             <TableCell align="right">Salary</TableCell>
-            <TableCell align="right">Experience</TableCell>
+            <TableCell align="right">Position</TableCell>
             <TableCell align="right">Rate</TableCell>
           </TableRow>
         </TableHead>
@@ -82,7 +82,7 @@ const SelectedJobs = () => {
                   </TableCell>
                   <TableCell align="right">{job.location}</TableCell>
                   <TableCell align="right">{job.salary}</TableCell>
-                  <TableCell align="right">{job.experience}</TableCell>
+                  <TableCell align="right">{job.position}</TableCell>
                   <TableCell align="right">
                     <Button
                       variant="contained"

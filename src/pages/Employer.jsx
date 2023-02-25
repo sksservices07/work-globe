@@ -18,6 +18,7 @@ import {
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import EmployerNavBar from "../components/EmployerNavBar";
+import MyRating from "../components/MyRating";
 
 const theme = createTheme({
   components: {
@@ -73,7 +74,13 @@ function Employer() {
                   <>
                     <Grid item xs={1} />
                     <Grid item xs={7}>
-                      <ButtonBase>
+                      <ButtonBase onClick={() =>
+                          navigate("/feedbacks", {
+                            state: {
+                              user: job.employer
+                            },
+                          })
+                        }>
                         <Paper
                           elevation={3}
                           sx={{
@@ -105,6 +112,8 @@ function Employer() {
                               sx={{ color: "black" }}
                             >
                               {job.companyName}
+                              {' '}
+                              <MyRating userAddress={job.employer.toString()} />
                             </Typography>
                             <Typography
                               variant="subtitle2"

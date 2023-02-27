@@ -15,6 +15,7 @@ import Paper from "@mui/material/Paper";
 import NavBar from "../components/NavBar";
 import FeedbackNavBar from "../components/FeedbackNavBar";
 import MyProfile from "../components/MyProfile";
+import { Rating } from "@mui/material";
 
 function Feedbacks() {
   // let { userAddress } = useParams();
@@ -51,7 +52,7 @@ function Feedbacks() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Title</TableCell>
+              <TableCell>FeedBack from: </TableCell>
               <TableCell align="right">Rating</TableCell>
               <TableCell align="right">Comments</TableCell>
             </TableRow>
@@ -68,7 +69,12 @@ function Feedbacks() {
                       <MyProfile reviewerAddress={myRate.reviewer} />
                     </TableCell>
                     <TableCell align="right">
-                      {myRate.rating.toNumber()}
+                      <Rating
+                        name="Rating"
+                        defaultValue={0}
+                        value={myRate.rating.toNumber()}
+                        readOnly
+                      />
                     </TableCell>
                     <TableCell align="right">{myRate.comments}</TableCell>
                   </TableRow>

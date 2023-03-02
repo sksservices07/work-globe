@@ -73,7 +73,7 @@ const NavBar = () => {
             >
               HuntForLancer
             </Typography>
-            <Link to="/">
+            <Link to="/" style={{ textDecoration: 'none' }}>
               <IconButton
                 size="small"
                 aria-label="home"
@@ -84,7 +84,7 @@ const NavBar = () => {
                 Home
               </IconButton>
             </Link>
-            <Link to="/lancers">
+            <Link to="/lancers" style={{ textDecoration: 'none' }}>
               <IconButton
                 size="small"
                 aria-label="contact"
@@ -94,7 +94,7 @@ const NavBar = () => {
                 Lancers
               </IconButton>
             </Link>
-            <Link to="/messages">
+            <Link to="/messages" style={{ textDecoration: 'none' }}>
               <IconButton
                 size="small"
                 aria-label="contact"
@@ -105,7 +105,7 @@ const NavBar = () => {
               </IconButton>
             </Link>
             {isRegistered && (
-              <Link to="/profile">
+              <Link to="/profile" style={{ textDecoration: 'none' }}>
                 <IconButton
                   size="small"
                   aria-label="profile"

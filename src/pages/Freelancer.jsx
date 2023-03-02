@@ -10,7 +10,9 @@ import { useNavigate } from "react-router-dom";
 import JobPostModal from "../components/PostJobModal";
 import { IconButton } from "@mui/material";
 import NavBar from "../components/NavBar";
+import { css } from "@emotion/react";
 import BigNumber from "bignumber.js";
+import { Button } from "@mui/material";
 
 const Freelancer = () => {
   const navigate = useNavigate();
@@ -34,6 +36,13 @@ const Freelancer = () => {
   const onExperienceChange = (e) =>
     setInput({ ...input, experience: e.target.value });
   const onSubmit = () => setOpenJobs([...openJobs, input]);
+
+  const buttonContainerStyles = css`
+  margin-left: 2rem;
+  display: block;
+  margin-bottom: 100px;
+`;
+
 
   function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
@@ -69,7 +78,7 @@ const Freelancer = () => {
     const allJobs = await contract.getMyPostedJobs();
     const opens = allJobs.filter((job) => {
       return job.status === "open";
-    }) 
+    })
     setOpenJobs(opens);
     const closes = allJobs.filter((job) => {
       return job.status === "closed";
@@ -89,18 +98,25 @@ const Freelancer = () => {
         handleModalClose={handleModalClose}
       />
       <div className="tab">
-        <button
+        <Button sx={{ borderRadius: 5 ,mt:5}} color="success"
+          disabled={false}
+          size="large"
+          variant="outlined"
           className="tablinks"
           onClick={(event) => openTab(event, "Open")}
         >
           Open Jobs
-        </button>
-        <button
+        </Button>
+        <Button
+          sx={{ borderRadius: 5 ,ml:2,mt:5}} color="error"
+          disabled={false}
+          size="large"
+          variant="outlined"
           className="tablinks"
           onClick={(event) => openTab(event, "Close")}
         >
           Closed Jobs
-        </button>
+        </Button>
       </div>
       <div id="Open" className="tabcontent">
         <Box

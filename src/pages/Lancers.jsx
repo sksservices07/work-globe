@@ -41,7 +41,7 @@ function Lancers() {
   const navigate = useNavigate();
   useEffect(() => {
     getAllProfiles();
-  },[]);
+  }, []);
 
   const getAllProfiles = async () => {
     await window.ethereum.send("eth_requestAccounts"); // opens up metamask extension and connects Web2 to Web3
@@ -74,12 +74,12 @@ function Lancers() {
                     <Grid item xs={1} />
                     <Grid item xs={7}>
                       <ButtonBase onClick={() =>
-                          navigate("/feedbacks", {
-                            state: {
-                              user: profile.user
-                            },
-                          })
-                        }>
+                        navigate("/feedbacks", {
+                          state: {
+                            user: profile.user
+                          },
+                        })
+                      }>
                         <Paper
                           elevation={3}
                           sx={{
@@ -100,7 +100,7 @@ function Lancers() {
                             sx={{
                               display: "flex",
                               flexDirection: "column",
-                              alignItems: "center",
+                              alignItems: "left",
                               justifyContent: "center",
                               m: 2,
                             }}
@@ -112,11 +112,12 @@ function Lancers() {
                             >
                               Name: {profile.name}
                               {' '}
-                                <MyRating userAddress={profile.user.toString()} />
+                              <MyRating userAddress={profile.user.toString()} />
                             </Typography>
                             <Typography
                               variant="subtitle2"
                               component="p"
+                              align="left"
                               sx={{ color: "black" }}
                             >
                               Type: {profile.typeOfAccount}
@@ -124,11 +125,11 @@ function Lancers() {
                             <Typography
                               variant="subtitle2"
                               component="p"
-                              sx={{ textAlign: "left", ml: 1, color: "black" }}
+                              sx={{ textAlign: "left",  color: "black" }}
                             >
                               City: {profile.myAddress}
                             </Typography>
-                       
+
                           </Box>
                         </Paper>
                       </ButtonBase>
@@ -146,7 +147,7 @@ function Lancers() {
                       <Button
                         variant="contained"
                         sx={{ width: "80%", p: 2 }}
-                        
+
                       >
                         Chat Now
                       </Button>

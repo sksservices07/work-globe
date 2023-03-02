@@ -9,6 +9,7 @@ import { getConfigByChain } from "../config";
 import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
 import { useAccount, useNetwork } from "wagmi";
 import NavBar from "../components/NavBar";
+import { shadows } from '@mui/system';
 import { spacing } from "@mui/system";
 
 import * as React from "react";
@@ -166,6 +167,7 @@ function Landing() {
           )}
         </div>
       </div>
+      
     </ThemeProvider>
   );
 }

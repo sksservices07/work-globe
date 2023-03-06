@@ -105,9 +105,13 @@ function Profile() {
           </Grid> */}
           <Grid item xs={12}>
             {/* for image */}
-              {/* <Grid xs={4} sx={{ mr: 10 }}> */}
-                {/* <img src="https://img.freepik.com/free-vector/profile-interface-concept-illustration_114360-2850.jpg?w=740&t=st=1677748415~exp=1677749015~hmac=445eaacefa67b58b83793e89c2a18c5a2d67c1b736e31a621df6e9a493d682d9" alt="" /> */}
-              {/* </Grid> */}
+            <Grid xs={4} sx={{ mr: 10 }}>
+              {/* <img 
+                width={800}
+                height={800}
+                src={require("../img/profile_page.png")} 
+                alt="" /> */}
+            </Grid>
             <Box
               component=""
               sx={{
@@ -121,7 +125,7 @@ function Profile() {
                 boxShadow: 5,
               }}
             >
-            
+
               <Grid sx={{ mr: 20 }}>
                 <h2>
                   {" "}

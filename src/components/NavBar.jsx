@@ -29,6 +29,13 @@ const theme = createTheme({
   },
 });
 
+// const Textstyles = {
+//   textDecoration: 'none',
+//   '&:hover': {
+//     color: 'red'
+//   }
+// };
+
 const NavBar = () => {
   const { chain } = useNetwork();
   const { address } = useAccount();
@@ -60,20 +67,24 @@ const NavBar = () => {
       >
         <AppBar position="static">
           <Toolbar>
+          <Link to="/" style={{ textDecoration: 'none' }}>
             <img
               src={require("../img/logo192.png")}
               alt="Logo"
               height={30}
               width={30}
             />
+            </Link>
             <Typography
               variant="h6"
               component="p"
-              sx={{ flexGrow: 1, textAlign: "left", ml: 2 }}
+              sx={{ flexGrow: 1, textAlign: "left", ml: 2,color:"white !important" }}
+              // style={Textstyles}
             >
               HuntForLancer
             </Typography>
-            <Link to="/">
+          
+            {/* <Link to="/" style={{ textDecoration: 'none' }}>
               <IconButton
                 size="small"
                 aria-label="home"
@@ -83,37 +94,40 @@ const NavBar = () => {
                 <HomeIcon sx={{ color: "white !important" }} />
                 Home
               </IconButton>
-            </Link>
-            <Link to="/lancers">
+            </Link> */}
+            <Link to="/lancers" style={{ textDecoration: 'none' }}>
               <IconButton
                 size="small"
                 aria-label="contact"
                 sx={{ color: "white !important" }}
               >
-                <LaptopMacIcon sx={{ color: "white !important" }} />
+                <LaptopMacIcon sx={{ color: "white !important",m:1 }} />
                 Lancers
+                {/* Lancers */}
               </IconButton>
             </Link>
-            <Link to="/messages">
+            <Link to="/messages" style={{ textDecoration: 'none' }}>
               <IconButton
                 size="small"
                 aria-label="contact"
                 sx={{ color: "white !important" }}
               >
-                <EmailIcon alt="Message" sx={{ color: "white !important" }} />
-                Message
+                <EmailIcon alt="Message" sx={{ color: "white !important",m:1 }} />
+                Messages
+                {/* Message */}
               </IconButton>
             </Link>
             {isRegistered && (
-              <Link to="/profile">
+              <Link to="/profile" style={{ textDecoration: 'none' }}>
                 <IconButton
                   size="small"
                   aria-label="profile"
                   color="inherit"
-                  sx={{ color: "white !important" }}
+                  sx={{ color: "white !important" ,m:1 }}
                 >
                   <ProfileIcon sx={{ color: "white !important" }} />
-                  Profile
+                   Profile
+                  {/* Profile */}
                 </IconButton>
               </Link>
             )}

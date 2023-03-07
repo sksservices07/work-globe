@@ -74,15 +74,13 @@ function Lancers() {
                   <>
                     <Grid item xs={1} />
                     <Grid item xs={7}>
-                      <ButtonBase
-                        onClick={() =>
-                          navigate("/feedbacks", {
-                            state: {
-                              user: profile.user,
-                            },
-                          })
-                        }
-                      >
+                      <ButtonBase onClick={() =>
+                        navigate("/feedbacks", {
+                          state: {
+                            user: profile.user
+                          },
+                        })
+                      }>
                         <Paper
                           elevation={3}
                           sx={{
@@ -103,7 +101,7 @@ function Lancers() {
                             sx={{
                               display: "flex",
                               flexDirection: "column",
-                              alignItems: "center",
+                              alignItems: "left",
                               justifyContent: "center",
                               m: 2,
                             }}
@@ -113,12 +111,14 @@ function Lancers() {
                               component="p"
                               sx={{ color: "black" }}
                             >
-                              Name: {profile.name}{" "}
+                              Name: {profile.name}
+                              {' '}
                               <MyRating userAddress={profile.user.toString()} />
                             </Typography>
                             <Typography
                               variant="subtitle2"
                               component="p"
+                              align="left"
                               sx={{ color: "black" }}
                             >
                               Type: {profile.typeOfAccount}
@@ -126,7 +126,7 @@ function Lancers() {
                             <Typography
                               variant="subtitle2"
                               component="p"
-                              sx={{ textAlign: "left", ml: 1, color: "black" }}
+                              sx={{ textAlign: "left",  color: "black" }}
                             >
                               City: {profile.myAddress}
                             </Typography>

@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Box, IconButton, Paper, Typography, Grid } from "@mui/material";
-import FacebookIcon from "@mui/icons-material/Facebook";
+import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -10,6 +10,7 @@ import { styled } from "@mui/material/styles";
 import { spacing } from '@mui/system';
 import { hover } from "@testing-library/user-event/dist/hover";
 
+import { Divider } from '@mui/material';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#595959",
@@ -35,9 +36,9 @@ const Footer = () => {
               component="div"
               sx={{ textAlign: "left", ml: 1 ,pt:2}}
             >
-              Follow us on:
+              {/* Follow us on : */}
               <IconButton >
-                <FacebookIcon sx={{ color: "white" } } />
+                <FacebookRoundedIcon sx={{ color: "white" } } />
               </IconButton>
               <IconButton>
                 <TwitterIcon sx={{ color: "white" }} />
@@ -57,13 +58,19 @@ const Footer = () => {
         <Grid container spacing={0} sx={{ backgroundColor: "#595959" }}>
           <Grid item xs={6}>
             <Item variant="outline" square>
-              <Typography
+              {/* <Typography
                 variant="h6"
                 component="p"
                 sx={{ textAlign: "left", ml: 1, color: "white" }}
               >
                 Product by:
-              </Typography>
+              </Typography> */}
+                <img
+                src={require("../img/logo192.png")}
+                width={200}
+                height={200}
+                sx={{mr:50}}
+                alt="" />
             </Item>
           </Grid>
           <Grid item xs={3}>
@@ -79,28 +86,28 @@ const Footer = () => {
                   Resources:
                 </Typography>
                 <Typography
-                  variant="h6"
+                  variant="p"
                   component="p"
                   sx={{ textAlign: "left", ml: 1, color: "white" }}
                 >
                   Help and Support
                 </Typography>
                 <Typography
-                  variant="h6"
+                  variant="p"
                   component="p"
                   sx={{ textAlign: "left", ml: 1, color: "white" }}
                 >
                   Blog
                 </Typography>
                 <Typography
-                  variant="h6"
+                  variant="p"
                   component="p"
                   sx={{ textAlign: "left", ml: 1, color: "white" }}
                 >
                   Community
                 </Typography>
                 <Typography
-                  variant="h6"
+                  variant="p"
                   component="p"
                   sx={{ textAlign: "left", ml: 1, color: "white" }}
                 >
@@ -111,29 +118,35 @@ const Footer = () => {
           </Grid>
           <Grid item xs={3}>
             <Item variant="outline" square>
+            <Typography
+                  variant="h6"
+                  component="p"
+                  sx={{ textAlign: "left", ml: 1, color: "white" }}
+                >HuntForLancers
+                  </Typography>
               <Typography
-                variant="h6"
+                variant="p"
                 component="p"
                 sx={{ textAlign: "left", ml: 1, color: "white" }}
               >
                 For Talent
               </Typography>
               <Typography
-                variant="h6"
+                variant="p"
                 component="p"
                 sx={{ textAlign: "left", ml: 1, color: "white" }}
               >
                 Find Work
               </Typography>
               <Typography
-                variant="h6"
+                variant="p"
                 component="p"
                 sx={{ textAlign: "left", ml: 1, color: "white" }}
               >
                 Find Freelance work WorldWide
               </Typography>
               <Typography
-                variant="h6"
+                variant="p"
                 component="p"
                 sx={{ textAlign: "left", ml: 1, color: "white" }}
               >
@@ -148,14 +161,18 @@ const Footer = () => {
           component="p"
           sx={{ color: "white", backgroundColor: "#595959" ,pt:4}}
         >
-          Work Globe
+          HuntForLancers
         </Typography>
+        {/* <Divider variant="middle" flexItem/> */}
         <Typography
           variant="subtitle1"
           component="p"
-          sx={{ color: "white", backgroundColor: "#595959" ,pt:3}}
+          sx={{ color: "white", backgroundColor: "black" ,pt:2,pb:2}}
+          style={{
+            fontSize: 20,
+          }}
         >
-          Copyright ©2023
+          ©2023 Copyright
         </Typography>
       </Box>
     </>

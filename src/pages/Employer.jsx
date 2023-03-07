@@ -57,13 +57,13 @@ function Employer() {
     const tx = await contract.allJobs();
     const opens = tx.filter((job) => {
       return job.status === "open";
-    }); 
+    });
     setJobs(opens);
   };
 
   return (
     <>
-    <NavBar/>
+      <NavBar />
       <EmployerNavBar />
       <ThemeProvider theme={theme}>
         <Box sx={{ flexGrow: 1, m: 2 }}>
@@ -75,12 +75,12 @@ function Employer() {
                     <Grid item xs={1} />
                     <Grid item xs={7}>
                       <ButtonBase onClick={() =>
-                          navigate("/feedbacks", {
-                            state: {
-                              user: job.employer
-                            },
-                          })
-                        }>
+                        navigate("/feedbacks", {
+                          state: {
+                            user: job.employer
+                          },
+                        })
+                      }>
                         <Paper
                           elevation={3}
                           sx={{
@@ -88,7 +88,7 @@ function Employer() {
                             width: "40vw",
                             display: "flex",
                             alignItems: "center",
-                            borderRadius:8
+                            borderRadius: 8
                           }}
                         >
                           {/* <img
@@ -101,52 +101,53 @@ function Employer() {
                             sx={{
                               display: "flex",
                               flexDirection: "column",
-                              alignItems: "center",
+                              alignItems: "left",
                               justifyContent: "center",
-                              m: 2,
+                              m: 3,
                             }}
                           >
                             <Typography
-                              variant="h6"
+                              variant="h5"
                               component="p"
-                              sx={{ color: "black" }}
+                              sx={{mr:5 ,color: "black" }}
                             >
                               {job.companyName}
                               {' '}
                               <MyRating userAddress={job.employer.toString()} />
                             </Typography>
-                            <Typography
-                              variant="subtitle2"
+                            <Typography 
+                              variant="h6"
                               component="p"
-                              sx={{ color: "black" }}
+                              alignItems={"left"}
+                              sx={{ color: "black"}}
                             >
                               {job.position}
                             </Typography>
                             <Typography
                               variant="subtitle2"
                               component="p"
-                              sx={{ textAlign: "left", ml: 1, color: "black" }}
+                              sx={{ textAlign: "left", color: "black" }}
                             >
                               {job.description}
                             </Typography>
                             <Typography
                               variant="subtitle2"
                               component="p"
-                              sx={{ textAlign: "left", ml: 1, color: "black" }}
+                              sx={{ textAlign: "right",mr:5,  color: "black",}}
                             >
                               Required: {job.experience} years experience
                             </Typography>
                             <Typography
                               variant="subtitle2"
                               component="p"
-                              sx={{ textAlign: "left", ml: 1, color: "black" }}
+                              sx={{ textAlign: "left", color: "black" }}
                             >
                               City:{job.location}
                             </Typography>
                             <Typography
                               variant="subtitle2"
                               component="p"
-                              sx={{ textAlign: "left", ml: 1, color: "black" }}
+                              sx={{ textAlign: "left",  color: "black" }}
                             >
                               {job.salary} USD/Annum
                             </Typography>

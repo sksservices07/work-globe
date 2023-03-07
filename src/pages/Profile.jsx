@@ -18,7 +18,7 @@ import PersonPinCircleIcon from "@mui/icons-material/PersonPinCircle";
 import { spacing } from "@mui/system";
 import { makeStyles } from "@mui/styles";
 import MyRating from "../components/MyRating";
-
+import GradeIcon from '@mui/icons-material/Grade';
 import MyProfileNavbar from "../components/MyProfileNavabar";
 import SelectedJobs from "../components/SelectedJobs";
 
@@ -103,8 +103,15 @@ function Profile() {
           {/* <Grid xs={4}>
             <img src="" alt="" />
           </Grid> */}
-
           <Grid item xs={12}>
+            {/* for image */}
+            <Grid xs={4} sx={{ mr: 10 }}>
+              {/* <img 
+                width={800}
+                height={800}
+                src={require("../img/profile_page.png")} 
+                alt="" /> */}
+            </Grid>
             <Box
               component=""
               sx={{
@@ -118,7 +125,8 @@ function Profile() {
                 boxShadow: 5,
               }}
             >
-              <Grid sx={{ mr: 40 }}>
+
+              <Grid sx={{ mr: 20 }}>
                 <h2>
                   {" "}
                   <IconButton>
@@ -144,7 +152,7 @@ function Profile() {
                 boxShadow: 5,
               }}
             >
-              <Grid sx={{ mr: 40 }}>
+              <Grid sx={{ mr: 20 }}>
                 <h2>
                   <IconButton>
                     <EngineeringIcon sx={{ color: "black" }} />
@@ -169,7 +177,7 @@ function Profile() {
                 boxShadow: 5,
               }}
             >
-              <Grid sx={{ mr: 43 }}>
+              <Grid sx={{ mr: 25 }}>
                 <h2>
                   <IconButton>
                     <PersonPinCircleIcon sx={{ color: "black" }} />
@@ -178,9 +186,7 @@ function Profile() {
                 </h2>
               </Grid>
             </Box>
-            {/* <Grid xs={4}>
-            <img src="https://img.freepik.com/free-vector/recruit-agent-analyzing-candidates_74855-4565.jpg?t=st=1676035583~exp=1676036183~hmac=7919f760bc6a25ec389a28b4688275d8622f524943830217ebf2c10e9b1aa261" alt="" />
-          </Grid> */}
+
           </Grid>
           <Box width="30%" />
           <Grid item xs={12}>
@@ -197,22 +203,22 @@ function Profile() {
                 boxShadow: 5,
               }}
             >
-              <Grid sx={{ mr: 43 }}>
-              <ButtonBase onClick={() =>
+              <Grid sx={{ mr: 18 }}>
+                <ButtonBase onClick={() =>
                   navigate("/feedbacks", {
                     state: {
                       user: address
                     },
                   })
                 }>
-                <h2>
-                  <IconButton>
-                    <PersonPinCircleIcon sx={{ color: "black" }} />
-                  </IconButton>
-                  Rating: 
+                  <h2>
+                    <IconButton>
+                      <GradeIcon sx={{ color: "black" }} />
+                    </IconButton>
+                    Rating:
                     <MyRating userAddress={(address).toString()} />
-                </h2>
-              </ButtonBase>
+                  </h2>
+                </ButtonBase>
               </Grid>
             </Box>
             {/* <Grid xs={4}>

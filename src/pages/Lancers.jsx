@@ -17,6 +17,7 @@ import {
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import EmployerNavBar from "../components/EmployerNavBar";
 import MyRating from "../components/MyRating";
+import Modal from "../components/Modal/Modal";
 
 const theme = createTheme({
   components: {
@@ -41,7 +42,7 @@ function Lancers() {
   const navigate = useNavigate();
   useEffect(() => {
     getAllProfiles();
-  },[]);
+  }, []);
 
   const getAllProfiles = async () => {
     await window.ethereum.send("eth_requestAccounts"); // opens up metamask extension and connects Web2 to Web3
@@ -73,13 +74,15 @@ function Lancers() {
                   <>
                     <Grid item xs={1} />
                     <Grid item xs={7}>
-                      <ButtonBase onClick={() =>
+                      <ButtonBase
+                        onClick={() =>
                           navigate("/feedbacks", {
                             state: {
-                              user: profile.user
+                              user: profile.user,
                             },
                           })
-                        }>
+                        }
+                      >
                         <Paper
                           elevation={3}
                           sx={{
@@ -110,9 +113,8 @@ function Lancers() {
                               component="p"
                               sx={{ color: "black" }}
                             >
-                              Name: {profile.name}
-                              {' '}
-                                <MyRating userAddress={profile.user.toString()} />
+                              Name: {profile.name}{" "}
+                              <MyRating userAddress={profile.user.toString()} />
                             </Typography>
                             <Typography
                               variant="subtitle2"
@@ -128,7 +130,6 @@ function Lancers() {
                             >
                               City: {profile.myAddress}
                             </Typography>
-                       
                           </Box>
                         </Paper>
                       </ButtonBase>
@@ -143,13 +144,8 @@ function Lancers() {
                         alignItems: "center",
                       }}
                     >
-                      <Button
-                        variant="contained"
-                        sx={{ width: "80%", p: 2 }}
-                        
-                      >
-                        Chat Now
-                      </Button>
+                      
+                      <Modal />
                     </Grid>
                     <Grid item xs={1} />
                   </>

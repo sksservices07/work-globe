@@ -24,8 +24,8 @@ body.active-modal {
 
 .modal-content {
   position: absolute;
-  top: 40%;
-  left: 80%;
+  top: 50%;
+  left: 87%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
   background: #f1f1f1;

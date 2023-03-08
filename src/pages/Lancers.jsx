@@ -58,6 +58,7 @@ function Lancers() {
       const type = job.typeOfAccount;
       return type.toLowerCase() === "Freelancer".toLowerCase();
     });
+    console.log(opens)
     setProfile(opens);
   };
 
@@ -145,7 +146,7 @@ function Lancers() {
                       }}
                     >
                       
-                      <Modal />
+                      <Modal user={profile.user} name={profile.name} />
                     </Grid>
                     <Grid item xs={1} />
                   </>

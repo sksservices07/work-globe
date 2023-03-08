@@ -13,7 +13,7 @@ import {
   useConversations,
 } from "../../context/ConversationsProvider";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Dashboard from "../Messages/Dashboard";
+import Dashboard from "../MessagesModal/Dashboard";
 
 const theme = createTheme({
   // components: {
@@ -27,7 +27,9 @@ const theme = createTheme({
   // },
 });
 
-export default function Modal() {
+export default function Modal({user, name}) {
+  // const { conversations, selectConversationIndex, selectCurrentChatId } =
+  //   useConversations();
   const [modal, setModal] = useState(false);
   const { address } = useAccount();
   const location = useLocation();
@@ -57,7 +59,7 @@ export default function Modal() {
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
-            <h2>Chat With:</h2>
+            <h2>Chat With: {name} </h2>
             <SocketProvider id={address}>
               <ContactsProvider>
                 <ConversationsProvider id={address}>

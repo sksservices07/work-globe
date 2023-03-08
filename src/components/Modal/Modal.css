@@ -1,5 +1,6 @@
 body.active-modal {
   overflow-y: hidden;
+  font-family: 'Poppins', sans-serif;
 }
 
 .btn-modal {
@@ -11,7 +12,17 @@ body.active-modal {
 .overlay {
   background: rgba(49, 49, 49, 0.8);
 }
-.modal,
+.modal {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 100;
+}
+
 .overlay {
   width: 100vw;
   height: 100vh;

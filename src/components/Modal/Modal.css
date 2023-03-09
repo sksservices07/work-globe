@@ -13,7 +13,7 @@ body.active-modal {
   background: rgba(49, 49, 49, 0.8);
 }
 .modal {
-  width: 100vw;
+  width: 90vw;
   height: 100vh;
   top: 0;
   left: 0;
@@ -35,12 +35,13 @@ body.active-modal {
 
 .modal-content {
   position: relative;
-  top: 80%;
+  top: 40%;
   left: 87%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
   background: #f1f1f1;
-  padding: 14px 14px;
+  padding: 0px 14px;
+  padding-bottom: 0px;
   border-radius: 3px;
   max-width: 30%;
   min-width: 300px;

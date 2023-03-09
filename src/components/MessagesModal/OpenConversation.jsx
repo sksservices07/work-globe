@@ -46,7 +46,7 @@ const OpenConversation = () => {
       sx={{
         width: "100%",
         height: "83vh",
-        borderRight: 1,
+        borderRight: 0,
         borderColor: "divider",
       }}
       position="relative"
@@ -73,7 +73,7 @@ const OpenConversation = () => {
             </ListItem>
           </>
         ))}
-        {/* {selectedConversation.messages.map((message, index) => (
+        {selectedConversation.messages.map((message, index) => (
           <>
             <ListItem
               disablePadding
@@ -91,19 +91,20 @@ const OpenConversation = () => {
                     message.fromMe ? "text-right" : ""
                   }`}
                 >
-                  {message.fromMe ? "You" : message.senderName}
+                  {message.fromMe
+                    ? "You"
+                    : message.senderName.substring(0, 5)+"..."}
                 </div>
               </ListItemButton>
             </ListItem>
           </>
-        ))} */}
+        ))}
       </List>
 
       <form onSubmit={handleSubmit}>
         <Box
           sx={{
             position: "absolute",
-            bottom: "0",
             left: "0",
             width: "100%",
             display: "grid",

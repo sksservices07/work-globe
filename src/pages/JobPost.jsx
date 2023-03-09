@@ -6,12 +6,13 @@ import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
 import { useAccount, useNetwork } from "wagmi";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Box, Button, Paper, Typography, Grid, Modal } from "@mui/material";
+import { Box, Button, Paper, Typography, Grid, Modal as ModalMUI } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import NavBar from "../components/NavBar";
 import JobPostNavBar from "../components/JobPostNavBar";
 import { color } from "@mui/system";
 import RateMeModal from "../components/RateMeModal";
+import Modal from "../components/Modal/Modal";
 
 const theme = createTheme({
   components: {
@@ -180,7 +181,7 @@ const JobPost = () => {
                 <Grid item xs={3}>
                   {location.state.status != "closed" ? (
                     <>
-                      <Button
+                      {/* <Button
                         variant="contained"
                         sx={{ width: "80%", p: 2 }}
                         onClick={() =>
@@ -193,7 +194,8 @@ const JobPost = () => {
                         }
                       >
                         Chat
-                      </Button>
+                      </Button> */}
+                      <Modal user={applicant.candidateAddress} name={applicant.name} />
                       <br />
                       <br />
                       <Button
@@ -222,7 +224,7 @@ const JobPost = () => {
                   )}
                 </Grid>
                 <Grid item xs={2} />
-                <Modal
+                <ModalMUI
                   open={modalOpen}
                   onClose={handleModalClose}
                   aria-labelledby="modal-modal-title"
@@ -237,7 +239,7 @@ const JobPost = () => {
                     onSubmit={onSubmit}
                     handleModalClose={handleModalClose}
                   />
-                </Modal>
+                </ModalMUI>
               </>
             ))}
             ;

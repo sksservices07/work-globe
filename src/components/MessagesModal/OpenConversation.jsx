@@ -9,8 +9,8 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
-import MessageIcon from "@mui/icons-material/Message";
-import ContactsIcon from "@mui/icons-material/Contacts";
+// import MessageIcon from "@mui/icons-material/Message";
+// import ContactsIcon from "@mui/icons-material/Contacts";
 
 import { useConversations } from "../../context/ConversationsProvider";
 import { useGunMessages } from "../../hooks";
@@ -23,7 +23,7 @@ const OpenConversation = () => {
       node.scrollIntoView({ smooth: true });
     }
   }, []);
-  const { sendMessage, selectedConversation, currentChatId } =
+  const { sendMessage, currentChatId } =
     useConversations();
 
   const { messages } = useGunMessages(currentChatId);
@@ -32,7 +32,7 @@ const OpenConversation = () => {
     e.preventDefault();
 
     sendMessage(
-      selectedConversation.recipients.map((r) => r.id),
+      // selectedConversation.recipients.map((r) => r.id),
       currentChatId,
       text
     );
@@ -73,7 +73,7 @@ const OpenConversation = () => {
             </ListItem>
           </>
         ))}
-        {selectedConversation.messages.map((message, index) => (
+        {/* {selectedConversation.messages.map((message, index) => (
           <>
             <ListItem
               disablePadding
@@ -98,7 +98,7 @@ const OpenConversation = () => {
               </ListItemButton>
             </ListItem>
           </>
-        ))}
+        ))} */}
       </List>
 
       <form onSubmit={handleSubmit}>

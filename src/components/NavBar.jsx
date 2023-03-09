@@ -106,7 +106,7 @@ const NavBar = () => {
                 {/* Lancers */}
               </IconButton>
             </Link>
-            <Link to="/messages" style={{ textDecoration: 'none' }}>
+            {/* <Link to="/messages" style={{ textDecoration: 'none' }}>
               <IconButton
                 size="small"
                 aria-label="contact"
@@ -114,9 +114,8 @@ const NavBar = () => {
               >
                 <EmailIcon alt="Message" sx={{ color: "white !important",m:1 }} />
                 Messages
-                {/* Message */}
               </IconButton>
-            </Link>
+            </Link> */}
             {isRegistered && (
               <Link to="/profile" style={{ textDecoration: 'none' }}>
                 <IconButton

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Modal.css";
 import {
   Button
@@ -6,13 +6,14 @@ import {
 import { Box, Grid } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAccount } from "wagmi";
-import { SocketProvider } from "../../context/SocketProvider";
-import { ContactsProvider } from "../../context/ContactsProvider";
+// import { SocketProvider } from "../../context/SocketProvider";
+// import { ContactsProvider } from "../../context/ContactsProvider";
 import {
   ConversationsProvider,
   useConversations,
 } from "../../context/ConversationsProvider";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import createHash from "../../utils/getHash";
 import Dashboard from "../MessagesModal/Dashboard";
 
 const theme = createTheme({
@@ -27,14 +28,14 @@ const theme = createTheme({
   // },
 });
 
-export default function Modal({user, name}) {
-  // const { conversations, selectConversationIndex, selectCurrentChatId } =
-  //   useConversations();
+function Modal({user, name}) {
   const [modal, setModal] = useState(false);
+  const [currentChatID, setCurrentChatID] = useState('');
   const { address } = useAccount();
   const location = useLocation();
-
+  
   const toggleModal = () => {
+    setCurrentChatID(createHash(user, address))
     setModal(!modal);
   };
 
@@ -60,30 +61,21 @@ export default function Modal({user, name}) {
           <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
             <h2>Chat With: {name} </h2>
-            <SocketProvider id={address}>
-              <ContactsProvider>
+            {/* <SocketProvider id={address}> */}
+              {/* <ContactsProvider> */}
                 <ConversationsProvider id={address}>
                   <ThemeProvider theme={theme}>
                     <Box sx={{ flexGrow: 1, m: 2 }}>
                       <Grid container spacing={2}>
                         <Dashboard
-                          name={
-                            location.state != null
-                              ? location.state.applicantName
-                              : ""
-                          }
-                          address={
-                            location.state != null
-                              ? location.state.applicantAddress
-                              : ""
-                          }
+                          chatID={currentChatID}
                         />
                       </Grid>
                     </Box>
                   </ThemeProvider>
                 </ConversationsProvider>
-              </ContactsProvider>
-            </SocketProvider>
+              {/* </ContactsProvider> */}
+            {/* </SocketProvider> */}
             <button className="close-modal" onClick={toggleModal}>
               X
             </button>
@@ -94,3 +86,5 @@ export default function Modal({user, name}) {
     </>
   );
 }
+
+export default Modal;

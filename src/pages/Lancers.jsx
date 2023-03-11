@@ -17,6 +17,7 @@ import {
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import EmployerNavBar from "../components/EmployerNavBar";
 import MyRating from "../components/MyRating";
+import Modal from "../components/Modal/Modal";
 
 const theme = createTheme({
   components: {
@@ -57,6 +58,7 @@ function Lancers() {
       const type = job.typeOfAccount;
       return type.toLowerCase() === "Freelancer".toLowerCase();
     });
+    console.log(opens)
     setProfile(opens);
   };
 
@@ -129,7 +131,6 @@ function Lancers() {
                             >
                               City: {profile.myAddress}
                             </Typography>
-
                           </Box>
                         </Paper>
                       </ButtonBase>
@@ -144,13 +145,8 @@ function Lancers() {
                         alignItems: "center",
                       }}
                     >
-                      <Button
-                        variant="contained"
-                        sx={{ width: "80%", p: 2 }}
-
-                      >
-                        Chat Now
-                      </Button>
+                      
+                      <Modal user={profile.user} name={profile.name} />
                     </Grid>
                     <Grid item xs={1} />
                   </>

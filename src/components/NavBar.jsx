@@ -113,10 +113,16 @@ const NavBar = () => {
                 aria-label="contact"
                 sx={{ color: "#65b885" }}
               >
+<<<<<<< HEAD
                 <EmailIcon alt="Message" sx={{ color: "#65b885",m:1 }} />
                 Messages */}
                 {/* Message */}
               {/* </IconButton>
+=======
+                <EmailIcon alt="Message" sx={{ color: "white !important",m:1 }} />
+                Messages
+              </IconButton>
+>>>>>>> f66b0f2c89ccd8abf1eaead42b824e1ab9f8fa70
             </Link> */}
             {isRegistered && (
               <Link to="/profile" style={{ textDecoration: 'none' }}>

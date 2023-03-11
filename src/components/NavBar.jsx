@@ -21,7 +21,8 @@ const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: "#474747",
+          backgroundColor: "#DCDCDC",
+          // position:"fixed",
           // boxShadow: '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)',
         },
       },
@@ -71,8 +72,8 @@ const NavBar = () => {
             <img
               src={require("../img/logo192.png")}
               alt="Logo"
-              height={30}
-              width={30}
+              height={120}
+              width={240}
             />
             </Link>
             <Typography
@@ -81,7 +82,7 @@ const NavBar = () => {
               sx={{ flexGrow: 1, textAlign: "left", ml: 2,color:"white !important" }}
               // style={Textstyles}
             >
-              HuntForLancer
+              {/* HuntForLancer */}
             </Typography>
           
             {/* <Link to="/" style={{ textDecoration: 'none' }}>
@@ -99,33 +100,33 @@ const NavBar = () => {
               <IconButton
                 size="small"
                 aria-label="contact"
-                sx={{ color: "white !important" }}
+                sx={{ color: "#65b885" }}
               >
-                <LaptopMacIcon sx={{ color: "white !important",m:1 }} />
+                <LaptopMacIcon sx={{ color: "#65b885",m:1 }} />
                 Lancers
                 {/* Lancers */}
               </IconButton>
             </Link>
-            <Link to="/messages" style={{ textDecoration: 'none' }}>
+            {/* <Link to="/messages" style={{ textDecoration: 'none' }}>
               <IconButton
                 size="small"
                 aria-label="contact"
-                sx={{ color: "white !important" }}
+                sx={{ color: "#65b885" }}
               >
-                <EmailIcon alt="Message" sx={{ color: "white !important",m:1 }} />
-                Messages
+                <EmailIcon alt="Message" sx={{ color: "#65b885",m:1 }} />
+                Messages */}
                 {/* Message */}
-              </IconButton>
-            </Link>
+              {/* </IconButton>
+            </Link> */}
             {isRegistered && (
               <Link to="/profile" style={{ textDecoration: 'none' }}>
                 <IconButton
                   size="small"
                   aria-label="profile"
                   color="inherit"
-                  sx={{ color: "white !important" ,m:1 }}
+                  sx={{ color: "#65b885" ,m:1 }}
                 >
-                  <ProfileIcon sx={{ color: "white !important" }} />
+                  <ProfileIcon sx={{ color: "#65b885" }} />
                    Profile
                   {/* Profile */}
                 </IconButton>

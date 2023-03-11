@@ -12,13 +12,15 @@ import NavBar from "../components/NavBar";
 import { shadows } from '@mui/system';
 import { spacing } from "@mui/system";
 import { Divider } from '@mui/material';
-
+import { AudioCard, VideoCard } from 'material-ui-player'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import TextTransition, { presets } from "react-text-transition";
+
 
 import * as React from "react";
 
@@ -136,7 +138,7 @@ function Landing() {
   };
   return (
     <ThemeProvider theme={theme}>
-      <NavBar />
+      <NavBar position="fixed" />
       <div css={backgroundStyles}>
         <div css={buttonContainerStyles}>
           <h1 css={textStylesH1}>ONE BILLION PEOPLE USE ONLINE JOB PORTALS</h1>
@@ -147,7 +149,7 @@ function Landing() {
           {isRegistered ? (
             <>
               <Link to="/employer" style={{ textDecoration: 'none' }} >
-                <Button sx={{ boxShadow: 5, borderRadius: 5 }} color="success"
+                <Button sx={{ boxShadow: 5, borderRadius: 5,p:3 }} color="success"
                   disabled={false}
                   size="large"
                   variant="outlined">
@@ -155,7 +157,7 @@ function Landing() {
                 </Button>
               </Link>
               <Link to="/freelancer" style={{ textDecoration: 'none' }}>
-                <Button sx={{ boxShadow: 5, borderRadius: 5, marginLeft: 2, }}
+                <Button sx={{ boxShadow: 5, borderRadius: 5, marginLeft: 2,p:3 }}
 
                   disabled={false}
                   size="large"
@@ -166,7 +168,7 @@ function Landing() {
             </>
           ) : (
             <Link to="/register" style={{ textDecoration: 'none' }}>
-              <Button sx={{ borderRadius: 5, marginLeft: 2 }} color="success"
+              <Button sx={{ borderRadius: 5, marginLeft: 2,p:3 }} color="success"
                 disabled={false}
                 size="large"
                 variant="outlined">
@@ -176,6 +178,8 @@ function Landing() {
           )}
         </div>
       </div>
+     
+
       <Divider variant="middle" flexItem>
         {/* text can be added here  */}
       </Divider>
@@ -341,10 +345,27 @@ function Landing() {
           </Card>
         </Grid>
       </Grid>
+      
+{/* video player */}
+
       <Divider variant="middle" flexItem>
         {/* text can be added here  */}
       </Divider>
+      <Typography
+        variant="h3"
+        component="h1"
+        sx={{ textAlign: "left", m: 8, ml: 6, color: "grey" }}
 
+      >How to Use our website?</Typography>
+      <div sx={{p:20}}>
+      <iframe width="560" height="420" sx={{pb:15}}
+      src="https://www.youtube.com/embed/BHcAXHfUpyA" title="How to use HuntForLancers"
+      >
+      </iframe>
+        </div>
+      <Divider variant="middle" flexItem>
+        {/* text can be added here  */}
+      </Divider>
 
       {/* different section */}
       <Typography

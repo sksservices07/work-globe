@@ -44,9 +44,9 @@ const mq = breakpoints.map(
 
 const backgroundStyles = css`
   background-color: #e6f3f5;
-  background-image: url(${require("../img/img-freelancer2.jpeg")});
+  background-image: url(${require("../img/freelancer.png")});
   background-repeat: no-repeat;
-  background-size: 50vw 90vh;
+  background-size: 60vw 90vh;
   background-position: right;
   height: 100vh;
   display: flex;

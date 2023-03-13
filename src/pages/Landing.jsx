@@ -12,14 +12,14 @@ import NavBar from "../components/NavBar";
 import { shadows } from '@mui/system';
 import { spacing } from "@mui/system";
 import { Divider } from '@mui/material';
-import { AudioCard, VideoCard } from 'material-ui-player'
+// import { AudioCard, VideoCard } from 'material-ui-player'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import TextTransition, { presets } from "react-text-transition";
+// import TextTransition, { presets } from "react-text-transition";
 
 
 import * as React from "react";
@@ -43,15 +43,16 @@ const mq = breakpoints.map(
 );
 
 const backgroundStyles = css`
-  background-color: #f5f5f5;
-  background-image: url(${require("../img/macbook-pro.jpg")});
-  background-size: cover;
-  background-position: center;
+  background-color: #e6f3f5;
+  background-image: url(${require("../img/img-freelancer2.jpeg")});
+  background-repeat: no-repeat;
+  background-size: 50vw 90vh;
+  background-position: right;
   height: 100vh;
   display: flex;
   align-items: center;
   text-align: left;
-  padding: 0 300px;
+  padding: 0 10px;
   justify-content: flex-start;
   ${mq[0]} {
     padding: 0 !important;
@@ -65,12 +66,12 @@ const backgroundStyles = css`
 `;
 
 const textStylesH1 = css`
-  color: grey ;
+  color: #3b5169 ;
   font-size: 3rem;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   text-shadow: 2px 1px black;
-  width: 350px;
+  width: 550px;
   ${mq[1]} {
     font-size: 2rem;
     width: 100%;
@@ -82,11 +83,12 @@ const textStylesH1 = css`
 `;
 
 const textStylesP = css`
-  color: white;
-  font-family: "Roboto", sans-serif;
+  color: #6e96c2;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  font-size: 25px;
+  font-size: 20px;
   text-shadow: 2px 1px black;
+  width: 550px;
   ${mq[1]} {
     font-size: 20px;
   }
@@ -168,7 +170,7 @@ function Landing() {
             </>
           ) : (
             <Link to="/register" style={{ textDecoration: 'none' }}>
-              <Button sx={{ borderRadius: 5, marginLeft: 2,p:3 }} color="success"
+              <Button sx={{ borderRadius: 5, marginLeft: 15,p:3 }} color="success"
                 disabled={false}
                 size="large"
                 variant="outlined">

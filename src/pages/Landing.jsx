@@ -11,6 +11,7 @@ import { useAccount, useNetwork } from "wagmi";
 import NavBar from "../components/NavBar";
 import { shadows } from '@mui/system';
 import { spacing } from "@mui/system";
+import Box from '@mui/material/Box';
 import { Divider } from '@mui/material';
 // import { AudioCard, VideoCard } from 'material-ui-player'
 import Card from '@mui/material/Card';
@@ -43,7 +44,7 @@ const mq = breakpoints.map(
 );
 
 const backgroundStyles = css`
-  background-color: #e6f3f5;
+  background-color: #e8faf8;
   background-image: url(${require("../img/freelancer.png")});
   background-repeat: no-repeat;
   background-size: 60vw 90vh;
@@ -63,6 +64,10 @@ const backgroundStyles = css`
   ${mq[2]} {
     padding: 0 200px;
   }
+`;
+const backgroundStylesrest = css`
+  background-color: #e8faf8;
+  
 `;
 
 const textStylesH1 = css`
@@ -151,7 +156,7 @@ function Landing() {
           {isRegistered ? (
             <>
               <Link to="/employer" style={{ textDecoration: 'none' }} >
-                <Button sx={{ boxShadow: 5, borderRadius: 5,p:3 }} color="success"
+                <Button sx={{ boxShadow: 5, borderRadius: 5, p: 3 }} color="success"
                   disabled={false}
                   size="large"
                   variant="outlined">
@@ -159,7 +164,7 @@ function Landing() {
                 </Button>
               </Link>
               <Link to="/freelancer" style={{ textDecoration: 'none' }}>
-                <Button sx={{ boxShadow: 5, borderRadius: 5, marginLeft: 2,p:3 }}
+                <Button sx={{ boxShadow: 5, borderRadius: 5, marginLeft: 2, p: 3 }}
 
                   disabled={false}
                   size="large"
@@ -170,7 +175,7 @@ function Landing() {
             </>
           ) : (
             <Link to="/register" style={{ textDecoration: 'none' }}>
-              <Button sx={{ borderRadius: 5, marginLeft: 15,p:3 }} color="success"
+              <Button sx={{ borderRadius: 5, marginLeft: 15, p: 3 }} color="success"
                 disabled={false}
                 size="large"
                 variant="outlined">
@@ -180,96 +185,107 @@ function Landing() {
           )}
         </div>
       </div>
-     
 
-      <Divider variant="middle" flexItem>
-        {/* text can be added here  */}
-      </Divider>
+      <div css={backgroundStylesrest}></div>
 
 
       {/* different section */}
-      <Typography
-        variant="h3"
-        component="h1"
-        sx={{ textAlign: "left", m: 8, ml: 6, color: "grey" }}
+      <div css={backgroundStylesrest}>
+        <Divider variant="middle" flexItem>
+          {/* text can be added here  */}
+        </Divider>
 
-      >Are you hiring?
-      </Typography>
+        {/* <div css={backgroundColor}> */}
+        <Typography
+          variant="h3"
+          component="h1"
+          sx={{ textAlign: "left", m: 8, ml: 6, color: "grey" }}
 
-      <Grid container>
-        <Grid item xs={4} sm={4}>
-          <Card sx={{ maxWidth: 345, m: 5 }}>
-            <CardMedia
-              component="img"
-              alt=""
-              height="190"
-              image="https://img.freepik.com/free-vector/tiny-people-searching-business-opportunities_74855-19928.jpg?w=1060&t=st=1677782603~exp=1677783203~hmac=bc50bf378cab5531b337cae9d82ae75062d3fcf428d29bb441df7f26a24b61bb"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Post a job
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                It’s free and easy to post a job. Simply fill in a title, description and budget and competitive bids come within minutes.
-              </Typography>
-            </CardContent>
-            {/* <CardActions>
-              <Button size="small">Share</Button>
-              <Button size="small">Learn More</Button>
-            </CardActions> */}
-          </Card>
-        </Grid>
-        <Grid item xs={4} sm={4}>
-          <Card sx={{ maxWidth: 345, m: 5 }}>
-            <CardMedia
-              component="img"
-              alt=""
-              height="190"
-              image="https://img.freepik.com/free-vector/freelancer-flexible-remote-work-locations-isometric-flowchart-with-shared-office-writing-home-outdoor-with-laptop-vector-illustration_1284-30324.jpg?w=740&t=st=1677782661~exp=1677783261~hmac=23ca103fc3f4dcc5ba63d5682b4c6d41d120c8633db8b26cf93cb9b83d36e1d7"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Choose freelancers
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                No job is too big or too small. We've got freelancers for jobs of any size or budget, across 1800+ skills.
-              </Typography>
-            </CardContent>
-            {/* <CardActions>
-              <Button size="small">Share</Button>
-              <Button size="small">Learn More</Button>
-            </CardActions> */}
-          </Card>
-        </Grid>
-        <Grid item xs={4} sm={4}>
-          <Card sx={{ maxWidth: 345, m: 5 }}>
-            <CardMedia
-              component="img"
-              alt=""
-              height="190"
-              image="https://img.freepik.com/free-vector/vector-illustration-retro-style-hand-giving-money-other-hand_1284-42589.jpg?w=740&t=st=1677782693~exp=1677783293~hmac=0221ed0065b0f0d113f582ed9cd4006ce53d6d381ad5c6d48eca393c9c999f84"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-
-                Pay safely
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Only pay for work when it has been completed and you're 100% satisfied with the quality using our milestone payment system.
-              </Typography>
-            </CardContent>
-            {/* <CardActions>
-              <Button size="small">Share</Button>
-              <Button size="small">Learn More</Button>
-            </CardActions> */}
-          </Card>
-        </Grid>
-      </Grid>
-      <Divider variant="middle" flexItem>
-        {/* text can be added here  */}
-      </Divider>
+        >Are you hiring?
+        </Typography>
+        <Box sx={{
+          display: 'flex',
+          flexWrap: 'wrap'
+        }}>
 
 
+          <Grid container>
+            <Grid item xs={4} sm={4}>
+              <Card sx={{
+                maxWidth: 345, m: 5, backgroundColor: 'transparent', ":hover": {
+                  boxShadow: 15
+                }
+              }}>
+                <CardMedia
+                  component="img"
+                  alt=""
+                  height="190"
+                  image="https://img.freepik.com/free-vector/tiny-people-searching-business-opportunities_74855-19928.jpg?w=1060&t=st=1677782603~exp=1677783203~hmac=bc50bf378cab5531b337cae9d82ae75062d3fcf428d29bb441df7f26a24b61bb"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    Post a job
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    It’s free and easy to post a job. Simply fill in a title, description and budget and competitive bids come within minutes.
+                  </Typography>
+                </CardContent>
+
+              </Card>
+            </Grid>
+            <Grid item xs={4} sm={4}>
+              <Card sx={{
+                maxWidth: 345, m: 5, backgroundColor: 'transparent', ":hover": {
+                  boxShadow: 15
+                }
+              }}>
+                <CardMedia
+                  component="img"
+                  alt=""
+                  height="190"
+                  image="https://img.freepik.com/free-vector/freelancer-flexible-remote-work-locations-isometric-flowchart-with-shared-office-writing-home-outdoor-with-laptop-vector-illustration_1284-30324.jpg?w=740&t=st=1677782661~exp=1677783261~hmac=23ca103fc3f4dcc5ba63d5682b4c6d41d120c8633db8b26cf93cb9b83d36e1d7"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    Choose freelancers
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    No job is too big or too small. We've got freelancers for jobs of any size or budget, across 1800+ skills.
+                  </Typography>
+                </CardContent>
+
+              </Card>
+            </Grid>
+            <Grid item xs={4} sm={4}>
+              <Card sx={{
+                maxWidth: 345, m: 5, backgroundColor: 'transparent', ":hover": {
+                  boxShadow: 15
+                }
+              }}>
+                <CardMedia
+                  component="img"
+                  alt=""
+                  height="190"
+                  image="https://img.freepik.com/free-vector/vector-illustration-retro-style-hand-giving-money-other-hand_1284-42589.jpg?w=740&t=st=1677782693~exp=1677783293~hmac=0221ed0065b0f0d113f582ed9cd4006ce53d6d381ad5c6d48eca393c9c999f84"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+
+                    Pay safely
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Only pay for work when it has been completed and you're 100% satisfied with the quality using our milestone payment system.
+                  </Typography>
+                </CardContent>
+
+              </Card>
+            </Grid>
+          </Grid></Box>
+        <Divider variant="middle" flexItem>
+          {/* text can be added here  */}
+        </Divider>
+
+     
 
       {/* different section */}
 
@@ -281,7 +297,11 @@ function Landing() {
       >What makes it impressive?</Typography>
       <Grid container>
         <Grid item xs={4} sm={4}>
-          <Card sx={{ maxWidth: 345, m: 5 }}>
+          <Card sx={{
+            maxWidth: 345, m: 5, backgroundColor: 'transparent', ":hover": {
+              boxShadow: 15
+            }
+          }}>
             <CardMedia
               component="img"
               alt=""
@@ -296,14 +316,15 @@ function Landing() {
                 Find professionals you can trust by browsing their samples of previous work and reading their profile reviews.
               </Typography>
             </CardContent>
-            {/* <CardActions>
-              <Button size="small">Share</Button>
-              <Button size="small">Learn More</Button>
-            </CardActions> */}
+
           </Card>
         </Grid>
         <Grid item xs={4} sm={4}>
-          <Card sx={{ maxWidth: 345, m: 5 }}>
+          <Card sx={{
+            maxWidth: 345, m: 5, backgroundColor: 'transparent', ":hover": {
+              boxShadow: 15
+            }
+          }}>
             <CardMedia
               component="img"
               alt=""
@@ -318,14 +339,15 @@ function Landing() {
                 Freelancer.com has by far the largest pool of quality freelancers globally- over 60 million to choose from.
               </Typography>
             </CardContent>
-            {/* <CardActions>
-              <Button size="small">Share</Button>
-              <Button size="small">Learn More</Button>
-            </CardActions> */}
+
           </Card>
         </Grid>
         <Grid item xs={4} sm={4}>
-          <Card sx={{ maxWidth: 345, m: 5 }}>
+          <Card sx={{
+            maxWidth: 345, m: 5, backgroundColor: 'transparent', ":hover": {
+              boxShadow: 15
+            }
+          }}>
             <CardMedia
               component="img"
               alt=""
@@ -340,15 +362,13 @@ function Landing() {
                 Keep up-to-date and on-the-go with our time tracker, and mobile app. Always know what freelancers are up to.
               </Typography>
             </CardContent>
-            {/* <CardActions>
-              <Button size="small">Share</Button>
-              <Button size="small">Learn More</Button>
-            </CardActions> */}
+
           </Card>
         </Grid>
       </Grid>
-      
-{/* video player */}
+      {/* </div> */}
+
+      {/* video player */}
 
       <Divider variant="middle" flexItem>
         {/* text can be added here  */}
@@ -359,12 +379,12 @@ function Landing() {
         sx={{ textAlign: "left", m: 8, ml: 6, color: "grey" }}
 
       >How to Use our website?</Typography>
-      <div sx={{p:20}}>
-      <iframe width="560" height="420" sx={{pb:15}}
-      src="https://www.youtube.com/embed/BHcAXHfUpyA" title="How to use HuntForLancers"
-      >
-      </iframe>
-        </div>
+      <div sx={{ p: 20 }}>
+        <iframe width="560" height="420" sx={{ pb: 15 }}
+          src="https://www.youtube.com/embed/45Zm4WgVMcc" title="How to use HuntForLancers"
+        >
+        </iframe>
+      </div>
       <Divider variant="middle" flexItem>
         {/* text can be added here  */}
       </Divider>
@@ -584,11 +604,11 @@ function Landing() {
             </CardContent>
             <CardActions>
               <Button size="small">Share</Button>
-              <Button size="small">Learn More</Button>
             </CardActions>
           </Card>
         </Grid>
       </Grid>
+      </div>
     </ThemeProvider>
   );
 }

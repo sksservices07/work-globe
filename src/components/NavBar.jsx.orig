@@ -8,7 +8,6 @@ import { Toolbar } from "@mui/material";
 import { Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import EmailIcon from "@mui/icons-material/Email";
-import PaymentIcon from '@mui/icons-material/Payment';
 import LaptopMacIcon from "@mui/icons-material/LaptopMac";
 import ProfileIcon from "@mui/icons-material/AccountCircle";
 import { useEffect, useState } from "react";
@@ -16,14 +15,13 @@ import { ethers } from "ethers";
 import { getConfigByChain } from "../config";
 import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
 import { useAccount, useNetwork } from "wagmi";
-import LogoImage from "../img/logo192.png";
 
 const theme = createTheme({
   components: {
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: "#e8faf8",
+          backgroundColor: "#DCDCDC",
           // position:"fixed",
           // boxShadow: '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)',
         },
@@ -59,7 +57,6 @@ const NavBar = () => {
     const tx = await contract.checkRegistration();
     setIsRegistered(tx);
   };
-
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -71,24 +68,14 @@ const NavBar = () => {
       >
         <AppBar position="static">
           <Toolbar>
-<<<<<<< Updated upstream
-            <Link to="/" style={{ textDecoration: 'none' }}>
-                <img
-                  src={LogoImage}
-                  alt="Logo"
-                  style={{width: "170px", height: "25px"}}
-                />
-=======
           <Link to="/" style={{ textDecoration: 'none' }}>
             <img
               src={require("../img/logo192.png")}
               alt="Logo"
-              height={160}
-              width={180}
+              height={120}
+              width={240}
             />
->>>>>>> Stashed changes
             </Link>
-
             <Typography
               variant="h6"
               component="p"
@@ -109,22 +96,11 @@ const NavBar = () => {
                 Home
               </IconButton>
             </Link> */}
-            <Link to="/payments" style={{ textDecoration: 'none' }}>
-              <IconButton
-                size="small"
-                aria-label="payments-button"
-                sx={{ color: "#65b885", borderRadius: "8px !important", m: 1 }}
-              >
-                <PaymentIcon sx={{ color: "#65b885",m:1 }} />
-                Payments 
-              </IconButton>
-            </Link>
-
             <Link to="/lancers" style={{ textDecoration: 'none' }}>
               <IconButton
                 size="small"
-                aria-label="lancers-button"
-                sx={{ color: "#65b885", borderRadius: "8px !important", m: 1 }}
+                aria-label="contact"
+                sx={{ color: "#65b885" }}
               >
                 <LaptopMacIcon sx={{ color: "#65b885",m:1 }} />
                 Lancers
@@ -148,16 +124,15 @@ const NavBar = () => {
               </IconButton>
 >>>>>>> f66b0f2c89ccd8abf1eaead42b824e1ab9f8fa70
             </Link> */}
-
             {isRegistered && (
               <Link to="/profile" style={{ textDecoration: 'none' }}>
                 <IconButton
-                  aria-label="profile-button"
+                  size="small"
+                  aria-label="profile"
                   color="inherit"
-                size="small"
-                  sx={{ color: "#65b885", borderRadius: "8px !important", m: 1 }}
+                  sx={{ color: "#65b885" ,m:1 }}
                 >
-                  <ProfileIcon sx={{ color: "#65b885", m: 1 }} />
+                  <ProfileIcon sx={{ color: "#65b885" }} />
                    Profile
                   {/* Profile */}
                 </IconButton>

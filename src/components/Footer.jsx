@@ -1,16 +1,17 @@
 import * as React from "react";
 
 import { Box, IconButton, Paper, Typography, Grid } from "@mui/material";
-import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
+import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { styled } from "@mui/material/styles";
-import { spacing } from '@mui/system';
+import { spacing } from "@mui/system";
 import { hover } from "@testing-library/user-event/dist/hover";
 
-import { Divider } from '@mui/material';
+import { Divider } from "@mui/material";
+import LogoImage from "../img/logo192.png";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#595959",
@@ -19,8 +20,6 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   color: theme.palette.text.secondary,
 }));
-
-
 
 const Footer = () => {
   return (
@@ -34,27 +33,32 @@ const Footer = () => {
             <Typography
               variant="subtitle1"
               component="div"
-              sx={{ textAlign: "left", ml: 1 ,pt:2}}
+              sx={{ textAlign: "left", ml: 1, pt: 2 }}
             >
               {/* Follow us on : */}
-              <IconButton >
-                <FacebookRoundedIcon sx={{ color: "white" } } />
+              <IconButton>
+                <FacebookRoundedIcon sx={{ color: "white" }} />
               </IconButton>
+
               <IconButton>
                 <TwitterIcon sx={{ color: "white" }} />
               </IconButton>
+
               <IconButton>
                 <LinkedInIcon sx={{ color: "white" }} />
               </IconButton>
+
               <IconButton>
                 <InstagramIcon sx={{ color: "white" }} />
               </IconButton>
+
               <IconButton>
                 <YouTubeIcon sx={{ color: "white" }} />
               </IconButton>
             </Typography>
           </Box>
         </Box>
+
         <Grid container spacing={0} sx={{ backgroundColor: "#595959" }}>
           <Grid item xs={6}>
             <Item variant="outline" square>
@@ -65,12 +69,12 @@ const Footer = () => {
               >
                 Product by:
               </Typography> */}
-                <img
-                src={require("../img/logo192.png")}
-                width={200}
-                height={200}
-                sx={{mr:50}}
-                alt="" />
+              <img
+                src={LogoImage}
+                style={{ width: "170px", height: "25px" }}
+                sx={{ mr: 50 }}
+                alt=""
+              />
             </Item>
           </Grid>
           <Grid item xs={3}>
@@ -118,12 +122,13 @@ const Footer = () => {
           </Grid>
           <Grid item xs={3}>
             <Item variant="outline" square>
-            <Typography
-                  variant="h6"
-                  component="p"
-                  sx={{ textAlign: "left", ml: 1, color: "white" }}
-                >HuntForLancers
-                  </Typography>
+              <Typography
+                variant="h6"
+                component="p"
+                sx={{ textAlign: "left", ml: 1, color: "white" }}
+              >
+                HuntForLancers
+              </Typography>
               <Typography
                 variant="p"
                 component="p"
@@ -154,12 +159,11 @@ const Footer = () => {
               </Typography>
             </Item>
           </Grid>
-          
         </Grid>
         <Typography
           variant="h6"
           component="p"
-          sx={{ color: "white", backgroundColor: "#595959" ,pt:4}}
+          sx={{ color: "white", backgroundColor: "#595959", pt: 4 }}
         >
           HuntForLancers
         </Typography>
@@ -167,7 +171,7 @@ const Footer = () => {
         <Typography
           variant="subtitle1"
           component="p"
-          sx={{ color: "white", backgroundColor: "black" ,pt:2,pb:2}}
+          sx={{ color: "white", backgroundColor: "black", pt: 2, pb: 2 }}
           style={{
             fontSize: 20,
           }}

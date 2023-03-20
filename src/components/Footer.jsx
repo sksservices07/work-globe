@@ -1,5 +1,5 @@
 import * as React from "react";
-import { css } from "@emotion/react";
+
 import { Box, IconButton, Paper, Typography, Grid } from "@mui/material";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -14,31 +14,21 @@ import { Divider } from "@mui/material";
 import LogoImage from "../img/logo192.png";
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: "#7FB4AD",
+  backgroundColor: "#595959",
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
   color: theme.palette.text.secondary,
 }));
 
-<<<<<<< Updated upstream
-=======
-const backgroundStyles = css`
-  background-color: #7FB4AD;
-  
-`;
-
->>>>>>> Stashed changes
 const Footer = () => {
   return (
     <>
       {/* <h1>tmkc</h1> */}
-      <div css={backgroundStyles}>
       <Box sx={{ flexGrow: 1 }}>
         <Box
-          sx={{ alignText: "left", color: "white",backgroundColor:"#7FB4AD" }}
+          sx={{ alignText: "left", color: "white", backgroundColor: "#595959" }}
         >
-<<<<<<< Updated upstream
           <Box sx={{ display: "flex", gap: "2" }}>
             <Typography
               variant="subtitle1"
@@ -70,39 +60,6 @@ const Footer = () => {
         </Box>
 
         <Grid container spacing={0} sx={{ backgroundColor: "#595959" }}>
-=======
-          <Divider variant="middle" flexItem>
-            {/* text can be added here  */}
-          </Divider>
-          
-            <Box sx={{ display: "flex", gap: "2" }}>
-              <Typography
-                variant="subtitle1"
-                component="div"
-                sx={{ textAlign: "left", ml: 1, pt: 2 }}
-              >
-                {/* Follow us on : */}
-                <IconButton >
-                  <FacebookRoundedIcon sx={{ color: "black" }} />
-                </IconButton>
-                <IconButton>
-                  <TwitterIcon sx={{ color: "black" }} />
-                </IconButton>
-                <IconButton>
-                  <LinkedInIcon sx={{ color: "black" }} />
-                </IconButton>
-                <IconButton>
-                  <InstagramIcon sx={{ color: "black" }} />
-                </IconButton>
-                <IconButton>
-                  <YouTubeIcon sx={{ color: "black" }} />
-                </IconButton>
-              </Typography>
-            </Box>
-        </Box>
-        
-        <Grid container spacing={0} sx={{ backgroundColor: "#7FB4AD" }}>
->>>>>>> Stashed changes
           <Grid item xs={6}>
             <Item variant="outline" square>
               {/* <Typography
@@ -112,21 +69,12 @@ const Footer = () => {
               >
                 Product by:
               </Typography> */}
-<<<<<<< Updated upstream
               <img
                 src={LogoImage}
                 style={{ width: "170px", height: "25px" }}
                 sx={{ mr: 50 }}
                 alt=""
               />
-=======
-              {/* <img
-                src={require("../img/logo192.png")}
-                width={200}
-                height={200}
-                sx={{ mr: 80 }}
-                alt="" /> */}
->>>>>>> Stashed changes
             </Item>
           </Grid>
           <Grid item xs={3}>
@@ -178,12 +126,8 @@ const Footer = () => {
                 variant="h6"
                 component="p"
                 sx={{ textAlign: "left", ml: 1, color: "white" }}
-<<<<<<< Updated upstream
               >
                 HuntForLancers
-=======
-              >HuntForLancers
->>>>>>> Stashed changes
               </Typography>
               <Typography
                 variant="p"
@@ -215,23 +159,14 @@ const Footer = () => {
               </Typography>
             </Item>
           </Grid>
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
         </Grid>
         <Typography
           variant="h6"
           component="p"
-<<<<<<< Updated upstream
           sx={{ color: "white", backgroundColor: "#595959", pt: 4 }}
-=======
-          sx={{ color: "white", backgroundColor: "#7FB4AD ", pt: 4 }}
->>>>>>> Stashed changes
         >
           HuntForLancers
         </Typography>
-        
         {/* <Divider variant="middle" flexItem/> */}
         <Typography
           variant="subtitle1"
@@ -244,7 +179,6 @@ const Footer = () => {
           ©2023 Copyright
         </Typography>
       </Box>
-      </div>
     </>
   );
 };

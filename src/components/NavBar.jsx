@@ -71,14 +71,6 @@ const NavBar = () => {
       >
         <AppBar position="static">
           <Toolbar>
-<<<<<<< Updated upstream
-            <Link to="/" style={{ textDecoration: 'none' }}>
-                <img
-                  src={LogoImage}
-                  alt="Logo"
-                  style={{width: "170px", height: "25px"}}
-                />
-=======
           <Link to="/" style={{ textDecoration: 'none' }}>
             <img
               src={require("../img/logo192.png")}
@@ -86,7 +78,6 @@ const NavBar = () => {
               height={160}
               width={180}
             />
->>>>>>> Stashed changes
             </Link>
 
             <Typography

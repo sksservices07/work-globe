@@ -89,6 +89,7 @@ const Freelancer = () => {
     <Box
       sx={{
         flexGrow: 1,
+        backgroundColor:"#e8faf8"
       }}
     >
       <NavBar />
@@ -128,6 +129,7 @@ const Freelancer = () => {
             flexDirection: "column",
             gap: 1.2,
             m: 2,
+            borderRadius:8
           }}
         >
           {openJobs.map(
@@ -159,6 +161,8 @@ const Freelancer = () => {
                       width: "30vw",
                       display: "flex",
                       alignItems: "center",
+                      borderRadius:8,
+                      color:"transparent"
                     }}
                   >
                     <Box

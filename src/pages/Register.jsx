@@ -87,7 +87,10 @@ function Register() {
       </Grid> */}
       <Grid >
       <ThemeProvider theme={theme}>
-        <Grid container spacing={0.5} justify="center">
+        <Grid container spacing={0.5} justify="center" sx={{
+        flexGrow: 1,
+        backgroundColor:"#e8faf8"
+      }}>
           <Grid item xs={12}>
             <Typography variant="h4" component="h2">
               

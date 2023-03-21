@@ -9,7 +9,7 @@ const theme = createTheme({
         MuiAppBar: {
             styleOverrides: {
                 root: {
-                    backgroundColor: "#474747",
+                    backgroundColor: "#7FB4AD",
                 }
             }
         }
@@ -24,7 +24,7 @@ const MyProfileNavbar = () => {
         <ThemeProvider theme={theme}>
             <AppBar position="static">
                 <Toolbar>
-                    <Typography variant="h5" component="h1" sx={{ flexGrow: 1, textAlign: "left" }}>
+                    <Typography variant="h5" component="h1" sx={{ flexGrow: 1, textAlign: "left",   m:3 }}>
                     <IconButton onClick={() => navigate(-1)}>
               <ArrowBackIcon sx={{ color: "white" }} />
             </IconButton>

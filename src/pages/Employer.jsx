@@ -66,7 +66,7 @@ function Employer() {
       <NavBar />
       <EmployerNavBar />
       <ThemeProvider theme={theme}>
-        <Box sx={{ flexGrow: 1, m: 2 }}>
+        <Box sx={{ flexGrow: 1,backgroundColor:"#e8faf8" }}>
           <Grid container spacing={2}>
             {jobs.map(
               (job) =>

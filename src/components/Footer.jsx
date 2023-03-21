@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { css } from "@emotion/react";
 import { Box, IconButton, Paper, Typography, Grid } from "@mui/material";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -21,13 +21,19 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+const backgroundStylesrest = css`
+  background-color: #7FB4AD;
+  
+`;
+
 const Footer = () => {
   return (
     <>
       {/* <h1>tmkc</h1> */}
+      
       <Box sx={{ flexGrow: 1 }}>
         <Box
-          sx={{ alignText: "left", color: "white", backgroundColor: "#595959" }}
+          sx={{ alignText: "left", color: "white", backgroundColor: "#7FB4AD" }}
         >
           <Box sx={{ display: "flex", gap: "2" }}>
             <Typography
@@ -37,31 +43,31 @@ const Footer = () => {
             >
               {/* Follow us on : */}
               <IconButton>
-                <FacebookRoundedIcon sx={{ color: "white" }} />
+                <FacebookRoundedIcon sx={{ color: "black" }} />
               </IconButton>
 
               <IconButton>
-                <TwitterIcon sx={{ color: "white" }} />
+                <TwitterIcon sx={{ color: "black" }} />
               </IconButton>
 
               <IconButton>
-                <LinkedInIcon sx={{ color: "white" }} />
+                <LinkedInIcon sx={{ color: "black" }} />
               </IconButton>
 
               <IconButton>
-                <InstagramIcon sx={{ color: "white" }} />
+                <InstagramIcon sx={{ color: "black" }} />
               </IconButton>
 
               <IconButton>
-                <YouTubeIcon sx={{ color: "white" }} />
+                <YouTubeIcon sx={{ color: "black" }} />
               </IconButton>
             </Typography>
           </Box>
         </Box>
 
-        <Grid container spacing={0} sx={{ backgroundColor: "#595959" }}>
+        <Grid container spacing={0} sx={{ backgroundColor: "#7FB4AD" }}>
           <Grid item xs={6}>
-            <Item variant="outline" square>
+            <Item variant="outline" square sx={{ backgroundColor: "#7FB4AD"}}>
               {/* <Typography
                 variant="h6"
                 component="p"
@@ -71,16 +77,16 @@ const Footer = () => {
               </Typography> */}
               <img
                 src={LogoImage}
-                style={{ width: "170px", height: "25px" }}
+                style={{ width: "170px", height: "105px" }}
                 sx={{ mr: 50 }}
                 alt=""
               />
             </Item>
           </Grid>
           <Grid item xs={3}>
-            <Item variant="outline" square>
+            <Item variant="outline" square sx={{ backgroundColor: "#7FB4AD"}}>
               <Box
-                sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}
+                sx={{ flexGrow: 1, display: "flex", flexDirection: "column", backgroundColor: "#7FB4AD" }}
               >
                 <Typography
                   variant="h6"
@@ -120,8 +126,8 @@ const Footer = () => {
               </Box>
             </Item>
           </Grid>
-          <Grid item xs={3}>
-            <Item variant="outline" square>
+          <Grid item xs={3} sx={{ backgroundColor: "#7FB4AD"}}>
+            <Item variant="outline" square sx={{ backgroundColor: "#7FB4AD"}}>
               <Typography
                 variant="h6"
                 component="p"
@@ -163,7 +169,7 @@ const Footer = () => {
         <Typography
           variant="h6"
           component="p"
-          sx={{ color: "white", backgroundColor: "#595959", pt: 4 }}
+          sx={{ color: "white", backgroundColor: "#7FB4AD", pt: 4 }}
         >
           HuntForLancers
         </Typography>

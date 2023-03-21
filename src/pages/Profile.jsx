@@ -38,6 +38,10 @@ const theme = createTheme({
   },
 });
 
+const backgroundStyles = css`
+background-color:#7FB4AD;
+`;
+
 // const boxStyle = css`
 //   margin-top: 2rem;
 //   margin-right: 2rem;
@@ -92,8 +96,8 @@ function Profile() {
       <NavBar />
       <MyProfileNavbar />
       <Toaster position="top-center" reverseOrder="false" />
-      <ThemeProvider theme={theme}>
-        <Grid container spacing={3} justify="center">
+      <ThemeProvider theme={theme} >
+        <Grid container spacing={3} justify="center" sx={{backgroundColor:"#e8faf8"}}>
           <Grid item xs={12}>
             {/* <Typography variant="h6" component="h2">
               My Profile

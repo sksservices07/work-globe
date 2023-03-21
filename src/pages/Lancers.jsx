@@ -67,8 +67,8 @@ function Lancers() {
       <NavBar />
       <EmployerNavBar />
       <ThemeProvider theme={theme}>
-        <Box sx={{ flexGrow: 1, m: 2 }}>
-          <Grid container spacing={2}>
+        <Box sx={{ flexGrow: 1 }}>
+          <Grid container spacing={2} sx={{backgroundColor:"#e8faf8"}}>
             {profiles.map(
               (profile) =>
                 profile.myAddress !== "" && (
@@ -104,7 +104,7 @@ function Lancers() {
                               flexDirection: "column",
                               alignItems: "left",
                               justifyContent: "center",
-                              m: 2,
+                              m: 2, backgroundColor: 'transparent'
                             }}
                           >
                             <Typography

@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import JobPost from "./pages/JobPost";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import Payments from "./pages/Payments";
 import Application from "./pages/Application";
 import Lancers from "./pages/Lancers"
 import Feedbacks from "./pages/Feedbacks";
@@ -69,6 +70,7 @@ function App() {
             <Route exact path="/feedbacks" element={<Feedbacks />} />
             <Route exact path="/application" element={<Application />} />
             <Route exact path="/lancers" element={<Lancers />} />
+            <Route exact path="/payments" element={<Payments />} />
           </Routes>
           <Footer />
         </RainbowKitProvider>

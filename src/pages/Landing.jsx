@@ -9,17 +9,14 @@ import { getConfigByChain } from "../config";
 import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
 import { useAccount, useNetwork } from "wagmi";
 import NavBar from "../components/NavBar";
-import { shadows } from '@mui/system';
-import { spacing } from "@mui/system";
 import Box from '@mui/material/Box';
 import { Divider } from '@mui/material';
-// import { AudioCard, VideoCard } from 'material-ui-player'
+import Skeleton from '@mui/material/Skeleton';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
 // import TextTransition, { presets } from "react-text-transition";
 
 
@@ -45,15 +42,15 @@ const mq = breakpoints.map(
 
 const backgroundStyles = css`
   background-color: #e8faf8;
-  background-image: url(${require("../img/freelancer.png")});
+  background-image: url(https://media.giphy.com/media/iIGT8Y1rOYhBpdHh1C/giphy.gif);
   background-repeat: no-repeat;
-  background-size: 60vw 90vh;
+  background-size: 30vw 60vh;
   background-position: right;
   height: 100vh;
   display: flex;
   align-items: center;
   text-align: left;
-  padding: 0 10px;
+  padding: 0 0px;
   justify-content: flex-start;
   ${mq[0]} {
     padding: 0 !important;
@@ -69,6 +66,7 @@ const backgroundStylesrest = css`
   background-color: #e8faf8;
   
 `;
+
 
 const textStylesH1 = css`
   color: #3b5169 ;
@@ -92,7 +90,7 @@ const textStylesP = css`
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 20px;
-  text-shadow: 2px 1px black;
+  text-shadow: 0.5px 0.4px black;
   width: 550px;
   ${mq[1]} {
     font-size: 20px;
@@ -123,6 +121,7 @@ const buttonContainerStyles = css`
   margin-bottom: 100px;
 `;
 
+
 function Landing() {
   const { chain } = useNetwork();
   const { address } = useAccount();
@@ -149,7 +148,15 @@ function Landing() {
       <div css={backgroundStyles}>
         <div css={buttonContainerStyles}>
           <h1 css={textStylesH1}>ONE BILLION PEOPLE USE ONLINE JOB PORTALS</h1>
-          <p css={textStylesP}>
+          <p css={textStylesP}
+          //  sx={{ 
+          //   fontSize: {
+          //     lg: 30,
+          //     md: 20,
+          //     sm: 15,
+          //     xs: 10}
+          // }}
+          >
             Stay protected by the power of smart contract embeddedin the realm
             of Blockchain
           </p>
@@ -208,9 +215,8 @@ function Landing() {
           flexWrap: 'wrap'
         }}>
 
-
           <Grid container>
-            <Grid item xs={4} sm={4}>
+            <Grid item xs={12} sm={4}>
               <Card sx={{
                 maxWidth: 345, m: 5, backgroundColor: 'transparent', ":hover": {
                   boxShadow: 15
@@ -233,7 +239,7 @@ function Landing() {
 
               </Card>
             </Grid>
-            <Grid item xs={4} sm={4}>
+            <Grid item xs={12} sm={4}>
               <Card sx={{
                 maxWidth: 345, m: 5, backgroundColor: 'transparent', ":hover": {
                   boxShadow: 15
@@ -256,7 +262,7 @@ function Landing() {
 
               </Card>
             </Grid>
-            <Grid item xs={4} sm={4}>
+            <Grid item xs={12} sm={4}>
               <Card sx={{
                 maxWidth: 345, m: 5, backgroundColor: 'transparent', ":hover": {
                   boxShadow: 15
@@ -293,10 +299,9 @@ function Landing() {
         variant="h3"
         component="h1"
         sx={{ textAlign: "left", m: 8, ml: 6, color: "grey" }}
-
-      >What makes it impressive?</Typography>
+       >What makes it impressive?</Typography>
       <Grid container>
-        <Grid item xs={4} sm={4}>
+        <Grid item xs={12} sm={4}>
           <Card sx={{
             maxWidth: 345, m: 5, backgroundColor: 'transparent', ":hover": {
               boxShadow: 15
@@ -319,7 +324,7 @@ function Landing() {
 
           </Card>
         </Grid>
-        <Grid item xs={4} sm={4}>
+        <Grid item xs={12} sm={4}>
           <Card sx={{
             maxWidth: 345, m: 5, backgroundColor: 'transparent', ":hover": {
               boxShadow: 15
@@ -342,7 +347,7 @@ function Landing() {
 
           </Card>
         </Grid>
-        <Grid item xs={4} sm={4}>
+        <Grid item xs={12} sm={4}>
           <Card sx={{
             maxWidth: 345, m: 5, backgroundColor: 'transparent', ":hover": {
               boxShadow: 15
@@ -375,16 +380,23 @@ function Landing() {
       </Divider>
       <Typography
         variant="h3"
+        xs={12} sm={4}
         component="h1"
         sx={{ textAlign: "left", m: 8, ml: 6, color: "grey" }}
-
+        
       >How to Use our website?</Typography>
-      <div sx={{ p: 20 }}>
-        <iframe width="560" height="420" sx={{ pb: 15 }}
+      <Grid container>
+      
+      <Grid item
+      xs={6} sm={12}>
+      <div sx={{ p: 20}}>
+        <iframe width="560" height="420" sx={{ pb: 15 }} 
           src="https://www.youtube.com/embed/45Zm4WgVMcc" title="How to use HuntForLancers"
         >
         </iframe>
       </div>
+      </Grid>
+      </Grid>
       <Divider variant="middle" flexItem>
         {/* text can be added here  */}
       </Divider>
@@ -394,25 +406,26 @@ function Landing() {
         variant="h3"
         component="h1"
         sx={{ textAlign: "left", m: 8, ml: 6, mb: 1, color: "grey" }}
-
+       
       >Accomplish your goal by hiring
       </Typography>
       <Typography
         variant="h6"
         component="h6"
         sx={{ textAlign: "left", ml: 6, color: "grey" }}
-
+          
       >from over 100+ different categories
       </Typography>
 
       <Grid container>
-        <Grid item xs={4} sm={4}>
+        <Grid item xs={12} sm={4}>
           <Card sx={{ maxWidth: 345, m: 5 }}>
             <CardMedia
               component="img"
               alt=""
               height="190"
               image="https://img.freepik.com/free-vector/bird-colorful-logo-gradient-vector_343694-1365.jpg?w=740&t=st=1677774951~exp=1677775551~hmac=7078c2c44d5ced31c311911c3e99211e6d65ef82828ed898a0c0f2758ca60c93"
+            sx={{height:175}}
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
@@ -428,7 +441,7 @@ function Landing() {
             </CardActions>
           </Card>
         </Grid>
-        <Grid item xs={4} sm={4}>
+        <Grid item xs={12} sm={4}>
           <Card sx={{ maxWidth: 345, m: 5 }}>
             <CardMedia
               component="img"
@@ -450,7 +463,7 @@ function Landing() {
             </CardActions>
           </Card>
         </Grid>
-        <Grid item xs={4} sm={4}>
+        <Grid item xs={12} sm={4}>
           <Card sx={{ maxWidth: 345, m: 5 }}>
             <CardMedia
               component="img"
@@ -474,7 +487,7 @@ function Landing() {
         </Grid>
       </Grid>
       <Grid container>
-        <Grid item xs={4} sm={4}>
+        <Grid item xs={12} sm={4}>
           <Card sx={{ maxWidth: 345, m: 5 }}>
             <CardMedia
               component="img"
@@ -496,7 +509,7 @@ function Landing() {
             </CardActions>
           </Card>
         </Grid>
-        <Grid item xs={4} sm={4}>
+        <Grid item xs={12} sm={4}>
           <Card sx={{ maxWidth: 345, m: 5 }}>
             <CardMedia
               component="img"
@@ -518,7 +531,7 @@ function Landing() {
             </CardActions>
           </Card>
         </Grid>
-        <Grid item xs={4} sm={4}>
+        <Grid item xs={12} sm={4}>
           <Card sx={{ maxWidth: 345, m: 5 }}>
             <CardMedia
               component="img"
@@ -542,7 +555,7 @@ function Landing() {
         </Grid>
       </Grid>
       <Grid container>
-        <Grid item xs={4} sm={4}>
+        <Grid item xs={12} sm={4}>
           <Card sx={{ maxWidth: 345, m: 5 }}>
             <CardMedia
               component="img"
@@ -564,7 +577,7 @@ function Landing() {
             </CardActions>
           </Card>
         </Grid>
-        <Grid item xs={4} sm={4}>
+        <Grid item xs={12} sm={4}>
           <Card sx={{ maxWidth: 345, m: 5 }}>
             <CardMedia
               component="img"
@@ -586,7 +599,7 @@ function Landing() {
             </CardActions>
           </Card>
         </Grid>
-        <Grid item xs={4} sm={4}>
+        <Grid item xs={12} sm={4}>
           <Card sx={{ maxWidth: 345, m: 5 }}>
             <CardMedia
               component="img"

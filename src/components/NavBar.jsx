@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { AppBar, IconButton } from "@mui/material";
+import { AppBar, IconButton,Grid } from "@mui/material";
 import { Box } from "@mui/material";
 import { Toolbar } from "@mui/material";
 import { Typography } from "@mui/material";
@@ -16,7 +16,6 @@ import { ethers } from "ethers";
 import { getConfigByChain } from "../config";
 import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
 import { useAccount, useNetwork } from "wagmi";
-import LogoImage from "../img/logo192.png";
 
 const theme = createTheme({
   components: {
@@ -62,7 +61,9 @@ const NavBar = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box
+      <Grid 
+      // container
+      // xs={12} sm={12}
         component="nav"
         sx={{
           flexGrow: 1,
@@ -71,24 +72,24 @@ const NavBar = () => {
       >
         <AppBar position="static">
           <Toolbar>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <img
-              src={require("../img/logo192.png")}
-              alt="Logo"
-              height={160}
-              width={180}
-            />
+            <Link to="/" style={{ textDecoration: 'none' }}>
+              <img
+                src={require("../img/logo192.png")}
+                alt="Logo"
+                height={160}
+                width={180}
+              />
             </Link>
 
             <Typography
               variant="h6"
               component="p"
-              sx={{ flexGrow: 1, textAlign: "left", ml: 2,color:"white !important" }}
-              // style={Textstyles}
+              sx={{ flexGrow: 1, textAlign: "left", ml: 2, color: "white !important" }}
+            // style={Textstyles}
             >
               {/* HuntForLancer */}
             </Typography>
-          
+
             {/* <Link to="/" style={{ textDecoration: 'none' }}>
               <IconButton
                 size="small"
@@ -100,14 +101,15 @@ const NavBar = () => {
                 Home
               </IconButton>
             </Link> */}
+          
             <Link to="/payments" style={{ textDecoration: 'none' }}>
               <IconButton
                 size="small"
                 aria-label="payments-button"
                 sx={{ color: "#65b885", borderRadius: "8px !important", m: 1 }}
               >
-                <PaymentIcon sx={{ color: "#65b885",m:1 }} />
-                Payments 
+                <PaymentIcon sx={{ color: "#65b885", m: 1 }} />
+                Payments
               </IconButton>
             </Link>
 
@@ -117,7 +119,7 @@ const NavBar = () => {
                 aria-label="lancers-button"
                 sx={{ color: "#65b885", borderRadius: "8px !important", m: 1 }}
               >
-                <LaptopMacIcon sx={{ color: "#65b885",m:1 }} />
+                <LaptopMacIcon sx={{ color: "#65b885", m: 1 }} />
                 Lancers
                 {/* Lancers */}
               </IconButton>
@@ -131,8 +133,8 @@ const NavBar = () => {
 <<<<<<< HEAD
                 <EmailIcon alt="Message" sx={{ color: "#65b885",m:1 }} />
                 Messages */}
-                {/* Message */}
-              {/* </IconButton>
+            {/* Message */}
+            {/* </IconButton>
 =======
                 <EmailIcon alt="Message" sx={{ color: "white !important",m:1 }} />
                 Messages
@@ -145,11 +147,11 @@ const NavBar = () => {
                 <IconButton
                   aria-label="profile-button"
                   color="inherit"
-                size="small"
+                  size="small"
                   sx={{ color: "#65b885", borderRadius: "8px !important", m: 1 }}
                 >
                   <ProfileIcon sx={{ color: "#65b885", m: 1 }} />
-                   Profile
+                  Profile
                   {/* Profile */}
                 </IconButton>
               </Link>
@@ -166,7 +168,7 @@ const NavBar = () => {
             </IconButton>
           </Toolbar>
         </AppBar>
-      </Box>
+      </Grid>
     </ThemeProvider>
   );
 };

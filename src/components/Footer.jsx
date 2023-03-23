@@ -64,9 +64,12 @@ const Footer = () => {
             </Typography>
           </Box>
         </Box>
+        <Divider variant="middle"   flexItem>
+          {/* text can be added here  */}
+        </Divider>
 
         <Grid container spacing={0} sx={{ backgroundColor: "#7FB4AD" }}>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <Item variant="outline" square sx={{ backgroundColor: "#7FB4AD"}}>
               {/* <Typography
                 variant="h6"

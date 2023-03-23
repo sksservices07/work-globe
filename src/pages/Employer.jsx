@@ -116,10 +116,10 @@ function Employer() {
                               <MyRating userAddress={job.employer.toString()} />
                             </Typography>
                             <Typography 
-                              variant="h6"
+                              variant="h5"
                               component="p"
                               alignItems={"left"}
-                              sx={{ color: "black"}}
+                              sx={{ color: "black",m:0.5}}
                             >
                               {job.position}
                             </Typography>

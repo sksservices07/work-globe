@@ -207,7 +207,7 @@ function Profile() {
                 boxShadow: 5,
               }}
             >
-              <Grid sx={{ mr: 18 }}>
+              <Grid item sx={{ mr: 18 }}>
                 <ButtonBase onClick={() =>
                   navigate("/feedbacks", {
                     state: {

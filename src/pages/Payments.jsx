@@ -63,8 +63,8 @@ const Payments = () => {
         <Grid item xs={10}>
           <Card sx={{ height: "100%" }} variant="outlined">
             <CardContent>
-              {navState === 0 && <MileStones />}
-              {navState === 1 && <CreateMilestone />}
+              { /* navState === 0 && <MileStones /> */}
+              <CreateMilestone />
             </CardContent>
           </Card>
         </Grid>

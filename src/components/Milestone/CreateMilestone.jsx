@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { ethers } from "ethers";
+import { useNetwork } from "wagmi";
 
 import {
   Container,
@@ -12,11 +14,11 @@ import {
   InputLabel,
   MenuItem,
 } from "@mui/material";
+import toast, { Toaster } from "react-hot-toast";
 
-import { ethers } from "ethers";
 import { getConfigByChain } from "../../config";
-import { useNetwork } from "wagmi";
 import Job from "../../artifacts/contracts/JobContract.sol/JobContract.json";
+import MilestoneContract from "../../artifacts/contracts/MilestoneContract.sol/MilestoneContract.json";
 
 const CreateMilestone = () => {
   const { chain } = useNetwork();
@@ -31,8 +33,27 @@ const CreateMilestone = () => {
   });
   const { project_id, amount, name, description } = values;
 
-  const onSubmit = () => {
-    console.log(values);
+  // TODO: this functions has bug
+  const onSubmit = async () => {
+    await window.ethereum.send("eth_requestAccounts");
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(
+      getConfigByChain(chain?.id)[0].contractProxyAddress,
+      MilestoneContract.abi,
+      signer
+    );
+
+    const tx = await contract.addMilestone(
+      project_id,
+      name,
+      description,
+      amount
+    );
+    toast.success("Creating milestone... Please Wait", { icon: "👏" });
+    await provider.waitForTransaction(tx.hash, 1, 150000).then(() => {
+      toast.success("Milestone created !!");
+    });
   };
 
   const handleChange = (name) => (event) => {

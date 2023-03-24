@@ -130,16 +130,9 @@ const NavBar = () => {
                 aria-label="contact"
                 sx={{ color: "#65b885" }}
               >
-<<<<<<< HEAD
-                <EmailIcon alt="Message" sx={{ color: "#65b885",m:1 }} />
-                Messages */}
-            {/* Message */}
-            {/* </IconButton>
-=======
                 <EmailIcon alt="Message" sx={{ color: "white !important",m:1 }} />
                 Messages
               </IconButton>
->>>>>>> f66b0f2c89ccd8abf1eaead42b824e1ab9f8fa70
             </Link> */}
 
             {isRegistered && (
@@ -164,7 +157,9 @@ const NavBar = () => {
                 display: { xs: "none", sm: "none", md: "block" },
               }}
             >
-              <ConnectButton accountStatus="address" chainStatus="icon" />
+              <ConnectButton accountStatus="address"   sx={{
+                display: { xs: "2", sm: "2", md: "2" },
+              }} chainStatus="icon" />
             </IconButton>
           </Toolbar>
         </AppBar>

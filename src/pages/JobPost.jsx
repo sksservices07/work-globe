@@ -98,7 +98,7 @@ const JobPost = () => {
       <JobPostNavBar />
       <ThemeProvider theme={theme}>
         <Box sx={{ flexGrow: 1, m: 2 }}>
-          <Grid container spacing={2} sx={{}}>
+          <Grid container spacing={2} sx={{backgroundColor:"#e8faf8"}}>
             <Grid item xs={12}>
               <Typography variant="h3" component="p" sx={{ mt: 2 }}>
                 Job Title: (#{location.state.jobId})

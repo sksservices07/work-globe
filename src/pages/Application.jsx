@@ -6,6 +6,7 @@ import { getConfigByChain } from "../config";
 import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
 import { useAccount, useNetwork } from "wagmi";
 import toast, { Toaster } from "react-hot-toast";
+import { css } from "@emotion/react";
 import { useNavigate } from "react-router-dom";
 import { Box, Typography, Grid, Button, TextField } from "@mui/material";
 import { useLocation } from "react-router-dom";
@@ -47,6 +48,10 @@ const client = ipfsHttpClient({
     )}`,
   },
 });
+
+const backgroundStyles = css`
+background-color:#7FB4AD;
+`;
 
 function Application(props) {
   const location = useLocation();
@@ -112,7 +117,7 @@ function Application(props) {
     <>
       <Toaster position="top-center" reverseOrder="false" />
       <ThemeProvider theme={theme}>
-        <Grid container spacing={3} justify="center">
+        <Grid container spacing={3} justify="center" sx={{backgroundColor:"#e8faf8"}}>
           <Grid item xs={12}>
             <NavBar />
             {/* <Typography variant="h6" component="h2">

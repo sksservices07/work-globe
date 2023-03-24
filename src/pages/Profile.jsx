@@ -23,14 +23,19 @@ import MyProfileNavbar from "../components/MyProfileNavabar";
 import SelectedJobs from "../components/SelectedJobs";
 
 const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#e8faf8"
+    }
+  },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          backgroundColor: "#1fe47a",
+          backgroundColor: "#e8faf8",
           "&:hover": {
             transform: "scale(1.05)",
-            backgroundColor: "#1fe47a",
+            backgroundColor: "#e8faf8",
           },
         },
       },
@@ -97,7 +102,7 @@ function Profile() {
       <MyProfileNavbar />
       <Toaster position="top-center" reverseOrder="false" />
       <ThemeProvider theme={theme} >
-        <Grid container spacing={3} justify="center" sx={{backgroundColor:"#e8faf8"}}>
+        <Grid container spacing={3} justify="center" sx={{ backgroundColor: "#e8faf8" }}>
           <Grid item xs={12}>
             {/* <Typography variant="h6" component="h2">
               My Profile
@@ -130,7 +135,7 @@ function Profile() {
               }}
             >
 
-              <Grid sx={{ mr: 20 }}>
+              <Grid item xs={12} sx={{ mr: 20 }}>
                 <h2>
                   {" "}
                   <IconButton>
@@ -156,7 +161,7 @@ function Profile() {
                 boxShadow: 5,
               }}
             >
-              <Grid sx={{ mr: 20 }}>
+              <Grid item xs={12} sx={{ mr: 20 }}>
                 <h2>
                   <IconButton>
                     <EngineeringIcon sx={{ color: "black" }} />
@@ -181,7 +186,7 @@ function Profile() {
                 boxShadow: 5,
               }}
             >
-              <Grid sx={{ mr: 25 }}>
+              <Grid item xs={12} sx={{ mr: 25 }}>
                 <h2>
                   <IconButton>
                     <PersonPinCircleIcon sx={{ color: "black" }} />
@@ -205,9 +210,10 @@ function Profile() {
                 borderRadius: 20,
                 opacity: [0.7, 0.7, 0.7],
                 boxShadow: 5,
+                mb:5
               }}
             >
-              <Grid item sx={{ mr: 18 }}>
+              <Grid item xs={12} sx={{ mr: 18,pb:5}}>
                 <ButtonBase onClick={() =>
                   navigate("/feedbacks", {
                     state: {
@@ -225,14 +231,11 @@ function Profile() {
                 </ButtonBase>
               </Grid>
             </Box>
-            {/* <Grid xs={4}>
+            {/* <Grid item md={4} xs={4}>
             <img src="https://img.freepik.com/free-vector/recruit-agent-analyzing-candidates_74855-4565.jpg?t=st=1676035583~exp=1676036183~hmac=7919f760bc6a25ec389a28b4688275d8622f524943830217ebf2c10e9b1aa261" alt="" />
           </Grid> */}
           </Grid>
-          <Box width="30%" />
-          <Grid item xs={4} />
-          <Grid item xs={4}></Grid>
-          <Grid item xs={4} />
+
         </Grid>
       </ThemeProvider>
       <SelectedJobs />

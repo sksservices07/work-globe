@@ -11,6 +11,7 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     backgroundColor: "#7FB4AD",
+                    paddingBottom:10
                 }
             }
         }

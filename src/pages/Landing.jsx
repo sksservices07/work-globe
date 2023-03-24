@@ -80,8 +80,8 @@ const textStylesH1 = css`
     width: 100%;
   }
   ${mq[2]} {
-    font-size: 2.5rem;
-    width: 100%;
+    font-size: 1.8rem;
+    width: 70%;
   }
 `;
 
@@ -93,25 +93,17 @@ const textStylesP = css`
   text-shadow: 0.5px 0.4px black;
   width: 550px;
   ${mq[1]} {
-    font-size: 20px;
+    font-size: 18px;
+    width:50%;
   }
 `;
 
 const buttonStyles = css`
-  margin-top: 2rem;
-  margin-right: 2rem;
-  justify-content: center;
-  border-radius: 25px;
-  width: 200px;
-  height: 50px;
-  background-color: white;
-  color: black;
-  transition: transform 0.2s ease-in-out;
-  &:hover {
-    transform: scale(1.05);
-    background-color: aliceblue;
-  }
+ 
   ${mq[1]} {
+    font-size: 10px;
+    widht:10%;
+    
   }
 `;
 
@@ -119,6 +111,7 @@ const buttonContainerStyles = css`
   margin-left: 2rem;
   display: block;
   margin-bottom: 100px;
+  
 `;
 
 
@@ -148,22 +141,14 @@ function Landing() {
       <div css={backgroundStyles}>
         <div css={buttonContainerStyles}>
           <h1 css={textStylesH1}>ONE BILLION PEOPLE USE ONLINE JOB PORTALS</h1>
-          <p css={textStylesP}
-          //  sx={{ 
-          //   fontSize: {
-          //     lg: 30,
-          //     md: 20,
-          //     sm: 15,
-          //     xs: 10}
-          // }}
-          >
+          <p css={textStylesP}>
             Stay protected by the power of smart contract embeddedin the realm
             of Blockchain
           </p>
           {isRegistered ? (
             <>
               <Link to="/employer" style={{ textDecoration: 'none' }} >
-                <Button sx={{ boxShadow: 5, borderRadius: 5, p: 3 }} color="success"
+                <Button css={buttonStyles} sx={{ boxShadow: 5, borderRadius: 5, p: 3 }} color="success"
                   disabled={false}
                   size="large"
                   variant="outlined">
@@ -171,7 +156,7 @@ function Landing() {
                 </Button>
               </Link>
               <Link to="/freelancer" style={{ textDecoration: 'none' }}>
-                <Button sx={{ boxShadow: 5, borderRadius: 5, marginLeft: 2, p: 3 }}
+                <Button css={buttonStyles} sx={{ boxShadow: 5, borderRadius: 5, marginLeft: 2, p: 3 }}
 
                   disabled={false}
                   size="large"
@@ -181,7 +166,7 @@ function Landing() {
               </Link>
             </>
           ) : (
-            <Link to="/register" style={{ textDecoration: 'none' }}>
+            <Link css={buttonStyles} to="/register" style={{ textDecoration: 'none' }}>
               <Button sx={{ borderRadius: 5, marginLeft: 15, p: 3 }} color="success"
                 disabled={false}
                 size="large"
@@ -378,7 +363,7 @@ function Landing() {
       <Divider variant="middle" flexItem>
         {/* text can be added here  */}
       </Divider>
-      <Typography
+      {/* <Typography
         variant="h3"
         xs={12} sm={4}
         component="h1"
@@ -396,7 +381,7 @@ function Landing() {
         </iframe>
       </div>
       </Grid>
-      </Grid>
+      </Grid> */}
       <Divider variant="middle" flexItem>
         {/* text can be added here  */}
       </Divider>
@@ -414,7 +399,7 @@ function Landing() {
         component="h6"
         sx={{ textAlign: "left", ml: 6, color: "grey" }}
           
-      >from over 100+ different categories
+      >from over 10+ different categories
       </Typography>
 
       <Grid container>
@@ -617,6 +602,7 @@ function Landing() {
             </CardContent>
             <CardActions>
               <Button size="small">Share</Button>
+              <Button size="small">Learn More</Button>
             </CardActions>
           </Card>
         </Grid>

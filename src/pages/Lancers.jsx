@@ -88,8 +88,11 @@ function Lancers() {
                             p: 2,
                             width: "40vw",
                             display: "flex",
-                            alignItems: "center",
+                            alignItems: "left",
                             borderRadius: 8,
+                            color:"transparent", backgroundColor: 'transparent', ":hover": {
+                              boxShadow: 15
+                            }
                           }}
                         >
                           {/* <img
@@ -120,14 +123,14 @@ function Lancers() {
                               variant="subtitle2"
                               component="p"
                               align="left"
-                              sx={{ color: "black" }}
+                              sx={{ color: "grey" }}
                             >
                               Type: {profile.typeOfAccount}
                             </Typography>
                             <Typography
                               variant="subtitle2"
                               component="p"
-                              sx={{ textAlign: "left",  color: "black" }}
+                              sx={{ textAlign: "left",  color: "grey" }}
                             >
                               City: {profile.myAddress}
                             </Typography>

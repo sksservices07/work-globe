@@ -78,12 +78,12 @@ const Footer = () => {
               >
                 Product by:
               </Typography> */}
-              <img
+              {/* <img
                 src={LogoImage}
                 style={{ width: "170px", height: "105px" }}
                 sx={{ mr: 50 }}
                 alt=""
-              />
+              /> */}
             </Item>
           </Grid>
           <Grid item xs={3}>

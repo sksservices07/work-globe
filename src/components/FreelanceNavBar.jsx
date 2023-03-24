@@ -3,9 +3,25 @@ import * as React from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { AppBar, Button, Typography, Box, Toolbar } from "@mui/material";
 import {  IconButton } from "@mui/material";
-
+import { css } from "@emotion/react";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
+const breakpoints = [576, 768, 992, 1200];
+// const mq = breakpoints.map((bp) => `@media (min-width: ${bp}px)`);
+const mq = breakpoints.map(
+  (bp) => `@media only screen and (max-width: ${bp}px)`
+);
+
+const navStyle = css`
+ 
+  ${mq[1]} {
+    font-size: 10px;
+    widht:10%;
+    
+  }
+`;
+
 const theme = createTheme({
   components: {
     MuiAppBar: {
@@ -47,15 +63,33 @@ const FreelanceNavBar = (props) => {
             <Typography
               variant="h5"
               component="p"
-              sx={{ flexGrow: 1, textAlign: "left", ml: 2 }}
+              sx={{ flexGrow: 1, textAlign: "left",fontSize:{
+                xs:"0.9rem",
+                sm:"1.5rem"
+              } }}
             >
                <IconButton onClick={() => navigate(-1)}>
               <ArrowBackIcon sx={{ color: "white" }} />
             </IconButton>
               My Posted Jobs
             </Typography>
-            <Button variant="contained" onClick={handleModalOpen}>
+            <Button variant="contained" onClick={handleModalOpen} sx={{ width:{
+                          xs:'30%',
+                          sm:'20%'
+                        },height:{
+                          xs:'100%'
+                        } }}>
+                           <Typography
+              variant="h5"
+              component="p"
+              sx={{ flexGrow: 1, textAlign: "left",fontSize:{
+                xs:"0.9rem",
+                sm:"1.5rem"
+              } }}
+            >
+
               Post Job
+            </Typography>
             </Button>
           </Toolbar>
         </AppBar>

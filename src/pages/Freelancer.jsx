@@ -89,7 +89,7 @@ const Freelancer = () => {
     <Box
       sx={{
         flexGrow: 1,
-        backgroundColor:"#e8faf8"
+        backgroundColor:"#e8faf8",pb:5
       }}
     >
       <NavBar />
@@ -99,7 +99,7 @@ const Freelancer = () => {
         handleModalClose={handleModalClose}
       />
       <div className="tab">
-        <Button sx={{ borderRadius: 5 ,mt:5}} color="success"
+        <Button sx={{ borderRadius: 5 ,mt:5 }} color="success"
           disabled={false}
           size="large"
           variant="outlined"
@@ -129,7 +129,11 @@ const Freelancer = () => {
             flexDirection: "column",
             gap: 1.2,
             m: 2,
-            borderRadius:8
+            borderRadius:8,
+            width:{
+              xs:"100%",
+              sm:'100%'
+            }
           }}
         >
           {openJobs.map(
@@ -162,14 +166,19 @@ const Freelancer = () => {
                       display: "flex",
                       alignItems: "center",
                       borderRadius:8,
-                      color:"transparent"
+                      color:"transparent", backgroundColor: 'transparent', ":hover": {
+                        boxShadow: 15
+                      }, width:{
+                        xs:"60vw",
+                        sm:'30vw'
+                      }
                     }}
                   >
                     <Box
                       sx={{
                         display: "flex",
                         justifyContent: "center",
-                        alignItems: "center",
+                        alignItems: "left",
                         flexDirection: "column",
                       }}
                     >
@@ -190,21 +199,21 @@ const Freelancer = () => {
                       <Typography
                         variant="subtitle2"
                         component="p"
-                        sx={{ textAlign: "left", ml: 1, color: "black" }}
+                        sx={{ textAlign: "left", ml: 1, color: "grey" }}
                       >
                         Experience: {job.experience} years
                       </Typography>
                       <Typography
                         variant="subtitle2"
                         component="p"
-                        sx={{ textAlign: "left", ml: 1, color: "black" }}
+                        sx={{ textAlign: "left", ml: 1, color: "grey" }}
                       >
                         City: {job.location}
                       </Typography>
                       <Typography
                         variant="subtitle2"
                         component="p"
-                        sx={{ textAlign: "left", ml: 1, color: "black" }}
+                        sx={{ textAlign: "left", ml: 1, color: "grey" }}
                       >
                         Salary (per annum): {job.salary} (in USD)
                       </Typography>

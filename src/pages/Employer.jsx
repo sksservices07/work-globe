@@ -19,6 +19,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import EmployerNavBar from "../components/EmployerNavBar";
 import MyRating from "../components/MyRating";
+import { Height } from "@mui/icons-material";
 
 const theme = createTheme({
   components: {
@@ -88,7 +89,9 @@ function Employer() {
                             width: "40vw",
                             display: "flex",
                             alignItems: "center",
-                            borderRadius: 8
+                            borderRadius: 8, backgroundColor: 'transparent', ":hover": {
+                              boxShadow: 15
+                            }
                           }}
                         >
                           {/* <img
@@ -103,13 +106,20 @@ function Employer() {
                               flexDirection: "column",
                               alignItems: "left",
                               justifyContent: "center",
-                              m: 3,
+                              m: 1,
+                              width:{
+                                xs:'100%'
+                              }
+
                             }}
                           >
                             <Typography
                               variant="h5"
                               component="p"
-                              sx={{mr:5 ,color: "black" }}
+                              sx={{textAlign: "left",color: "black", fontSize: {
+                                xs: "16px",
+                                sm: "24px"
+                              }, }}
                             >
                               {job.companyName}
                               {' '}
@@ -119,35 +129,50 @@ function Employer() {
                               variant="h5"
                               component="p"
                               alignItems={"left"}
-                              sx={{ color: "black",m:0.5}}
+                              sx={{ color: "black",textAlign: "left",m:0.5, fontSize: {
+                                xs: "14px",
+                                sm: "24px",
+                              }, }}
                             >
                               {job.position}
                             </Typography>
                             <Typography
                               variant="subtitle2"
                               component="p"
-                              sx={{ textAlign: "left", color: "black" }}
+                              sx={{ textAlign: "left", color: "grey", fontSize: {
+                                xs: "12px",
+                                sm: "14px",
+                              }, }}
                             >
-                              {job.description}
+                             Job Description: {job.description}
                             </Typography>
                             <Typography
                               variant="subtitle2"
                               component="p"
-                              sx={{ textAlign: "right",mr:5,  color: "black",}}
+                              sx={{ textAlign: "left",mr:10,  color: "grey", fontSize: {
+                                xs: "12px",
+                                sm: "14px",
+                              }, }}
                             >
-                              Required: {job.experience} years experience
+                              Required Experience: {job.experience} years 
                             </Typography>
                             <Typography
                               variant="subtitle2"
                               component="p"
-                              sx={{ textAlign: "left", color: "black" }}
+                              sx={{ textAlign: "left", color: "grey", fontSize: {
+                                xs: "12px",
+                                sm: "14px",
+                              },  }}
                             >
                               City:{job.location}
                             </Typography>
                             <Typography
                               variant="subtitle2"
                               component="p"
-                              sx={{ textAlign: "left",  color: "black" }}
+                              sx={{ textAlign: "left",  color: "grey", fontSize: {
+                                xs: "12px",
+                                sm: "14px",
+                              },  }}
                             >
                               {job.salary} USD/Annum
                             </Typography>
@@ -167,7 +192,11 @@ function Employer() {
                     >
                       <Button
                         variant="contained"
-                        sx={{ width: "80%", p: 2 }}
+                        sx={{ width: "80%", p: 2,width:{
+                          xs:'80%'
+                        },height:{
+                          xs:'17%'
+                        } }}
                         onClick={() =>
                           navigate("/application", {
                             state: {

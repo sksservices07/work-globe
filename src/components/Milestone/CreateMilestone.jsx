@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
 import {
   Container,
@@ -8,46 +8,43 @@ import {
   TextField,
   Typography,
   FormControl,
-    Select,
-    InputLabel,
-    MenuItem,
-  Checkbox,
+  Select,
+  InputLabel,
+  MenuItem,
 } from "@mui/material";
 
 import { ethers } from "ethers";
 import { getConfigByChain } from "../../config";
-import { useAccount, useNetwork } from "wagmi";
+import { useNetwork } from "wagmi";
 import Job from "../../artifacts/contracts/JobContract.sol/JobContract.json";
 
-
 const CreateMilestone = () => {
-    const { chain } = useNetwork();
-    const [openJobs, setOpenJobs] = useState([]);
-    const [closedJobs, setClosedJobs] = useState([]);
-    const [values, setValues] = useState({
-        name: '',
-        description: '',
-        project_id: '',
-        amount: 0,
-        loading: false,
-        error: false,
-
-    })
-    const { project_id, amount, name, description, loading } = values;
+  const { chain } = useNetwork();
+  const [openJobs, setOpenJobs] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [values, setValues] = useState({
+    name: "",
+    description: "",
+    project_id: "",
+    amount: 0,
+    error: false,
+  });
+  const { project_id, amount, name, description } = values;
 
   const onSubmit = () => {
-      console.log(values)
+    console.log(values);
   };
 
- const handleChange = (name) => (event) => {
+  const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
   useEffect(() => {
-      getPostedJobs();
-  }, [])
+    getPostedJobs();
+  }, []);
 
   const getPostedJobs = async () => {
+    setLoading(true);
     await window.ethereum.send("eth_requestAccounts"); // opens up metamask extension and connects Web2 to Web3
     const provider = new ethers.providers.Web3Provider(window.ethereum); //create provider
     const signer = provider.getSigner();
@@ -58,25 +55,23 @@ const CreateMilestone = () => {
       signer
     );
     const allJobs = await contract.getMyPostedJobs();
-    const opens = allJobs.filter((job) => {
-      return job.status === "open";
-    }).map((job) => {
+    const opens = allJobs
+      .filter((job) => {
+        return job.status === "open";
+      })
+      .map((job) => {
         return {
-            ...job,
-            jobId: ethers.utils.formatEther(job.jobId),
-        }
-    })
+          ...job,
+          jobId: job.jobId.toString(),
+        };
+      });
+    setLoading(false);
     setOpenJobs(opens);
-    const closes = allJobs.filter((job) => {
-      return job.status === "closed";
-    });
-    setClosedJobs(closes);
   };
-
 
   return (
     <Container maxWidth={false} sx={{ height: "100vh" }}>
-      {console.log({openJobs})}
+      {console.log({ openJobs })}
       <Grid
         item
         sx={{ maxWidth: "70rem", width: "100%", backgroundColor: "#fff" }}
@@ -116,23 +111,25 @@ const CreateMilestone = () => {
                   Add milestone
                 </Typography>
 
-              <FormControl fullWidth 
-                  sx={{ mb: "10px" }}
-      >
-                  <InputLabel id="demo-simple-select-label">Project Id</InputLabel>
+                <FormControl fullWidth sx={{ mb: "10px" }} disabled={loading}>
+                  <InputLabel id="demo-simple-select-label">
+                    Project Id
+                  </InputLabel>
                   <Select
-                  labelId="milestone-project-id"
-                  id="milestone-project-id"
-                  label="Project Id"
-                  onChange={handleChange("project_id")}
-                  value={project_id}
+                    labelId="milestone-project-id"
+                    id="milestone-project-id"
+                    label="Project Id"
+                    onChange={handleChange("project_id")}
+                    value={project_id}
                   >
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
+                    {openJobs.map((job, idx) => (
+                      <MenuItem
+                        value={job.jobId}
+                        key={idx + "-project-id"}
+                      >{`${job.jobId} - ${job.companyName} - ${job.position}`}</MenuItem>
+                    ))}
                   </Select>
-              </FormControl>
-
+                </FormControl>
 
                 <TextField
                   label="Name"
@@ -141,6 +138,7 @@ const CreateMilestone = () => {
                   sx={{ mb: "10px" }}
                   onChange={handleChange("name")}
                   value={name}
+                  disabled={loading}
                   required
                 />
 
@@ -149,6 +147,7 @@ const CreateMilestone = () => {
                   type="text"
                   name="milestone-description"
                   sx={{ mb: "10px" }}
+                  disabled={loading}
                   onChange={handleChange("description")}
                   value={description}
                   required
@@ -158,6 +157,7 @@ const CreateMilestone = () => {
                   label="Amount"
                   type="number"
                   name="milestone-amount"
+                  disabled={loading}
                   sx={{ mb: "10px" }}
                   onChange={handleChange("amount")}
                   value={amount}
@@ -166,17 +166,17 @@ const CreateMilestone = () => {
 
                 <Button
                   variant="contained"
+                  disabled={loading}
                   sx={{
                     py: "0.8rem",
                     mt: 2,
                     width: "80%",
                     marginInline: "auto",
                   }}
-                 onClick={onSubmit}
+                  onClick={onSubmit}
                 >
                   Add Milestone
                 </Button>
-
               </Box>
             </Grid>
           </Grid>

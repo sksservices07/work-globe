@@ -92,7 +92,7 @@ function Profile() {
     );
     const tx = await contract.getMyProfile();
     console.log("tx", tx);
-    debugger
+    // debugger
     setMyProfile(tx);
   };
 
@@ -103,7 +103,7 @@ function Profile() {
       <Toaster position="top-center" reverseOrder="false" />
       <ThemeProvider theme={theme} >
         <Grid container spacing={3} justify="center" sx={{ backgroundColor: "#e8faf8" }}>
-          <Grid item xs={12}>
+          <Grid item xs={4}>
             {/* <Typography variant="h6" component="h2">
               My Profile
             </Typography> */}
@@ -114,7 +114,7 @@ function Profile() {
           </Grid> */}
           <Grid item xs={12}>
             {/* for image */}
-            <Grid xs={4} sx={{ mr: 10 }}>
+            <Grid xs={3} sx={{ mr: 10 }}>
               {/* <img 
                 width={800}
                 height={800}

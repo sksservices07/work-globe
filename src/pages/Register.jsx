@@ -22,7 +22,7 @@ const theme = createTheme({
           "&:hover": {
             transform: "scale(1.05)",
             backgroundColor: "#1fe47a",
-            
+
           },
         },
       },
@@ -79,119 +79,128 @@ function Register() {
   };
   return (
     <>
-    <NavBar/>
-    <RegisterNavbar/>
+      <NavBar />
+      <RegisterNavbar />
       <Toaster position="top-center" reverseOrder="false" />
       {/* <Grid >
         <img src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-135.jpg?w=740&t=st=1675864184~exp=1675864784~hmac=934a264cbb40f06486da6b4cb49b92857ddb34a1f92dd02230edef25adfa54da" alt="" />
       </Grid> */}
       <Grid >
-      <ThemeProvider theme={theme}>
-        <Grid container spacing={0.5} justify="center" sx={{
-        flexGrow: 1,
-        backgroundColor:"#e8faf8"
-      }}>
-          <Grid item xs={12}>
-            <Typography variant="h4" component="h2">
-              
-            </Typography>
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={0.5} justify="center" sx={{
+            flexGrow: 1,
+            backgroundColor: "#e8faf8"
+          }}>
+            <Grid item xs={12}>
+              <Typography variant="h4" component="h2">
+
+              </Typography>
+            </Grid>
+            <Grid item xs={4} />
+            <Grid item xs={4} sx={{ paddingRight: 5 }}>
+              <TextField
+                sx={{
+                  '& label': { paddingLeft: (theme) => theme.spacing(2) },
+                  '& input': { paddingLeft: (theme) => theme.spacing(3.5) },
+                  '& fieldset': {
+                    paddingLeft: (theme) => theme.spacing(2.5),
+                    borderRadius: '30px', boxShadow: 5, height: 60
+                  }, width:{
+                    xs:"40vw",
+                    sm:'30vw'
+                  },
+                  mt: 6,ml:2
+                }}
+                // sx={{ m: 6 } }
+                id="outlined-basic"
+                label="Name"
+                variant="outlined"
+                onChange={(e) =>
+                  updateFormInput((formInput) => ({
+                    ...formInput,
+                    name: e.target.value,
+                  }))
+                }
+
+                fullWidth
+              />
+            </Grid>
+            <Box width="30%" />
+            <Grid item xs={4} />
+            <Grid item xs={4} sx={{ paddingRight: 5 }}>
+              <TextField
+                sx={{
+                  '& label': { paddingLeft: (theme) => theme.spacing(2) },
+                  '& input': { paddingLeft: (theme) => theme.spacing(3.5) },
+                  '& fieldset': {
+                    paddingLeft: (theme) => theme.spacing(2.5),
+                    borderRadius: '30px', boxShadow: 5, height: 60
+                  }, width:{
+                    xs:"40vw",
+                    sm:'30vw'
+                  },
+                  mt: 6, ml: 2
+                }}
+                id="outlined-basic"
+                label="I am an Employer/I am a Freelancer"
+                variant="outlined"
+                onChange={(e) =>
+                  updateFormInput((formInput) => ({
+                    ...formInput,
+                    typeOfRegistration: e.target.value,
+                  }))
+                }
+                fullWidth
+              />
+            </Grid>
+            <Box width="30%" />
+            <Grid item xs={4} />
+            <Grid item xs={4} sx={{ paddingRight: 5 }}>
+              <TextField
+                sx={{
+                  '& label': { paddingLeft: (theme) => theme.spacing(2) },
+                  '& input': { paddingLeft: (theme) => theme.spacing(3.5) },
+                  '& fieldset': {
+                    paddingLeft: (theme) => theme.spacing(2.5),
+                    borderRadius: '30px', boxShadow: 5, height: 60
+                  }, width:{
+                    xs:"40vw",
+                    sm:'30vw'
+                  },
+                  m: 6,ml:2
+                }}
+                id="outlined-basic"
+                label="City"
+                variant="outlined"
+                onChange={(e) =>
+                  updateFormInput((formInput) => ({
+                    ...formInput,
+                    City: e.target.value,
+                  }))
+                }
+                fullWidth
+              />
+            </Grid>
+            <Box width="30%" />
+            <Grid item xs={4} />
+            <Grid item xs={4} sx={{ paddingBottom: 3 }}>
+              <Button
+                sx={{ boxShadow: 5 }}
+                style={{ maxWidth: '200px', maxHeight: '80px', minWidth: '200px', minHeight: '80px' }}
+                variant="contained"
+                onClick={() => {
+                  registerProfile();
+                }}
+
+              >
+
+                Register Me
+              </Button>
+            </Grid>
+            <Box width="30%" />
+            <Grid item xs={4} />
           </Grid>
-          <Grid item xs={4} />
-          <Grid item xs={4} sx={{paddingRight:5}}>
-            <TextField
-            sx={{
-              '& label': { paddingLeft: (theme) => theme.spacing(2) },
-              '& input': { paddingLeft: (theme) => theme.spacing(3.5) },
-              '& fieldset': {
-                paddingLeft: (theme) => theme.spacing(2.5),
-                borderRadius: '30px',boxShadow:5,height:60
-              },
-              m:6
-            }}
-              // sx={{ m: 6 } }
-              id="outlined-basic"
-              label="Name"
-              variant="outlined"
-              onChange={(e) =>
-                updateFormInput((formInput) => ({
-                  ...formInput,
-                  name: e.target.value,
-                }))
-              }
-              
-              fullWidth
-            />
-          </Grid>
-          <Box width="30%"/>
-          <Grid item xs={4}/>
-          <Grid item xs={4} sx={{paddingRight:5}}>
-            <TextField
-             sx={{
-              '& label': { paddingLeft: (theme) => theme.spacing(2) },
-              '& input': { paddingLeft: (theme) => theme.spacing(3.5) },
-              '& fieldset': {
-                paddingLeft: (theme) => theme.spacing(2.5),
-                borderRadius: '30px',boxShadow:5,height:60
-              },
-              m:6
-            }}
-              id="outlined-basic"
-              label="I am an Employer/I am a Freelancer"
-              variant="outlined"
-              onChange={(e) =>
-                updateFormInput((formInput) => ({
-                  ...formInput,
-                  typeOfRegistration: e.target.value,
-                }))
-              }
-              fullWidth
-            />
-          </Grid>
-          <Box width="30%"/>
-          <Grid item xs={4}/>
-          <Grid item xs={4} sx={{paddingRight:5}}>
-            <TextField
-            sx={{
-              '& label': { paddingLeft: (theme) => theme.spacing(2) },
-              '& input': { paddingLeft: (theme) => theme.spacing(3.5) },
-              '& fieldset': {
-                paddingLeft: (theme) => theme.spacing(2.5),
-                borderRadius: '30px',boxShadow:5,height:60
-              },
-              m:6
-            }}
-              id="outlined-basic"
-              label="City"
-              variant="outlined"
-              onChange={(e) =>
-                updateFormInput((formInput) => ({
-                  ...formInput,
-                  City: e.target.value,
-                }))
-              }
-              fullWidth
-            />
-          </Grid>
-          <Box width="30%"/> 
-          <Grid item xs={4} />
-          <Grid item xs={4} sx={{paddingBottom:3}}>
-            <Button
-            sx={{boxShadow:5}}
-            style={{maxWidth: '200px', maxHeight: '80px', minWidth: '200px', minHeight: '80px'}}
-              variant="contained"
-              onClick={() => {
-                registerProfile();
-              }}
-              
-            >
-              
-              Register Me
-            </Button>
-          </Grid>
-          <Box width="30%"/>
-          <Grid item xs={4} />
-        </Grid>
-      </ThemeProvider>
+        </ThemeProvider>
       </Grid>
     </>
   );

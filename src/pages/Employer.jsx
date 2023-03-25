@@ -91,6 +91,9 @@ function Employer() {
                             alignItems: "center",
                             borderRadius: 8, backgroundColor: 'transparent', ":hover": {
                               boxShadow: 15
+                            }, width:{
+                              xs:"48vw",
+                              sm:'40vw'
                             }
                           }}
                         >

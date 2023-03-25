@@ -103,7 +103,7 @@ const buttonStyles = css`
   ${mq[1]} {
     font-size: 10px;
     widht:10%;
-    
+    mt:10;
   }
 `;
 

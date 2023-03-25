@@ -25,7 +25,10 @@ const ApplicationNavbar = () => {
                 <Toolbar>
                     <Typography variant="h5" component="h1" sx={{ flexGrow: 1, textAlign: "left" }}>
                    
-            <Typography variant="h6" component="h2">
+            <Typography variant="h6" component="h2"  sx={{ flexGrow: 1, textAlign: "left",fontSize:{
+                xs:"0.8rem",
+                sm:"1.5rem"
+              } }}>
             <IconButton onClick={() => navigate(-1)}>
               <ArrowBackIcon sx={{ color: "white" }} />
             </IconButton>

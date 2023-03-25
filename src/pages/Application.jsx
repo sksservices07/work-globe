@@ -80,7 +80,7 @@ function Application(props) {
       console.log(`File uploaded is: ${url}`);
       setIsLoading(false)
       setCv(url);
-      debugger;
+      // debugger;
     } catch (e) {
       console.log(`Error is: ${e}`);
     }
@@ -138,6 +138,9 @@ function Application(props) {
                 '& fieldset': {
                   paddingLeft: (theme) => theme.spacing(2.5),
                   borderRadius: '30px',boxShadow:5,height:60
+                }, width:{
+                  xs:"40vw",
+                  sm:'30vw'
                 },
               }}
               id="outlined-basic"
@@ -164,7 +167,10 @@ function Application(props) {
                  paddingLeft: (theme) => theme.spacing(2.5),
                  borderRadius: '30px',boxShadow:5,height:60
                  
-               },
+               }, width:{
+                xs:"40vw",
+                sm:'30vw'
+              },
              }}
               id="outlined-basic"
               label="Your Experience"
@@ -188,7 +194,10 @@ function Application(props) {
                '& fieldset': {
                  paddingLeft: (theme) => theme.spacing(2.5),
                  borderRadius: '30px',boxShadow:5,height:60
-               },
+               }, width:{
+                xs:"40vw",
+                sm:'30vw'
+              },
              }}
               id="outlined-basic"
               label="City"

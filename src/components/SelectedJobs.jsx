@@ -12,8 +12,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Button, Modal } from "@mui/material";
+import { Button, Modal as ModalMUI } from "@mui/material";
 import RateMeModal from "../components/RateMeModal";
+import Modal from "../components/Modal/Modal";
 
 const SelectedJobs = () => {
   const { address } = useAccount();
@@ -62,17 +63,19 @@ const SelectedJobs = () => {
         <TableHead>
           <TableRow>
             <TableCell>Job Title</TableCell>
-            <TableCell align="right">Location</TableCell>
-            <TableCell align="right">Salary</TableCell>
-            <TableCell align="right">Position</TableCell>
-            <TableCell align="right">Rate</TableCell>
+            <TableCell align="center">Location</TableCell>
+            <TableCell align="center">Salary</TableCell>
+            <TableCell align="center">Position</TableCell>
+            <TableCell align="center">Status</TableCell>
+            <TableCell align="center">Chat</TableCell>
+            <TableCell align="center">Rate</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {jobs.map(
             (job) =>
-              job.status === "closed" &&
-              job.employee == address && (
+              (job.status === "closed" ||
+              job.status === "open") && (
                 <TableRow
                   key={job.companyName}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -80,19 +83,27 @@ const SelectedJobs = () => {
                   <TableCell component="th" scope="row">
                     {job.companyName}
                   </TableCell>
-                  <TableCell align="right">{job.location}</TableCell>
-                  <TableCell align="right">{job.salary}</TableCell>
-                  <TableCell align="right">{job.position}</TableCell>
-                  <TableCell align="right">
+                  <TableCell align="center">{job.location}</TableCell>
+                  <TableCell align="center">{job.salary}</TableCell>
+                  <TableCell align="center">{job.position}</TableCell>
+                  {job.status === "closed" ?
+                  <TableCell align="center">{job.employee == address ? 'Selected' : 'Not Selected'}</TableCell>
+                  : <TableCell align="center"> Applied </TableCell>
+                  }
+                  <TableCell align="center">
+                  <Modal user={job.employer} name={job.companyName} />
+                  </TableCell>
+                  <TableCell align="center">
                     <Button
                       variant="contained"
-                      sx={{ width: "40%", p: 2 }}
+                      sx={{ width: "70%", p: 2 }}
                       onClick={handleModalOpen}
                     >
                       Give Feedback
                     </Button>
                   </TableCell>
-                  <Modal
+                  
+                  <ModalMUI
                     open={modalOpen}
                     onClose={handleModalClose}
                     aria-labelledby="modal-modal-title"
@@ -108,7 +119,7 @@ const SelectedJobs = () => {
                       onSubmit={onSubmit}
                       handleModalClose={handleModalClose}
                     />
-                  </Modal>
+                  </ModalMUI>
                 </TableRow>
               )
           )}

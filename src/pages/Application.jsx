@@ -60,8 +60,10 @@ function Application(props) {
   const [isLoading, setIsLoading] = useState(false);
   const { chain } = useNetwork();
   const [formInput, updateFormInput] = useState({
-    name: "",
+    // name: "",
     experience: "",
+    fee: "",
+    estimatedCompletionTime: "",
     location: "",
   });
   const { address } = useAccount();
@@ -100,8 +102,9 @@ function Application(props) {
     debugger;
     const tx = await contract.applyForJob(
       location.state.jobId,
-      formInput.name,
       formInput.experience,
+      formInput.fee,
+      formInput.estimatedCompletionTime,
       formInput.location,
       cv
     );
@@ -109,6 +112,7 @@ function Application(props) {
     const receipt = await provider
       .waitForTransaction(tx.hash, 1, 150000)
       .then(() => {
+        navigate("/");
         toast.success("Application Done !!");
       });
   }
@@ -127,7 +131,7 @@ function Application(props) {
             <ApplicationNavbar />
           </Grid>
 
-          <Box width="30%" />
+          {/* <Box width="30%" />
           <Grid item xs={4}>
             <TextField
 
@@ -156,7 +160,7 @@ function Application(props) {
             />
           </Grid>
 
-          <Box width="30%" />
+          <Box width="30%" /> */}
           <Box width="30%" />
           <Grid item xs={4}>
             <TextField
@@ -184,6 +188,59 @@ function Application(props) {
               fullWidth
             />
           </Grid>
+          
+          <Box width="30%" />
+          <Box width="30%" />
+          <Grid item xs={4}>
+            <TextField
+             sx={{
+               '& label': { paddingLeft: (theme) => theme.spacing(2) },
+               '& input': { paddingLeft: (theme) => theme.spacing(3.5) },
+               '& fieldset': {
+                 paddingLeft: (theme) => theme.spacing(2.5),
+                 borderRadius: '30px',boxShadow:5,height:60
+                 
+               },
+             }}
+              id="outlined-basic"
+              label="Fee"
+              variant="outlined"
+              onChange={(e) =>
+                updateFormInput((formInput) => ({
+                  ...formInput,
+                  fee: e.target.value,
+                }))
+              }
+              fullWidth
+            />
+          </Grid>
+
+          <Box width="30%" />
+          <Box width="30%" />
+          <Grid item xs={4}>
+            <TextField
+             sx={{
+               '& label': { paddingLeft: (theme) => theme.spacing(2) },
+               '& input': { paddingLeft: (theme) => theme.spacing(3.5) },
+               '& fieldset': {
+                 paddingLeft: (theme) => theme.spacing(2.5),
+                 borderRadius: '30px',boxShadow:5,height:60
+                 
+               },
+             }}
+              id="outlined-basic"
+              label="Estimated Completion Time in days"
+              variant="outlined"
+              onChange={(e) =>
+                updateFormInput((formInput) => ({
+                  ...formInput,
+                  estimatedCompletionTime: e.target.value,
+                }))
+              }
+              fullWidth
+            />
+          </Grid>
+
           <Box width="30%" />
           <Box width="30%" />
           <Grid item xs={4}>

@@ -74,6 +74,7 @@ const JobPost = () => {
     const receipt = await provider
       .waitForTransaction(tx.hash, 1, 150000)
       .then(() => {
+        navigate("/freelancer");
         toast.success("Candidate Selected !!");
       });
   };
@@ -101,7 +102,7 @@ const JobPost = () => {
           <Grid container spacing={2} sx={{backgroundColor:"#e8faf8"}}>
             <Grid item xs={12}>
               <Typography variant="h3" component="p" sx={{ mt: 2 }}>
-                Job Title: (#{location.state.jobId})
+                {/* Job Title: {' '} */}
                 <Typography
                   variant="h3"
                   component="span"
@@ -111,15 +112,18 @@ const JobPost = () => {
                 </Typography>
               </Typography>
               <Typography variant="h6" component="p" sx={{ mt: 2 }}>
-                Location:
+                Location: {' '}
                 <Typography
                   variant="h6"
                   component="span"
                   sx={{ textDecoration: "none" }}
                 >
                   {location.state.location}
-                </Typography>{" "}
-                &nbsp;&nbsp; Salary(per annum):
+                </Typography>
+
+              </Typography>
+              <Typography variant="h6" component="p" sx={{ mt: 0.5 }}>
+              &nbsp;&nbsp; Salary(per annum): {' '}
                 <Typography
                   variant="h6"
                   component="span"
@@ -153,21 +157,27 @@ const JobPost = () => {
                     elevation={3}
                     sx={{
                       p: 2,
-                      textAlign: "left",
+                      textAlign: "center",
                       boxShadow: 5,
                       borderRadius: 20,
                       opacity: [0.7, 0.7, 0.7],
                     }}
                   >
                     <Typography variant="h6" component="p">
-                      {applicant.candidateAddress ===
+                      {applicant.freelancer ===
                         location.state.employee && <h2>Candidate Selected</h2>}
                     </Typography>
-                    <Typography>
+                    <Typography variant="h5">
                       {index + 1}. Name: {applicant.name}
                     </Typography>
-                    <Typography variant="h6" component="p">
+                    <Typography variant="h6" component="p" >
                       Location: {applicant.location}
+                    </Typography>
+                    <Typography variant="h6" component="p">
+                      Fee proposed: {applicant.fee.toString()}
+                    </Typography>
+                    <Typography variant="h6" component="p">
+                      Estimated completion time: {applicant.estimatedCompletionTime.toString()}
                     </Typography>
                     <Typography variant="h6" component="p">
                       <a href={applicant.cv} target="_blank" download>
@@ -195,7 +205,8 @@ const JobPost = () => {
                       >
                         Chat
                       </Button> */}
-                      <Modal user={applicant.candidateAddress} name={applicant.name} />
+                      <br />
+                      <Modal user={applicant.freelancer} name={applicant.name} />
                       <br />
                       <br />
                       <Button
@@ -203,8 +214,8 @@ const JobPost = () => {
                         sx={{ width: "80%", p: 2 }}
                         onClick={() =>
                           selectCandidate(
-                            applicant.registrationID,
-                            applicant.candidateAddress
+                            applicant.jobId,
+                            applicant.freelancer
                           )
                         }
                       >
@@ -212,7 +223,7 @@ const JobPost = () => {
                       </Button>
                     </>
                   ) : (
-                    applicant.candidateAddress === location.state.employee && (
+                    applicant.freelancer === location.state.employee && (
                       <Button
                         variant="contained"
                         sx={{ width: "80%", p: 2 }}
@@ -233,7 +244,7 @@ const JobPost = () => {
                   <RateMeModal
                     input={input}
                     name={applicant.name}
-                    address={applicant.candidateAddress}
+                    address={applicant.freelancer}
                     onRoleChange={onRoleChange}
                     onExperienceChange={onExperienceChange}
                     onSubmit={onSubmit}
@@ -251,3 +262,7 @@ const JobPost = () => {
 };
 
 export default JobPost;
+
+// (#{location.state.jobId}) removed - 
+// // check for job id one NOT WORKING
+// only applicants who are selcted allowed to rate or any one can rate regarding the selcetion process

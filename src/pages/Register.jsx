@@ -6,9 +6,9 @@ import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
 import { useAccount, useNetwork } from "wagmi";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { Box, Typography, Grid, Button, TextField } from "@mui/material";
+import { Box, Typography, Grid, Button, TextField, InputLabel, MenuItem, FormControl, Select } from "@mui/material";
 import NavBar from "../components/NavBar";
-import { ButtonBase, Paper } from "@mui/material";
+// import { ButtonBase, Paper } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import RegisterNavbar from "../components/RegisterNavbar";
@@ -34,6 +34,8 @@ function Register() {
   const navigate = useNavigate();
   const [jobs, setJobs] = React.useState([]);
   const { chain } = useNetwork();
+  const [typeOfAccount, setTypeOfAccount] = React.useState('');
+
   const [formInput, updateFormInput] = useState({
     name: "",
     typeOfRegistration: "",
@@ -127,9 +129,9 @@ function Register() {
             </Grid>
             <Box width="30%" />
             <Grid item xs={4} />
+
             <Grid item xs={4} sx={{ paddingRight: 5 }}>
-              <TextField
-                sx={{
+            <FormControl required sx={{
                   '& label': { paddingLeft: (theme) => theme.spacing(2) },
                   '& input': { paddingLeft: (theme) => theme.spacing(3.5) },
                   '& fieldset': {
@@ -140,19 +142,29 @@ function Register() {
                     sm:'30vw'
                   },
                   mt: 6, ml: 2
-                }}
+                }}>
+              <InputLabel id="select-required-label"> Freelancer / Employer </InputLabel>
+              <Select
+                labelId="select-required-label"
                 id="outlined-basic"
-                label="I am an Employer/I am a Freelancer"
-                variant="outlined"
+                value={formInput.typeOfRegistration}
+                label="Freelancer / Employer"
                 onChange={(e) =>
                   updateFormInput((formInput) => ({
                     ...formInput,
                     typeOfRegistration: e.target.value,
                   }))
                 }
-                fullWidth
-              />
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={'Freelancer'}>Freelancer</MenuItem>
+                <MenuItem value={'Employer'}>Employer</MenuItem>
+              </Select>
+            </FormControl>
             </Grid>
+
             <Box width="30%" />
             <Grid item xs={4} />
             <Grid item xs={4} sx={{ paddingRight: 5 }}>

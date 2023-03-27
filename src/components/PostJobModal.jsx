@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { getConfigByChain } from "../config";
 import Job from "../artifacts/contracts/JobContract.sol/JobContract.json";
+import Milestone from "../artifacts/contracts/MilestoneContract.sol/MilestoneContract.json";
 import { useAccount, useNetwork } from "wagmi";
 import { Box, Typography, Grid, Button, TextField } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -71,6 +72,11 @@ const JobPostModal = (props) => {
     const network = await provider.getNetwork();
     console.log("hi");
     console.log(getConfigByChain(chain?.id)[0].contractProxyAddress);
+    const milestoneContract = new ethers.Contract(
+      getConfigByChain(chain?.id)[0].contractProxyAddress,
+      Milestone.abi,
+      signer
+    );
     const contract = new ethers.Contract(
       getConfigByChain(chain?.id)[0].contractProxyAddress,
       Job.abi,
@@ -86,6 +92,17 @@ const JobPostModal = (props) => {
       formInput.location,
       formInput.salary
     );
+
+    // transaction for milestone contract
+    const milestoneTx = await contract.addJob(
+      formInput.companyName,
+      formInput.position,
+      formInput.projDescription,
+      formInput.experience,
+      formInput.location,
+      formInput.salary
+    );
+
     toast.success("Creating block... Please Wait", { icon: "👏" });
     const receipt = await provider
       .waitForTransaction(tx.hash, 1, 150000)

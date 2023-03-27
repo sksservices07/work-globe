@@ -28,20 +28,18 @@ contract MilestoneContract {
 
     function createProject(
         uint256 projectId,
-        address freelancer,
         uint256 totalAmount
     ) public payable {
         require(
             msg.value == totalAmount,
             "The sent amount doesn't match the total amount"
         );
-        require(freelancer != address(0), "Freelancer address is invalid");
 
         Project storage project = projects[projectId];
         require(project.client == address(0), "Project ID already exists");
 
         project.client = msg.sender;
-        project.freelancer = freelancer;
+        project.freelancer = address(0);
         project.totalAmount = totalAmount;
     }
 
@@ -93,9 +91,10 @@ contract MilestoneContract {
         }
     }
 
-    function releaseMilestone(uint256 projectId, uint256 milestoneIndex)
-        public
-    {
+    function releaseMilestone(
+        uint256 projectId,
+        uint256 milestoneIndex
+    ) public {
         Project storage project = projects[projectId];
         require(
             project.freelancer == msg.sender,

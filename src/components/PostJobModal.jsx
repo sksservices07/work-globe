@@ -94,15 +94,6 @@ const JobPostModal = (props) => {
     );
 
     // transaction for milestone contract
-    const milestoneTx = await contract.addJob(
-      formInput.companyName,
-      formInput.position,
-      formInput.projDescription,
-      formInput.experience,
-      formInput.location,
-      formInput.salary
-    );
-
     toast.success("Creating block... Please Wait", { icon: "👏" });
     const receipt = await provider
       .waitForTransaction(tx.hash, 1, 150000)

@@ -74,8 +74,8 @@ const JobPost = () => {
     const receipt = await provider
       .waitForTransaction(tx.hash, 1, 150000)
       .then(() => {
-        navigate("/freelancer");
         toast.success("Candidate Selected !!");
+        navigate("/");
       });
   };
   const getMyCandidates = async () => {
@@ -224,13 +224,18 @@ const JobPost = () => {
                     </>
                   ) : (
                     applicant.freelancer === location.state.employee && (
+                      <>
                       <Button
                         variant="contained"
-                        sx={{ width: "80%", p: 2 }}
+                        sx={{ width: "80%", p: 2, marginTop: 8 }}
                         onClick={handleModalOpen}
                       >
                         Give Feedback
                       </Button>
+                      <br />
+                      <br />
+                      <Modal user={applicant.freelancer} name={applicant.name} />
+                      </>
                     )
                   )}
                 </Grid>

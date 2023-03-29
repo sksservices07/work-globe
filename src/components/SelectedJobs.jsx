@@ -21,6 +21,7 @@ const SelectedJobs = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [jobs, setJobs] = useState([]);
+  const [currentJobs, setCurrentJobs] = useState(false);
   const { chain } = useNetwork();
 
   const [modalOpen, setModalOpen] = React.useState(false);
@@ -55,6 +56,16 @@ const SelectedJobs = () => {
     console.log("jobs", tx);
 
     setJobs(tx);
+
+    for (let index = 0; index < tx.length; index++) {
+      if(tx[index].status === "closed" ||
+        tx[index].status === "open") {
+          setCurrentJobs(true)
+          break;
+      } else {
+          setCurrentJobs(false)
+      } 
+    }
   };
 
   return (
@@ -72,7 +83,7 @@ const SelectedJobs = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {jobs.map(
+          {currentJobs && jobs.map(
             (job) =>
               (job.status === "closed" ||
               job.status === "open") && (
@@ -125,6 +136,9 @@ const SelectedJobs = () => {
           )}
         </TableBody>
       </Table>
+      {!currentJobs && (
+        <h2> Start Applying for jobs!! </h2> 
+      )}
     </TableContainer>
   );
 };

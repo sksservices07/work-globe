@@ -21,6 +21,7 @@ import MyRating from "../components/MyRating";
 import GradeIcon from '@mui/icons-material/Grade';
 import MyProfileNavbar from "../components/MyProfileNavabar";
 import SelectedJobs from "../components/SelectedJobs";
+import MyJobPostings from "../components/MyJobPostings";
 
 const theme = createTheme({
   palette: {
@@ -68,6 +69,7 @@ function Profile() {
   const [jobs, setJobs] = React.useState([]);
   const { chain } = useNetwork();
   const [myProfile, setMyProfile] = useState([]);
+  const [typeOfAccount, setTypeOfAccount] = useState('');
   const { address } = useAccount();
 
   useEffect(() => {
@@ -94,6 +96,11 @@ function Profile() {
     console.log("tx", tx);
     // debugger
     setMyProfile(tx);
+    if(tx.typeOfAccount === 'Employer') {
+      setTypeOfAccount('Employer');
+    } else {
+      setTypeOfAccount('Freelancer');
+    }
   };
 
   return (
@@ -238,7 +245,8 @@ function Profile() {
 
         </Grid>
       </ThemeProvider>
-      <SelectedJobs />
+      {typeOfAccount === 'Freelancer' && <SelectedJobs />}      
+      {typeOfAccount === 'Employer' && <MyJobPostings />}   
     </>
   );
 }

@@ -112,8 +112,8 @@ function Application(props) {
     const receipt = await provider
       .waitForTransaction(tx.hash, 1, 150000)
       .then(() => {
-        navigate("/");
         toast.success("Application Done !!");
+        navigate("/");
       });
   }
 

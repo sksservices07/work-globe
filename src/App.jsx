@@ -8,9 +8,11 @@ import Messages from "./pages/Messages";
 import Footer from "./components/Footer";
 import JobPost from "./pages/JobPost";
 import Register from "./pages/Register";
+import Unregister from "./pages/Unregister";
 import Profile from "./pages/Profile";
 import Payments from "./pages/Payments";
 import Application from "./pages/Application";
+import Applicant from "./pages/applicant";
 import Lancers from "./pages/Lancers"
 import Feedbacks from "./pages/Feedbacks";
 
@@ -66,11 +68,13 @@ function App() {
             <Route exact path="/jobpost" element={<JobPost />} />
             <Route exact path="/messages" element={<Messages />} />
             <Route exact path="/register" element={<Register />} />
+            <Route exact path="/unregister" element={<Unregister />} />
             <Route exact path="/profile" element={<Profile />} />
             <Route exact path="/feedbacks" element={<Feedbacks />} />
             <Route exact path="/application" element={<Application />} />
             <Route exact path="/lancers" element={<Lancers />} />
             <Route exact path="/payments" element={<Payments />} />
+            <Route exact path="/applicant" element={<Applicant />} />
           </Routes>
           <Footer />
         </RainbowKitProvider>

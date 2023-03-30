@@ -22,7 +22,8 @@ import { motion } from 'framer-motion'
 import Image from '../img/right_img.png'
 import Typewriter from 'typewriter-effect';
 // import TextTransition, { presets } from "react-text-transition";
-
+import WarningModal from "../components/Modal/WarningModal";
+import { useDisclosure } from "../hooks";
 
 import * as React from "react";
 
@@ -121,6 +122,8 @@ const visible = { opacity: 1, y: 0, transition: { duration: 0.5 } };
 
 
 function Landing() {
+  // modal disclosure
+  const { open, onClose, onOpen } = useDisclosure();
   const { chain } = useNetwork();
   const { address } = useAccount();
   const [isRegistered, setIsRegistered] = useState(false);
@@ -154,10 +157,17 @@ function Landing() {
     setNumbers(parseInt(num));
   }, [])
 
+  // warning modal open trigger
+  useEffect(() => {
+      onOpen()
+  }, [])
+
   return (
     <ThemeProvider theme={theme}>
       <NavBar position="fixed" />
       {/* <AnchorComponent number={numbers} /> */}
+      {/* Warning Modal */}
+      <WarningModal open={open} onClose={onClose} />
       <div css={backgroundStyles}>
         <div css={buttonContainerStyles}>
           <h1 css={textStylesH1}>

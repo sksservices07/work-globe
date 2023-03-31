@@ -19,7 +19,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import AnchorComponent from '../subComponents/Anchor'
 import { motion } from 'framer-motion'
-import Image from '../img/right_img.png'
+// import Image from '../img/right_img.png'
+import Image from '../img/BrownModular.png'
 import Typewriter from 'typewriter-effect';
 // import TextTransition, { presets } from "react-text-transition";
 import WarningModal from "../components/Modal/WarningModal";
@@ -46,10 +47,10 @@ const mq = breakpoints.map(
 );
 
 const backgroundStyles = css`
-  background-color: #e8faf8;
+  background-color: #1a1918;
   background-image: url(${Image});
   background-repeat: no-repeat;
-  background-size: 50vw 80vh;
+  background-size: 55vw 110vh;
   background-position: right;
   height: 100vh;
   display: flex;
@@ -90,7 +91,7 @@ const textStylesH1 = css`
 `;
 
 const textStylesP = css`
-  color: #6e96c2;
+  color: #f79e45;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 20px;

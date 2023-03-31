@@ -77,9 +77,10 @@ const textStylesH1 = css`
   color: #3b5169 ;
   font-size: 3rem;
   font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  text-shadow: 2px 1px black;
+  font-weight: 1000;
+  text-shadow: 2px 1px  ;
   width: 550px;
+  text-shadow: 0px 1.8px orange;
   ${mq[1]} {
     font-size: 2rem;
     width: 100%;
@@ -177,14 +178,14 @@ function Landing() {
                 strings: ['ONE BILLION PEOPLE USE ONLINE JOB PORTALS'],
                 autoStart: true,
                 loop: true,
-                pauseFor:1500000,
-                delay:50,
+                pauseFor:50000,
+                delay:40,
                 cursor:''
               }}
             />
           </h1>
           <p css={textStylesP}>
-            Stay protected by the power of smart contract embeddedin the realm
+            Stay protected by the power of smart contract embedded in the realm
             of Blockchain
           </p>
           {isRegistered ? (
@@ -199,7 +200,7 @@ function Landing() {
               </Link>
               <Link to="/freelancer" style={{ textDecoration: 'none' }}>
                 <Button css={buttonStyles} sx={{ boxShadow: 5, borderRadius: 5, marginLeft: 2, p: 3 }}
-
+                  color="error"
                   disabled={false}
                   size="large"
                 >

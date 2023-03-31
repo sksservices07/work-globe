@@ -106,9 +106,9 @@ const NavBar = () => {
               <IconButton
                 size="small"
                 aria-label="payments-button"
-                sx={{ color: "#65b885", borderRadius: "8px !important", m: 1 }}
+                sx={{ color: "#f79e45", borderRadius: "8px !important", m: 1 }}
               >
-                <PaymentIcon sx={{ color: "#65b885", m: 1 }} />
+                <PaymentIcon sx={{ color: "#f79e45", m: 1 }} />
                 Payments
               </IconButton>
             </Link>
@@ -117,9 +117,9 @@ const NavBar = () => {
               <IconButton
                 size="small"
                 aria-label="lancers-button"
-                sx={{ color: "#65b885", borderRadius: "8px !important", m: 1 }}
+                sx={{ color: "#f79e45", borderRadius: "8px !important", m: 1 }}
               >
-                <LaptopMacIcon sx={{ color: "#65b885", m: 1 }} />
+                <LaptopMacIcon sx={{ color: "#f79e45", m: 1 }} />
                 Lancers
                 {/* Lancers */}
               </IconButton>
@@ -141,9 +141,9 @@ const NavBar = () => {
                   aria-label="profile-button"
                   color="inherit"
                   size="small"
-                  sx={{ color: "#65b885", borderRadius: "8px !important", m: 1 }}
+                  sx={{ color: "#f79e45", borderRadius: "8px !important", m: 1 }}
                 >
-                  <ProfileIcon sx={{ color: "#65b885", m: 1 }} />
+                  <ProfileIcon sx={{ color: "#f79e45", m: 1 }} />
                   Profile
                   {/* Profile */}
                 </IconButton>

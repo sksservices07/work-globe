@@ -95,7 +95,7 @@ function Unregister() {
       <NavBar />
       {/* <RegisterNavbar /> */}
       <Toaster position="top-center" reverseOrder="false" />
-        <ThemeProvider theme={theme}>
+        {/* <ThemeProvider theme={theme}> */}
         <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
         <Grid
@@ -192,7 +192,7 @@ function Unregister() {
                 }
               /> */}
               <TextField
-                margin="City"
+                margin="normal"
                 required
                 fullWidth
                 name="City"
@@ -210,7 +210,7 @@ function Unregister() {
               />
            
               <Button
-                type="submit"
+                // type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
@@ -224,9 +224,9 @@ function Unregister() {
             </Box>
           </Box>
         </Grid>
-      </Grid>
+        </Grid>
       
-        </ThemeProvider>
+        {/* </ThemeProvider> */}
     </>
   );
 }

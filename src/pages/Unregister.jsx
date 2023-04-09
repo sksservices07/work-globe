@@ -12,13 +12,15 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from '@mui/material/CssBaseline';
 import Paper from '@mui/material/Paper';
 import RegisterNavbar from "../components/RegisterNavbar";
+import Image from '../img/profile_page.png'
+import { alpha } from "@mui/material/styles";
 
 const theme = createTheme({
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          backgroundColor: "#1fe47a",
+          backgroundColor: "#FFA920",
           "&:hover": {
             transform: "scale(1.05)",
             backgroundColor: "#1fe47a",
@@ -95,7 +97,7 @@ function Unregister() {
       <NavBar />
       {/* <RegisterNavbar /> */}
       <Toaster position="top-center" reverseOrder="false" />
-        {/* <ThemeProvider theme={theme}> */}
+        <ThemeProvider theme={theme}>
         <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
         <Grid
@@ -104,14 +106,15 @@ function Unregister() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-135.jpg?w=740&t=st=1680011579~exp=1680012179~hmac=9daec11d0dd1f12e83ce292af6b16e00b4c735a4fb7ff060e8ed152693182f40)',
+            backgroundImage: `url(${Image})`,
             backgroundRepeat: 'no-repeat',
-            backgroundColor:'#e8faf8',
+            backgroundColor:'#252525',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={0} square>
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={0} square sx={{
+              backgroundColor: '#252525'}}>
           <Box
             sx={{
               my: 8,
@@ -119,16 +122,15 @@ function Unregister() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              
             }}
           >
-            <Box component="form" noValidate  sx={{ mt:0.5,backgroundColor:'#e8faf8',p:6}}>
+            <Box component="form" noValidate  sx={{ mt:0.5,bgcolor: alpha("#000000", 0.4),p:6,borderRadius:18}}>
               <Typography sx=
                 {
                   {
                     fontSize: 28,
                     fontWeight: 700,
-                    color: '#1fe47a',
+                    color: 'white',
                   }
                 }
               >
@@ -144,6 +146,10 @@ function Unregister() {
                 autoComplete="Name"
                 autoFocus
                 id="outlined-basic"
+                InputProps={{
+                  style: { color: "grey" },
+                }}
+                sx={{ backgroundColor: '#252525',borderRadius:4}}
                 label="Name"
                 variant="outlined"
                 onChange={(e) =>
@@ -160,6 +166,10 @@ function Unregister() {
                 id="outlined-basic"
                 value={formInput.typeOfRegistration}
                 label="Freelancer / Employer"
+                InputProps={{
+                  style: { color: "grey" },
+                }}
+                sx={{ backgroundColor: '#252525',borderRadius:4}}
                 onChange={(e) =>
                   updateFormInput((formInput) => ({
                     ...formInput,
@@ -201,6 +211,10 @@ function Unregister() {
                 id="outlined-basic"
                 label="City"
                 variant="outlined"
+                InputProps={{
+                  style: { color: "grey" },
+                }}
+                sx={{ backgroundColor: '#252525',borderRadius:4}}
                 onChange={(e) =>
                   updateFormInput((formInput) => ({
                     ...formInput,
@@ -226,7 +240,7 @@ function Unregister() {
         </Grid>
         </Grid>
       
-        {/* </ThemeProvider> */}
+        </ThemeProvider>
     </>
   );
 }

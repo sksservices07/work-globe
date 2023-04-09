@@ -47,7 +47,7 @@ const mq = breakpoints.map(
 );
 
 const backgroundStyles = css`
-  background-color: #1a1918;
+  background-color: #252525;
   background-image: url(${Image});
   background-repeat: no-repeat;
   background-size: 55vw 110vh;
@@ -69,7 +69,7 @@ const backgroundStyles = css`
   }
 `;
 const backgroundStylesrest = css`
-  background-color: #e8faf8;
+  background-color: #252525;
   
 `;
 
@@ -112,6 +112,7 @@ const buttonStyles = css`
     mt:10;
   }
 `;
+
 
 const buttonContainerStyles = css`
   margin-left: 2rem;
@@ -221,8 +222,6 @@ function Landing() {
         </div>
       </div>
 
-      <div css={backgroundStylesrest}></div>
-
 
       {/* different section */}
       <div css={backgroundStylesrest}>
@@ -237,7 +236,7 @@ function Landing() {
           <Typography
             variant="h3"
             component="h1"
-            sx={{ textAlign: "left", m: 8, ml: 6, color: "grey" }}
+            sx={{ textAlign: "left", m: 8, ml: 6, color: "#55473E" }}
 
           >Are you hiring?
           </Typography>
@@ -254,7 +253,7 @@ function Landing() {
               >
                 <Card sx={{
                   maxWidth: 345, m: 5, backgroundColor: 'transparent', ":hover": {
-                    boxShadow: 15
+                    boxShadow: 15,
                   }
                 }}>
 
@@ -265,10 +264,10 @@ function Landing() {
                     image="https://img.freepik.com/free-vector/tiny-people-searching-business-opportunities_74855-19928.jpg?w=1060&t=st=1677782603~exp=1677783203~hmac=bc50bf378cab5531b337cae9d82ae75062d3fcf428d29bb441df7f26a24b61bb"
                   />
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h5" component="div" color={"#f79e45"}>
                       Post a job
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color="#55473E    ">
                       It’s free and easy to post a job. Simply fill in a title, description and budget and competitive bids come within minutes.
                     </Typography>
                   </CardContent>
@@ -292,10 +291,10 @@ function Landing() {
                     image="https://img.freepik.com/free-vector/freelancer-flexible-remote-work-locations-isometric-flowchart-with-shared-office-writing-home-outdoor-with-laptop-vector-illustration_1284-30324.jpg?w=740&t=st=1677782661~exp=1677783261~hmac=23ca103fc3f4dcc5ba63d5682b4c6d41d120c8633db8b26cf93cb9b83d36e1d7"
                   />
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h5" component="div" color={"#f79e45"}>
                       Choose freelancers
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color="#55473E    ">
                       No job is too big or too small. We've got freelancers for jobs of any size or budget, across 1800+ skills.
                     </Typography>
                   </CardContent>
@@ -319,11 +318,11 @@ function Landing() {
                     image="https://img.freepik.com/free-vector/vector-illustration-retro-style-hand-giving-money-other-hand_1284-42589.jpg?w=740&t=st=1677782693~exp=1677783293~hmac=0221ed0065b0f0d113f582ed9cd4006ce53d6d381ad5c6d48eca393c9c999f84"
                   />
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h5" component="div" color={"#f79e45"}>
 
                       Pay safely
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color="#55473E">
                       Only pay for work when it has been completed and you're 100% satisfied with the quality using our milestone payment system.
                     </Typography>
                   </CardContent>
@@ -361,10 +360,10 @@ function Landing() {
                 image="https://img.freepik.com/free-vector/portfolio-management-previous-projects-samples-works-catalog-skills-presentation-successful-graphic-designer-web-developer-cartoon-character_335657-1586.jpg?w=740&t=st=1677783010~exp=1677783610~hmac=a152c8f05ea0835c91a2f185573f3172ddfe802336783abcde7f1921def8fe65"
               />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h5" component="div" color={"#f79e45"}>
                   Browse portfolios
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="#f79e45">
                   Find professionals you can trust by browsing their samples of previous work and reading their profile reviews.
                 </Typography>
               </CardContent>
@@ -384,10 +383,10 @@ function Landing() {
                 image="https://img.freepik.com/free-vector/iso-certification-illustration_23-2148688045.jpg?w=740&t=st=1677783057~exp=1677783657~hmac=04b134c4e81429314eb7bf152e8c85a13f264ae2be80fbc98f8dd8da31dbaf3e"
               />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h5" component="div" color={"#f79e45"}>
                   Quality work
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="#f79e45">
                   Freelancer.com has by far the largest pool of quality freelancers globally- over 60 million to choose from.
                 </Typography>
               </CardContent>
@@ -407,10 +406,10 @@ function Landing() {
                 image="https://img.freepik.com/free-vector/benchmark-testing-benchmarking-software-product-performance-indicator-load-testing-performance-characteristics-competitive-products-test_335657-4511.jpg?w=740&t=st=1677783095~exp=1677783695~hmac=f5964465c8791d6f2f1ee17607e6cec99933ab4aef37d1d6001347685d8a2eb6"
               />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h5" component="div" color={"#f79e45"}>
                   Track progress
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="#f79e45">
                   Keep up-to-date and on-the-go with our time tracker, and mobile app. Always know what freelancers are up to.
                 </Typography>
               </CardContent>

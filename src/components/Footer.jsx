@@ -33,7 +33,7 @@ const Footer = () => {
       
       <Box sx={{ flexGrow: 1 }}>
         <Box
-          sx={{ alignText: "left", color: "white", backgroundColor: "#7FB4AD" }}
+          sx={{ alignText: "left", color: "white", backgroundColor: "#1a1918" }}
         >
           <Box sx={{ display: "flex", gap: "2" }}>
             <Typography
@@ -43,23 +43,23 @@ const Footer = () => {
             >
               {/* Follow us on : */}
               <IconButton>
-                <FacebookRoundedIcon sx={{ color: "black" }} />
+                <FacebookRoundedIcon sx={{ color: "white" }} />
               </IconButton>
 
               <IconButton>
-                <TwitterIcon sx={{ color: "black" }} />
+                <TwitterIcon sx={{ color: "white" }} />
               </IconButton>
 
               <IconButton>
-                <LinkedInIcon sx={{ color: "black" }} />
+                <LinkedInIcon sx={{ color: "white" }} />
               </IconButton>
 
               <IconButton>
-                <InstagramIcon sx={{ color: "black" }} />
+                <InstagramIcon sx={{ color: "white" }} />
               </IconButton>
 
               <IconButton>
-                <YouTubeIcon sx={{ color: "black" }} />
+                <YouTubeIcon sx={{ color: "white " }} />
               </IconButton>
             </Typography>
           </Box>
@@ -68,9 +68,9 @@ const Footer = () => {
           {/* text can be added here  */}
         </Divider>
 
-        <Grid container spacing={0} sx={{ backgroundColor: "#7FB4AD" }}>
+        <Grid container spacing={0} sx={{ backgroundColor: "#1a1918" }}>
           <Grid item xs={12} sm={6}>
-            <Item variant="outline" square sx={{ backgroundColor: "#7FB4AD"}}>
+            <Item variant="outline" square sx={{ backgroundColor: "#1a1918"}}>
               {/* <Typography
                 variant="h6"
                 component="p"
@@ -87,9 +87,9 @@ const Footer = () => {
             </Item>
           </Grid>
           <Grid item xs={3}>
-            <Item variant="outline" square sx={{ backgroundColor: "#7FB4AD"}}>
+            <Item variant="outline" square sx={{ backgroundColor: "#1a1918"}}>
               <Box
-                sx={{ flexGrow: 1, display: "flex", flexDirection: "column", backgroundColor: "#7FB4AD" }}
+                sx={{ flexGrow: 1, display: "flex", flexDirection: "column", backgroundColor: "#1a1918" }}
               >
                 <Typography
                   variant="h6"
@@ -129,8 +129,8 @@ const Footer = () => {
               </Box>
             </Item>
           </Grid>
-          <Grid item xs={3} sx={{ backgroundColor: "#7FB4AD"}}>
-            <Item variant="outline" square sx={{ backgroundColor: "#7FB4AD"}}>
+          <Grid item xs={3} sx={{ backgroundColor: "#1a1918"}}>
+            <Item variant="outline" square sx={{ backgroundColor: "#1a1918"}}>
               <Typography
                 variant="h6"
                 component="p"
@@ -172,7 +172,7 @@ const Footer = () => {
         <Typography
           variant="h6"
           component="p"
-          sx={{ color: "white", backgroundColor: "#7FB4AD", pt: 4 }}
+          sx={{ color: "white", backgroundColor: "#1a1918", pt: 4 }}
         >
           HuntForLancers
         </Typography>

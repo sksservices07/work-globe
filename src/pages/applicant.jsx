@@ -8,12 +8,11 @@ import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Box, Typography, Grid, Button, TextField, InputLabel, MenuItem, FormControl, Select } from "@mui/material";
 import NavBar from "../components/NavBar";
+import {  makeStyles } from '@material-ui/core';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from '@mui/material/CssBaseline';
 import Paper from '@mui/material/Paper';
 import CurrencyTextField from '@unicef/material-ui-currency-textfield'
-import RegisterNavbar from "../components/RegisterNavbar";
-import AnchorComponent from '../subComponents/Anchor'
 import { motion } from 'framer-motion'
 import Image from '../img/profile_page.png'
 
@@ -22,10 +21,10 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          backgroundColor: "#1fe47a",
+          backgroundColor: "#FFA920",
           "&:hover": {
             transform: "scale(1.05)",
-            backgroundColor: "#1fe47a",
+            backgroundColor: "#FFA920",
 
           },
         },
@@ -69,6 +68,16 @@ function Applicant() {
   };
   const [numbers, setNumbers] = useState(0);
 
+  const useStyles = makeStyles({
+    input: {
+      '&$focused': {
+        color: 'green',
+        borderColor: 'green',
+      },
+    },
+    focused: {},
+  });
+
   useEffect(() => {
     let num = (window.innerHeight - 70) / 50;
     setNumbers(parseInt(num));
@@ -101,6 +110,8 @@ function Applicant() {
       });
   };
 
+  const classes = useStyles();
+
   return (
     <>
       <NavBar />
@@ -118,30 +129,30 @@ function Applicant() {
             sx={{
               backgroundImage: `url(${Image})`,
               backgroundRepeat: 'no-repeat',
-              backgroundColor: '#e8faf8',
-              backgroundSize: 'cover',
+              backgroundColor: '#252525',
+              backgroundSize: '60% 60%',
               backgroundPosition: 'right center',
             }}
           />
-          <Grid item xs={12} sm={8} md={5} component={Paper} elevation={0} square>
+          <Grid item xs={12} sm={8} md={5} component={Paper} elevation={0} square sx={{backgroundColor:'#252525'}}>
             <Box
               sx={{
                 my: 8,
                 mx: 4,
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center'
+                alignItems: 'center',
               }}
             >
               <Box component="form" noValidate sx={{ mt: 0.5,
-                //  backgroundColor: '#e8faf8',
+                 backgroundColor: 'black',opacity:'20', borderRadius: '18px',
                   pr:25,pl:2,pb:10,pt:2}}>
                 <Typography sx=
                   {
                     {
                       fontSize: 32,
                       fontWeight: 700,
-                      color: '#1fe47a',
+                      color: 'white',
                     }
                   }
                 >
@@ -167,6 +178,7 @@ function Applicant() {
                     autoFocus
                     id="outlined-basic"
                     label="Experience"
+                    sx={{ backgroundColor: '#252525',color: 'white'  }}
                     variant="outlined"
                     onChange={(e) =>
                       updateFormInput((formInput) => ({
@@ -186,7 +198,7 @@ function Applicant() {
                     transition: { type: 'spring', duration: 1.5, delay: 1 }
                   }}>
 
-                  <Typography>
+                  <Typography  sx={{ backgroundColor: '#252525',color:'' }}> 
                     <CurrencyTextField
                       fullWidth
                       label="Fees"
@@ -210,7 +222,7 @@ function Applicant() {
                     y: 20,
                     transition: { type: 'spring', duration: 1.5, delay: 1 }
                   }}>
-                  <TextField
+                  <TextField 
                     margin="normal"
                     required
                     fullWidth
@@ -218,6 +230,7 @@ function Applicant() {
                     type="FreeLancer"
                     id="FreeLancer"
                     autoComplete=""
+                    sx={{ backgroundColor: '#252525' }}
                     value={formInput.typeOfRegistration}
                     label="Estimated Completion Time in days"
                     onChange={(e) =>
@@ -226,7 +239,8 @@ function Applicant() {
                         typeOfRegistration: e.target.value,
                       }))
                     }
-                  /></motion.div>
+                  />
+                </motion.div>
                 <motion.div
                   initial={{
                     y: -20,
@@ -236,7 +250,7 @@ function Applicant() {
                     y: 20,
                     transition: { type: 'spring', duration: 1.5, delay: 1 }
                   }}>
-                  <TextField
+                  <TextField 
                     margin="City"
                     required
                     fullWidth
@@ -245,19 +259,26 @@ function Applicant() {
                     id="outlined-basic"
                     label="City"
                     variant="outlined"
+                    sx={{ backgroundColor: '#252525' }}
                     onChange={(e) =>
                       updateFormInput((formInput) => ({
                         ...formInput,
                         City: e.target.value,
                       }))
                     }
+                    InputProps={{
+                      classes: {
+                        input: classes.input,
+                        focused: classes.focused,
+                      },
+                    }}
                   />
                 </motion.div>
                 <Button
                   type="submit"
                   fullWidth
                   variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
+                  sx={{ mt: 5, mb: 2 }}
                   onClick={() => {
                     registerProfile();
                   }}

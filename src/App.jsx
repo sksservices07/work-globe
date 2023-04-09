@@ -15,6 +15,7 @@ import Application from "./pages/Application";
 import Applicant from "./pages/applicant";
 import Lancers from "./pages/Lancers"
 import Feedbacks from "./pages/Feedbacks";
+import Unprofile from "./pages/Unprofile";
 
 import "@rainbow-me/rainbowkit/styles.css";
 import {
@@ -69,6 +70,7 @@ function App() {
             <Route exact path="/messages" element={<Messages />} />
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/unregister" element={<Unregister />} />
+            <Route exact path="/Unprofile" element={<Unprofile />} />
             <Route exact path="/profile" element={<Profile />} />
             <Route exact path="/feedbacks" element={<Feedbacks />} />
             <Route exact path="/application" element={<Application />} />
